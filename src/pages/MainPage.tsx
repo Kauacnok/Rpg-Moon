@@ -1,6 +1,6 @@
 import { Header } from '../components/Header'
 import { CharacterCard } from '../components/CharacterCard'
-import { CreateCharacter } from '../components/CreateCharacter'
+import { CreateCharacter } from './CreateCharacter'
 import { Link } from 'react-router-dom'
 import { useGetCharactersListQuery } from '../graphql/generated'
 
