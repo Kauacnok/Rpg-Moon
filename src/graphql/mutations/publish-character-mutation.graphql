@@ -1,0 +1,5 @@
+mutation PublishCharacter($id: ID = "") {
+  publishCharacter(where: {id: $id}) {
+    id
+  }
+}
