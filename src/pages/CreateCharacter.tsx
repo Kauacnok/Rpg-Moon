@@ -78,7 +78,7 @@ export function CreateCharacter() {
 
 		await publishCharacterMutation()
 
-		//navigate(`/`)
+		navigate(`/`)
 	}
 
 	return (
