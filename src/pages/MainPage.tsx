@@ -17,15 +17,15 @@ export function MainPage() {
 				</p>
 				<div className="flex mx-10 flex-col md:flex-row md:flex-wrap">
 					{data?.characters.map(character => {
-					return (
-						<CharacterCard 
-							key={character.id}
-							id={character.id}
-							name={character.name}
-							avatarURL={character.avatarURL}
-						/>
-					)
-				})}
+						return (
+							<CharacterCard 
+								key={character.id}
+								id={character.id}
+								name={character.name}
+								avatarURL={character.avatarURL}
+							/>
+						)
+					})}
 				</div>
 			</main>
 		</div>

@@ -2170,6 +2170,494 @@ export type DocumentVersion = {
   stage: Stage;
 };
 
+export type HistorySession = Node & {
+  __typename?: 'HistorySession';
+  author: Scalars['String'];
+  /** The time the document was created */
+  createdAt: Scalars['DateTime'];
+  /** User that created this document */
+  createdBy?: Maybe<User>;
+  /** Get the document in other stages */
+  documentInStages: Array<HistorySession>;
+  /** List of HistorySession versions */
+  history: Array<Version>;
+  /** The unique identifier */
+  id: Scalars['ID'];
+  /** The time the document was published. Null on documents in draft stage. */
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  /** User that last published this document */
+  publishedBy?: Maybe<User>;
+  scheduledIn: Array<ScheduledOperation>;
+  /** System stage field */
+  stage: Stage;
+  textHistory: Scalars['String'];
+  title: Scalars['String'];
+  /** The time the document was updated */
+  updatedAt: Scalars['DateTime'];
+  /** User that last updated this document */
+  updatedBy?: Maybe<User>;
+};
+
+
+export type HistorySessionCreatedByArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+
+export type HistorySessionDocumentInStagesArgs = {
+  includeCurrent?: Scalars['Boolean'];
+  inheritLocale?: Scalars['Boolean'];
+  stages?: Array<Stage>;
+};
+
+
+export type HistorySessionHistoryArgs = {
+  limit?: Scalars['Int'];
+  skip?: Scalars['Int'];
+  stageOverride?: InputMaybe<Stage>;
+};
+
+
+export type HistorySessionPublishedByArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+
+export type HistorySessionScheduledInArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: InputMaybe<Array<Locale>>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<ScheduledOperationWhereInput>;
+};
+
+
+export type HistorySessionUpdatedByArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+export type HistorySessionConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: HistorySessionWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type HistorySessionConnection = {
+  __typename?: 'HistorySessionConnection';
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<HistorySessionEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type HistorySessionCreateInput = {
+  author: Scalars['String'];
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  textHistory: Scalars['String'];
+  title: Scalars['String'];
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type HistorySessionCreateManyInlineInput = {
+  /** Connect multiple existing HistorySession documents */
+  connect?: InputMaybe<Array<HistorySessionWhereUniqueInput>>;
+  /** Create and connect multiple existing HistorySession documents */
+  create?: InputMaybe<Array<HistorySessionCreateInput>>;
+};
+
+export type HistorySessionCreateOneInlineInput = {
+  /** Connect one existing HistorySession document */
+  connect?: InputMaybe<HistorySessionWhereUniqueInput>;
+  /** Create and connect one HistorySession document */
+  create?: InputMaybe<HistorySessionCreateInput>;
+};
+
+/** An edge in a connection. */
+export type HistorySessionEdge = {
+  __typename?: 'HistorySessionEdge';
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String'];
+  /** The item at the end of the edge. */
+  node: HistorySession;
+};
+
+/** Identifies documents */
+export type HistorySessionManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<HistorySessionWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<HistorySessionWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<HistorySessionWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']>;
+  author?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  author_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  author_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  author_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values that are not equal to given value. */
+  author_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  author_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  author_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  author_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values not starting with the given string. */
+  author_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  author_starts_with?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  createdAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  createdBy?: InputMaybe<UserWhereInput>;
+  id?: InputMaybe<Scalars['ID']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** All values that are not equal to given value. */
+  id_not?: InputMaybe<Scalars['ID']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  publishedAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  textHistory?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  textHistory_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  textHistory_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  textHistory_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values that are not equal to given value. */
+  textHistory_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  textHistory_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  textHistory_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  textHistory_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values not starting with the given string. */
+  textHistory_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  textHistory_starts_with?: InputMaybe<Scalars['String']>;
+  title?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  title_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  title_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  title_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values that are not equal to given value. */
+  title_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  title_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  title_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  title_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values not starting with the given string. */
+  title_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  title_starts_with?: InputMaybe<Scalars['String']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+export enum HistorySessionOrderByInput {
+  AuthorAsc = 'author_ASC',
+  AuthorDesc = 'author_DESC',
+  CreatedAtAsc = 'createdAt_ASC',
+  CreatedAtDesc = 'createdAt_DESC',
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  PublishedAtAsc = 'publishedAt_ASC',
+  PublishedAtDesc = 'publishedAt_DESC',
+  TextHistoryAsc = 'textHistory_ASC',
+  TextHistoryDesc = 'textHistory_DESC',
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC',
+  UpdatedAtAsc = 'updatedAt_ASC',
+  UpdatedAtDesc = 'updatedAt_DESC'
+}
+
+export type HistorySessionUpdateInput = {
+  author?: InputMaybe<Scalars['String']>;
+  textHistory?: InputMaybe<Scalars['String']>;
+  title?: InputMaybe<Scalars['String']>;
+};
+
+export type HistorySessionUpdateManyInlineInput = {
+  /** Connect multiple existing HistorySession documents */
+  connect?: InputMaybe<Array<HistorySessionConnectInput>>;
+  /** Create and connect multiple HistorySession documents */
+  create?: InputMaybe<Array<HistorySessionCreateInput>>;
+  /** Delete multiple HistorySession documents */
+  delete?: InputMaybe<Array<HistorySessionWhereUniqueInput>>;
+  /** Disconnect multiple HistorySession documents */
+  disconnect?: InputMaybe<Array<HistorySessionWhereUniqueInput>>;
+  /** Override currently-connected documents with multiple existing HistorySession documents */
+  set?: InputMaybe<Array<HistorySessionWhereUniqueInput>>;
+  /** Update multiple HistorySession documents */
+  update?: InputMaybe<Array<HistorySessionUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple HistorySession documents */
+  upsert?: InputMaybe<Array<HistorySessionUpsertWithNestedWhereUniqueInput>>;
+};
+
+export type HistorySessionUpdateManyInput = {
+  author?: InputMaybe<Scalars['String']>;
+  textHistory?: InputMaybe<Scalars['String']>;
+  title?: InputMaybe<Scalars['String']>;
+};
+
+export type HistorySessionUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: HistorySessionUpdateManyInput;
+  /** Document search */
+  where: HistorySessionWhereInput;
+};
+
+export type HistorySessionUpdateOneInlineInput = {
+  /** Connect existing HistorySession document */
+  connect?: InputMaybe<HistorySessionWhereUniqueInput>;
+  /** Create and connect one HistorySession document */
+  create?: InputMaybe<HistorySessionCreateInput>;
+  /** Delete currently connected HistorySession document */
+  delete?: InputMaybe<Scalars['Boolean']>;
+  /** Disconnect currently connected HistorySession document */
+  disconnect?: InputMaybe<Scalars['Boolean']>;
+  /** Update single HistorySession document */
+  update?: InputMaybe<HistorySessionUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single HistorySession document */
+  upsert?: InputMaybe<HistorySessionUpsertWithNestedWhereUniqueInput>;
+};
+
+export type HistorySessionUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: HistorySessionUpdateInput;
+  /** Unique document search */
+  where: HistorySessionWhereUniqueInput;
+};
+
+export type HistorySessionUpsertInput = {
+  /** Create document if it didn't exist */
+  create: HistorySessionCreateInput;
+  /** Update document if it exists */
+  update: HistorySessionUpdateInput;
+};
+
+export type HistorySessionUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: HistorySessionUpsertInput;
+  /** Unique document search */
+  where: HistorySessionWhereUniqueInput;
+};
+
+/** Identifies documents */
+export type HistorySessionWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<HistorySessionWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<HistorySessionWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<HistorySessionWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']>;
+  author?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  author_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  author_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  author_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values that are not equal to given value. */
+  author_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  author_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  author_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  author_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values not starting with the given string. */
+  author_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  author_starts_with?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  createdAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  createdBy?: InputMaybe<UserWhereInput>;
+  id?: InputMaybe<Scalars['ID']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** All values that are not equal to given value. */
+  id_not?: InputMaybe<Scalars['ID']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  publishedAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  textHistory?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  textHistory_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  textHistory_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  textHistory_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values that are not equal to given value. */
+  textHistory_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  textHistory_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  textHistory_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  textHistory_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values not starting with the given string. */
+  textHistory_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  textHistory_starts_with?: InputMaybe<Scalars['String']>;
+  title?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  title_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  title_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  title_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values that are not equal to given value. */
+  title_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  title_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  title_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  title_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values not starting with the given string. */
+  title_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  title_starts_with?: InputMaybe<Scalars['String']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+/** References HistorySession record uniquely */
+export type HistorySessionWhereUniqueInput = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
 export enum ImageFit {
   /** Resizes the image to fit within the specified parameters without distorting, cropping, or changing the aspect ratio. */
   Clip = 'clip',
@@ -2231,12 +2719,16 @@ export type Mutation = {
   createAsset?: Maybe<Asset>;
   /** Create one character */
   createCharacter?: Maybe<Character>;
+  /** Create one historySession */
+  createHistorySession?: Maybe<HistorySession>;
   /** Create one scheduledRelease */
   createScheduledRelease?: Maybe<ScheduledRelease>;
   /** Delete one asset from _all_ existing stages. Returns deleted document. */
   deleteAsset?: Maybe<Asset>;
   /** Delete one character from _all_ existing stages. Returns deleted document. */
   deleteCharacter?: Maybe<Character>;
+  /** Delete one historySession from _all_ existing stages. Returns deleted document. */
+  deleteHistorySession?: Maybe<HistorySession>;
   /**
    * Delete many Asset documents
    * @deprecated Please use the new paginated many mutation (deleteManyAssetsConnection)
@@ -2251,6 +2743,13 @@ export type Mutation = {
   deleteManyCharacters: BatchPayload;
   /** Delete many Character documents, return deleted documents */
   deleteManyCharactersConnection: CharacterConnection;
+  /**
+   * Delete many HistorySession documents
+   * @deprecated Please use the new paginated many mutation (deleteManyHistorySessionsConnection)
+   */
+  deleteManyHistorySessions: BatchPayload;
+  /** Delete many HistorySession documents, return deleted documents */
+  deleteManyHistorySessionsConnection: HistorySessionConnection;
   /** Delete and return scheduled operation */
   deleteScheduledOperation?: Maybe<ScheduledOperation>;
   /** Delete one scheduledRelease from _all_ existing stages. Returns deleted document. */
@@ -2259,6 +2758,8 @@ export type Mutation = {
   publishAsset?: Maybe<Asset>;
   /** Publish one character */
   publishCharacter?: Maybe<Character>;
+  /** Publish one historySession */
+  publishHistorySession?: Maybe<HistorySession>;
   /**
    * Publish many Asset documents
    * @deprecated Please use the new paginated many mutation (publishManyAssetsConnection)
@@ -2273,18 +2774,31 @@ export type Mutation = {
   publishManyCharacters: BatchPayload;
   /** Publish many Character documents */
   publishManyCharactersConnection: CharacterConnection;
+  /**
+   * Publish many HistorySession documents
+   * @deprecated Please use the new paginated many mutation (publishManyHistorySessionsConnection)
+   */
+  publishManyHistorySessions: BatchPayload;
+  /** Publish many HistorySession documents */
+  publishManyHistorySessionsConnection: HistorySessionConnection;
   /** Schedule to publish one asset */
   schedulePublishAsset?: Maybe<Asset>;
   /** Schedule to publish one character */
   schedulePublishCharacter?: Maybe<Character>;
+  /** Schedule to publish one historySession */
+  schedulePublishHistorySession?: Maybe<HistorySession>;
   /** Unpublish one asset from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishAsset?: Maybe<Asset>;
   /** Unpublish one character from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishCharacter?: Maybe<Character>;
+  /** Unpublish one historySession from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  scheduleUnpublishHistorySession?: Maybe<HistorySession>;
   /** Unpublish one asset from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishAsset?: Maybe<Asset>;
   /** Unpublish one character from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishCharacter?: Maybe<Character>;
+  /** Unpublish one historySession from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  unpublishHistorySession?: Maybe<HistorySession>;
   /**
    * Unpublish many Asset documents
    * @deprecated Please use the new paginated many mutation (unpublishManyAssetsConnection)
@@ -2299,10 +2813,19 @@ export type Mutation = {
   unpublishManyCharacters: BatchPayload;
   /** Find many Character documents that match criteria in specified stage and unpublish from target stages */
   unpublishManyCharactersConnection: CharacterConnection;
+  /**
+   * Unpublish many HistorySession documents
+   * @deprecated Please use the new paginated many mutation (unpublishManyHistorySessionsConnection)
+   */
+  unpublishManyHistorySessions: BatchPayload;
+  /** Find many HistorySession documents that match criteria in specified stage and unpublish from target stages */
+  unpublishManyHistorySessionsConnection: HistorySessionConnection;
   /** Update one asset */
   updateAsset?: Maybe<Asset>;
   /** Update one character */
   updateCharacter?: Maybe<Character>;
+  /** Update one historySession */
+  updateHistorySession?: Maybe<HistorySession>;
   /**
    * Update many assets
    * @deprecated Please use the new paginated many mutation (updateManyAssetsConnection)
@@ -2317,12 +2840,21 @@ export type Mutation = {
   updateManyCharacters: BatchPayload;
   /** Update many Character documents */
   updateManyCharactersConnection: CharacterConnection;
+  /**
+   * Update many historySessions
+   * @deprecated Please use the new paginated many mutation (updateManyHistorySessionsConnection)
+   */
+  updateManyHistorySessions: BatchPayload;
+  /** Update many HistorySession documents */
+  updateManyHistorySessionsConnection: HistorySessionConnection;
   /** Update one scheduledRelease */
   updateScheduledRelease?: Maybe<ScheduledRelease>;
   /** Upsert one asset */
   upsertAsset?: Maybe<Asset>;
   /** Upsert one character */
   upsertCharacter?: Maybe<Character>;
+  /** Upsert one historySession */
+  upsertHistorySession?: Maybe<HistorySession>;
 };
 
 
@@ -2333,6 +2865,11 @@ export type MutationCreateAssetArgs = {
 
 export type MutationCreateCharacterArgs = {
   data: CharacterCreateInput;
+};
+
+
+export type MutationCreateHistorySessionArgs = {
+  data: HistorySessionCreateInput;
 };
 
 
@@ -2348,6 +2885,11 @@ export type MutationDeleteAssetArgs = {
 
 export type MutationDeleteCharacterArgs = {
   where: CharacterWhereUniqueInput;
+};
+
+
+export type MutationDeleteHistorySessionArgs = {
+  where: HistorySessionWhereUniqueInput;
 };
 
 
@@ -2381,6 +2923,21 @@ export type MutationDeleteManyCharactersConnectionArgs = {
 };
 
 
+export type MutationDeleteManyHistorySessionsArgs = {
+  where?: InputMaybe<HistorySessionManyWhereInput>;
+};
+
+
+export type MutationDeleteManyHistorySessionsConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']>;
+  before?: InputMaybe<Scalars['ID']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<HistorySessionManyWhereInput>;
+};
+
+
 export type MutationDeleteScheduledOperationArgs = {
   where: ScheduledOperationWhereUniqueInput;
 };
@@ -2403,6 +2960,12 @@ export type MutationPublishAssetArgs = {
 export type MutationPublishCharacterArgs = {
   to?: Array<Stage>;
   where: CharacterWhereUniqueInput;
+};
+
+
+export type MutationPublishHistorySessionArgs = {
+  to?: Array<Stage>;
+  where: HistorySessionWhereUniqueInput;
 };
 
 
@@ -2448,6 +3011,24 @@ export type MutationPublishManyCharactersConnectionArgs = {
 };
 
 
+export type MutationPublishManyHistorySessionsArgs = {
+  to?: Array<Stage>;
+  where?: InputMaybe<HistorySessionManyWhereInput>;
+};
+
+
+export type MutationPublishManyHistorySessionsConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']>;
+  before?: InputMaybe<Scalars['ID']>;
+  first?: InputMaybe<Scalars['Int']>;
+  from?: InputMaybe<Stage>;
+  last?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  to?: Array<Stage>;
+  where?: InputMaybe<HistorySessionManyWhereInput>;
+};
+
+
 export type MutationSchedulePublishAssetArgs = {
   locales?: InputMaybe<Array<Locale>>;
   publishBase?: InputMaybe<Scalars['Boolean']>;
@@ -2464,6 +3045,14 @@ export type MutationSchedulePublishCharacterArgs = {
   releaseId?: InputMaybe<Scalars['String']>;
   to?: Array<Stage>;
   where: CharacterWhereUniqueInput;
+};
+
+
+export type MutationSchedulePublishHistorySessionArgs = {
+  releaseAt?: InputMaybe<Scalars['DateTime']>;
+  releaseId?: InputMaybe<Scalars['String']>;
+  to?: Array<Stage>;
+  where: HistorySessionWhereUniqueInput;
 };
 
 
@@ -2485,6 +3074,14 @@ export type MutationScheduleUnpublishCharacterArgs = {
 };
 
 
+export type MutationScheduleUnpublishHistorySessionArgs = {
+  from?: Array<Stage>;
+  releaseAt?: InputMaybe<Scalars['DateTime']>;
+  releaseId?: InputMaybe<Scalars['String']>;
+  where: HistorySessionWhereUniqueInput;
+};
+
+
 export type MutationUnpublishAssetArgs = {
   from?: Array<Stage>;
   locales?: InputMaybe<Array<Locale>>;
@@ -2496,6 +3093,12 @@ export type MutationUnpublishAssetArgs = {
 export type MutationUnpublishCharacterArgs = {
   from?: Array<Stage>;
   where: CharacterWhereUniqueInput;
+};
+
+
+export type MutationUnpublishHistorySessionArgs = {
+  from?: Array<Stage>;
+  where: HistorySessionWhereUniqueInput;
 };
 
 
@@ -2539,6 +3142,24 @@ export type MutationUnpublishManyCharactersConnectionArgs = {
 };
 
 
+export type MutationUnpublishManyHistorySessionsArgs = {
+  from?: Array<Stage>;
+  where?: InputMaybe<HistorySessionManyWhereInput>;
+};
+
+
+export type MutationUnpublishManyHistorySessionsConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']>;
+  before?: InputMaybe<Scalars['ID']>;
+  first?: InputMaybe<Scalars['Int']>;
+  from?: Array<Stage>;
+  last?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  stage?: InputMaybe<Stage>;
+  where?: InputMaybe<HistorySessionManyWhereInput>;
+};
+
+
 export type MutationUpdateAssetArgs = {
   data: AssetUpdateInput;
   where: AssetWhereUniqueInput;
@@ -2548,6 +3169,12 @@ export type MutationUpdateAssetArgs = {
 export type MutationUpdateCharacterArgs = {
   data: CharacterUpdateInput;
   where: CharacterWhereUniqueInput;
+};
+
+
+export type MutationUpdateHistorySessionArgs = {
+  data: HistorySessionUpdateInput;
+  where: HistorySessionWhereUniqueInput;
 };
 
 
@@ -2585,6 +3212,23 @@ export type MutationUpdateManyCharactersConnectionArgs = {
 };
 
 
+export type MutationUpdateManyHistorySessionsArgs = {
+  data: HistorySessionUpdateManyInput;
+  where?: InputMaybe<HistorySessionManyWhereInput>;
+};
+
+
+export type MutationUpdateManyHistorySessionsConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']>;
+  before?: InputMaybe<Scalars['ID']>;
+  data: HistorySessionUpdateManyInput;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<HistorySessionManyWhereInput>;
+};
+
+
 export type MutationUpdateScheduledReleaseArgs = {
   data: ScheduledReleaseUpdateInput;
   where: ScheduledReleaseWhereUniqueInput;
@@ -2600,6 +3244,12 @@ export type MutationUpsertAssetArgs = {
 export type MutationUpsertCharacterArgs = {
   upsert: CharacterUpsertInput;
   where: CharacterWhereUniqueInput;
+};
+
+
+export type MutationUpsertHistorySessionArgs = {
+  upsert: HistorySessionUpsertInput;
+  where: HistorySessionWhereUniqueInput;
 };
 
 /** An object with an ID */
@@ -2650,6 +3300,14 @@ export type Query = {
   characters: Array<Character>;
   /** Retrieve multiple characters using the Relay connection interface */
   charactersConnection: CharacterConnection;
+  /** Retrieve a single historySession */
+  historySession?: Maybe<HistorySession>;
+  /** Retrieve document version */
+  historySessionVersion?: Maybe<DocumentVersion>;
+  /** Retrieve multiple historySessions */
+  historySessions: Array<HistorySession>;
+  /** Retrieve multiple historySessions using the Relay connection interface */
+  historySessionsConnection: HistorySessionConnection;
   /** Fetches an object given its ID */
   node?: Maybe<Node>;
   /** Retrieve a single scheduledOperation */
@@ -2746,6 +3404,44 @@ export type QueryCharactersConnectionArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   stage?: Stage;
   where?: InputMaybe<CharacterWhereInput>;
+};
+
+
+export type QueryHistorySessionArgs = {
+  locales?: Array<Locale>;
+  stage?: Stage;
+  where: HistorySessionWhereUniqueInput;
+};
+
+
+export type QueryHistorySessionVersionArgs = {
+  where: VersionWhereInput;
+};
+
+
+export type QueryHistorySessionsArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: Array<Locale>;
+  orderBy?: InputMaybe<HistorySessionOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  stage?: Stage;
+  where?: InputMaybe<HistorySessionWhereInput>;
+};
+
+
+export type QueryHistorySessionsConnectionArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: Array<Locale>;
+  orderBy?: InputMaybe<HistorySessionOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  stage?: Stage;
+  where?: InputMaybe<HistorySessionWhereInput>;
 };
 
 
@@ -2961,7 +3657,7 @@ export type ScheduledOperationUpdatedByArgs = {
   locales?: InputMaybe<Array<Locale>>;
 };
 
-export type ScheduledOperationAffectedDocument = Asset | Character;
+export type ScheduledOperationAffectedDocument = Asset | Character | HistorySession;
 
 export type ScheduledOperationConnectInput = {
   /** Allow to specify document position in list of connected documents, will default to appending at end of list */
@@ -4435,6 +5131,11 @@ export type GetCharactersListQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetCharactersListQuery = { __typename?: 'Query', characters: Array<{ __typename?: 'Character', id: string, name: string, avatarURL: string }> };
 
+export type GetHistorySessionsListQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetHistorySessionsListQuery = { __typename?: 'Query', historySessions: Array<{ __typename?: 'HistorySession', id: string, title: string, author: string, updatedAt: any }> };
+
 
 export const CreateNewCharacterDocument = gql`
     mutation CreateNewCharacter($avatarURL: String!, $characterDescription: String!, $agility: Int!, $charisma: Int!, $connection: String!, $disposal: Int!, $force: Int!, $inteligence: Int!, $inventory: String!, $level: Int!, $money: String!, $motivation: String!, $name: String!, $origin: String!, $password: String!, $perception: Int!, $personality: String!, $physical: String!, $player: String!, $points: Int!, $problem: String!, $psychological: String!, $resistance: Int!, $route: String!, $skills: String!, $xp: Int!) {
@@ -4687,3 +5388,40 @@ export function useGetCharactersListLazyQuery(baseOptions?: Apollo.LazyQueryHook
 export type GetCharactersListQueryHookResult = ReturnType<typeof useGetCharactersListQuery>;
 export type GetCharactersListLazyQueryHookResult = ReturnType<typeof useGetCharactersListLazyQuery>;
 export type GetCharactersListQueryResult = Apollo.QueryResult<GetCharactersListQuery, GetCharactersListQueryVariables>;
+export const GetHistorySessionsListDocument = gql`
+    query GetHistorySessionsList {
+  historySessions(where: {}) {
+    id
+    title
+    author
+    updatedAt
+  }
+}
+    `;
+
+/**
+ * __useGetHistorySessionsListQuery__
+ *
+ * To run a query within a React component, call `useGetHistorySessionsListQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetHistorySessionsListQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetHistorySessionsListQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetHistorySessionsListQuery(baseOptions?: Apollo.QueryHookOptions<GetHistorySessionsListQuery, GetHistorySessionsListQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetHistorySessionsListQuery, GetHistorySessionsListQueryVariables>(GetHistorySessionsListDocument, options);
+      }
+export function useGetHistorySessionsListLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetHistorySessionsListQuery, GetHistorySessionsListQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetHistorySessionsListQuery, GetHistorySessionsListQueryVariables>(GetHistorySessionsListDocument, options);
+        }
+export type GetHistorySessionsListQueryHookResult = ReturnType<typeof useGetHistorySessionsListQuery>;
+export type GetHistorySessionsListLazyQueryHookResult = ReturnType<typeof useGetHistorySessionsListLazyQuery>;
+export type GetHistorySessionsListQueryResult = Apollo.QueryResult<GetHistorySessionsListQuery, GetHistorySessionsListQueryVariables>;

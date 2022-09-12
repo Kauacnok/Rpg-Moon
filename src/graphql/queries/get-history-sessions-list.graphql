@@ -1,0 +1,8 @@
+query GetHistorySessionsList {
+  historySessions(where: {}) {
+  	id
+    title
+    author
+    updatedAt
+  }
+}
