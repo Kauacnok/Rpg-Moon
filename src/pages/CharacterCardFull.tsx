@@ -1,5 +1,6 @@
 import { Header } from '../components/Header'
 import { useGetCharacterInfooQuery } from '../graphql/generated'
+import DOMPurify from 'dompurify'
 import { Link, useParams } from 'react-router-dom'
 import { ArrowLeft } from 'phosphor-react'
 
@@ -11,21 +12,6 @@ export function CharacterCardFull() {
 			id
 		}
 	})
-
-	const regex = /<br>([\w\d ç\(\)\+ãáéíêóú]+)<\/br>/gm
-
-	var dataInventory: Array<string> = []
-	var dataMoney: Array<string> = []
-
-	var item
-
-	while ( item = regex.exec(data?.character?.inventory || '') ) {
-		dataInventory.push(item[1])
-	}
-
-	while ( item = regex.exec(data?.character?.money || '') ) {
-		dataMoney.push(item[1])
-	}
 
 	return (
 		<>
@@ -85,21 +71,11 @@ export function CharacterCardFull() {
 			<div className="flex flex-col justify-center pl-2 py-5 bg-gray-700 border-b border-gray-500 md:flex-row">
 				<ul className="mb-5 mr-2 p-5 border border-gray-500 rounded-md">
 					<li className="mb-2">Inventário:</li>
-					
-					{regex.test(data?.character?.inventory || '') ?
-						dataInventory.map(function(item, index) {
-							return <li key={index}>{item}</li>
-						}) : <li>{data?.character?.inventory}</li>
-					}
-					
+					<div dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(data?.character?.inventory || '')}} />		
 				</ul>
 				<ul className="mb-5 mr-2 p-5 border border-gray-500 rounded-md">
 					<li className="mb-2">Moedas:</li>
-					{regex.test(data?.character?.money || '') ?
-						dataMoney.map(function(item, index) {
-							return <li key={index}>{item}</li>
-						}) : <li>{data?.character?.money}</li>
-					}
+					<div dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(data?.character?.money || '')}} />		
 				</ul>
 			</div>
 		</>
