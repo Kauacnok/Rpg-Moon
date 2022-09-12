@@ -50,7 +50,7 @@ export function CharacterCardFull() {
 				</ul>
 				<ul className="p-5 mr-2 border border-gray-500 rounded-md">
 					<li className="mb-2">Habilidades:</li>
-					<li>{data?.character?.skills}</li>
+					<div dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(data?.character?.skills || '')}} />
 				</ul>
 			</main>
 			<div className="flex flex-col justify-center pl-2 py-5 bg-gray-700 border-b border-gray-500 md:flex-row">
