@@ -4,6 +4,9 @@ import { CharacterCardFull } from './pages/CharacterCardFull'
 import { CreateCharacter } from './pages/CreateCharacter'
 import { UpdateCharacter } from './pages/UpdateCharacter'
 import { HistorysCards } from './pages/HistorysCards'
+import { HistoryCardFull } from './pages/HistoryCardFull'
+import { UpdateHistory } from './pages/UpdateHistory'
+
 
 export function Router() {
 	return (
@@ -14,6 +17,8 @@ export function Router() {
 				<Route path="/update/:id" element={<UpdateCharacter />} />
 				<Route path="/character/:id" element={<CharacterCardFull />} />
 				<Route path="/history" element={<HistorysCards />} />
+				<Route path="/history/session/:id" element={<HistoryCardFull />} />
+				<Route path="/history/session/update/:id" element={<UpdateHistory />} />
 			</Routes>
 		</>
 	)

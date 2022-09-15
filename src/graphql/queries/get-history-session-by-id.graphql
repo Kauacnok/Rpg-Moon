@@ -1,0 +1,8 @@
+query GetHistorySessionByID($id: ID) {
+  historySession(where: {id: $id}) {
+    title
+    textHistory
+    author
+    updatedAt
+  }
+}

@@ -5119,6 +5119,16 @@ export type UpdateCharacterByIdMutationVariables = Exact<{
 
 export type UpdateCharacterByIdMutation = { __typename?: 'Mutation', updateCharacter?: { __typename?: 'Character', id: string } | null };
 
+export type UpdateHistoryMutationVariables = Exact<{
+  id?: InputMaybe<Scalars['ID']>;
+  author?: InputMaybe<Scalars['String']>;
+  textHistory?: InputMaybe<Scalars['String']>;
+  title?: InputMaybe<Scalars['String']>;
+}>;
+
+
+export type UpdateHistoryMutation = { __typename?: 'Mutation', updateHistorySession?: { __typename?: 'HistorySession', id: string, updatedAt: any } | null };
+
 export type GetCharacterInfooQueryVariables = Exact<{
   id?: InputMaybe<Scalars['ID']>;
 }>;
@@ -5130,6 +5140,13 @@ export type GetCharactersListQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetCharactersListQuery = { __typename?: 'Query', characters: Array<{ __typename?: 'Character', id: string, name: string, avatarURL: string }> };
+
+export type GetHistorySessionByIdQueryVariables = Exact<{
+  id?: InputMaybe<Scalars['ID']>;
+}>;
+
+
+export type GetHistorySessionByIdQuery = { __typename?: 'Query', historySession?: { __typename?: 'HistorySession', title: string, textHistory: string, author: string, updatedAt: any } | null };
 
 export type GetHistorySessionsListQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -5292,6 +5309,46 @@ export function useUpdateCharacterByIdMutation(baseOptions?: Apollo.MutationHook
 export type UpdateCharacterByIdMutationHookResult = ReturnType<typeof useUpdateCharacterByIdMutation>;
 export type UpdateCharacterByIdMutationResult = Apollo.MutationResult<UpdateCharacterByIdMutation>;
 export type UpdateCharacterByIdMutationOptions = Apollo.BaseMutationOptions<UpdateCharacterByIdMutation, UpdateCharacterByIdMutationVariables>;
+export const UpdateHistoryDocument = gql`
+    mutation UpdateHistory($id: ID, $author: String = "", $textHistory: String = "", $title: String = "") {
+  updateHistorySession(
+    data: {author: $author, textHistory: $textHistory, title: $title}
+    where: {id: $id}
+  ) {
+    id
+    updatedAt
+  }
+}
+    `;
+export type UpdateHistoryMutationFn = Apollo.MutationFunction<UpdateHistoryMutation, UpdateHistoryMutationVariables>;
+
+/**
+ * __useUpdateHistoryMutation__
+ *
+ * To run a mutation, you first call `useUpdateHistoryMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateHistoryMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateHistoryMutation, { data, loading, error }] = useUpdateHistoryMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *      author: // value for 'author'
+ *      textHistory: // value for 'textHistory'
+ *      title: // value for 'title'
+ *   },
+ * });
+ */
+export function useUpdateHistoryMutation(baseOptions?: Apollo.MutationHookOptions<UpdateHistoryMutation, UpdateHistoryMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateHistoryMutation, UpdateHistoryMutationVariables>(UpdateHistoryDocument, options);
+      }
+export type UpdateHistoryMutationHookResult = ReturnType<typeof useUpdateHistoryMutation>;
+export type UpdateHistoryMutationResult = Apollo.MutationResult<UpdateHistoryMutation>;
+export type UpdateHistoryMutationOptions = Apollo.BaseMutationOptions<UpdateHistoryMutation, UpdateHistoryMutationVariables>;
 export const GetCharacterInfooDocument = gql`
     query GetCharacterInfoo($id: ID) {
   character(where: {id: $id}) {
@@ -5388,6 +5445,44 @@ export function useGetCharactersListLazyQuery(baseOptions?: Apollo.LazyQueryHook
 export type GetCharactersListQueryHookResult = ReturnType<typeof useGetCharactersListQuery>;
 export type GetCharactersListLazyQueryHookResult = ReturnType<typeof useGetCharactersListLazyQuery>;
 export type GetCharactersListQueryResult = Apollo.QueryResult<GetCharactersListQuery, GetCharactersListQueryVariables>;
+export const GetHistorySessionByIdDocument = gql`
+    query GetHistorySessionByID($id: ID) {
+  historySession(where: {id: $id}) {
+    title
+    textHistory
+    author
+    updatedAt
+  }
+}
+    `;
+
+/**
+ * __useGetHistorySessionByIdQuery__
+ *
+ * To run a query within a React component, call `useGetHistorySessionByIdQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetHistorySessionByIdQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetHistorySessionByIdQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useGetHistorySessionByIdQuery(baseOptions?: Apollo.QueryHookOptions<GetHistorySessionByIdQuery, GetHistorySessionByIdQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetHistorySessionByIdQuery, GetHistorySessionByIdQueryVariables>(GetHistorySessionByIdDocument, options);
+      }
+export function useGetHistorySessionByIdLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetHistorySessionByIdQuery, GetHistorySessionByIdQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetHistorySessionByIdQuery, GetHistorySessionByIdQueryVariables>(GetHistorySessionByIdDocument, options);
+        }
+export type GetHistorySessionByIdQueryHookResult = ReturnType<typeof useGetHistorySessionByIdQuery>;
+export type GetHistorySessionByIdLazyQueryHookResult = ReturnType<typeof useGetHistorySessionByIdLazyQuery>;
+export type GetHistorySessionByIdQueryResult = Apollo.QueryResult<GetHistorySessionByIdQuery, GetHistorySessionByIdQueryVariables>;
 export const GetHistorySessionsListDocument = gql`
     query GetHistorySessionsList {
   historySessions(where: {}) {
