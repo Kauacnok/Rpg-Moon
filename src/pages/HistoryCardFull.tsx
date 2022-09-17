@@ -30,7 +30,7 @@ export function HistoryCardFull() {
 			</nav>
 			<main className="pl-2 py-5 bg-gray-700 border-b border-gray-500" >	
 				<h1 className="text-center mb-4">{data?.historySession?.title}</h1>
-				<textarea value={data?.historySession?.textHistory} readOnly className="bg-gray-700 w-[90%]"></textarea>
+				<textarea value={data?.historySession?.textHistory} readOnly className="bg-gray-700 w-[90%] h-[400px]"></textarea>
 				<p className="my-4">Autor do texto: {data?.historySession?.author}</p>
 				<p className="my-4">Atualizado no {formattedDate}</p>
 			</main>
