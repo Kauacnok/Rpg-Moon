@@ -250,6 +250,9 @@ export type AssetManyWhereInput = {
   /** All values that are not contained in given list. */
   createdAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
   createdBy?: InputMaybe<UserWhereInput>;
+  documentInStages_every?: InputMaybe<AssetWhereStageInput>;
+  documentInStages_none?: InputMaybe<AssetWhereStageInput>;
+  documentInStages_some?: InputMaybe<AssetWhereStageInput>;
   id?: InputMaybe<Scalars['ID']>;
   /** All values containing the given string. */
   id_contains?: InputMaybe<Scalars['ID']>;
@@ -466,6 +469,12 @@ export type AssetUpsertWithNestedWhereUniqueInput = {
   where: AssetWhereUniqueInput;
 };
 
+/** This contains a set of filters that can be used to compare values internally */
+export type AssetWhereComparatorInput = {
+  /** This field can be used to request to check if the entry is outdated by internal comparison */
+  outdated_to?: InputMaybe<Scalars['Boolean']>;
+};
+
 /** Identifies documents */
 export type AssetWhereInput = {
   /** Logical AND on all given filters. */
@@ -492,6 +501,9 @@ export type AssetWhereInput = {
   /** All values that are not contained in given list. */
   createdAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
   createdBy?: InputMaybe<UserWhereInput>;
+  documentInStages_every?: InputMaybe<AssetWhereStageInput>;
+  documentInStages_none?: InputMaybe<AssetWhereStageInput>;
+  documentInStages_some?: InputMaybe<AssetWhereStageInput>;
   fileName?: InputMaybe<Scalars['String']>;
   /** All values containing the given string. */
   fileName_contains?: InputMaybe<Scalars['String']>;
@@ -648,6 +660,20 @@ export type AssetWhereInput = {
   width_not?: InputMaybe<Scalars['Float']>;
   /** All values that are not contained in given list. */
   width_not_in?: InputMaybe<Array<InputMaybe<Scalars['Float']>>>;
+};
+
+/** The document in stages filter allows specifying a stage entry to cross compare the same document between different stages */
+export type AssetWhereStageInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<AssetWhereStageInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<AssetWhereStageInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<AssetWhereStageInput>>;
+  /** This field contains fields which can be set as true or false to specify an internal comparison */
+  compareWithParent?: InputMaybe<AssetWhereComparatorInput>;
+  /** Specify the stage to compare with */
+  stage?: InputMaybe<Stage>;
 };
 
 /** References Asset record uniquely */
@@ -951,6 +977,9 @@ export type CharacterManyWhereInput = {
   disposal_not?: InputMaybe<Scalars['Int']>;
   /** All values that are not contained in given list. */
   disposal_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
+  documentInStages_every?: InputMaybe<CharacterWhereStageInput>;
+  documentInStages_none?: InputMaybe<CharacterWhereStageInput>;
+  documentInStages_some?: InputMaybe<CharacterWhereStageInput>;
   force?: InputMaybe<Scalars['Int']>;
   /** All values greater than the given value. */
   force_gt?: InputMaybe<Scalars['Int']>;
@@ -1540,6 +1569,12 @@ export type CharacterUpsertWithNestedWhereUniqueInput = {
   where: CharacterWhereUniqueInput;
 };
 
+/** This contains a set of filters that can be used to compare values internally */
+export type CharacterWhereComparatorInput = {
+  /** This field can be used to request to check if the entry is outdated by internal comparison */
+  outdated_to?: InputMaybe<Scalars['Boolean']>;
+};
+
 /** Identifies documents */
 export type CharacterWhereInput = {
   /** Logical AND on all given filters. */
@@ -1668,6 +1703,9 @@ export type CharacterWhereInput = {
   disposal_not?: InputMaybe<Scalars['Int']>;
   /** All values that are not contained in given list. */
   disposal_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
+  documentInStages_every?: InputMaybe<CharacterWhereStageInput>;
+  documentInStages_none?: InputMaybe<CharacterWhereStageInput>;
+  documentInStages_some?: InputMaybe<CharacterWhereStageInput>;
   force?: InputMaybe<Scalars['Int']>;
   /** All values greater than the given value. */
   force_gt?: InputMaybe<Scalars['Int']>;
@@ -2076,6 +2114,20 @@ export type CharacterWhereInput = {
   xp_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
 };
 
+/** The document in stages filter allows specifying a stage entry to cross compare the same document between different stages */
+export type CharacterWhereStageInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<CharacterWhereStageInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<CharacterWhereStageInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<CharacterWhereStageInput>>;
+  /** This field contains fields which can be set as true or false to specify an internal comparison */
+  compareWithParent?: InputMaybe<CharacterWhereComparatorInput>;
+  /** Specify the stage to compare with */
+  stage?: InputMaybe<Stage>;
+};
+
 /** References Character record uniquely */
 export type CharacterWhereUniqueInput = {
   id?: InputMaybe<Scalars['ID']>;
@@ -2331,6 +2383,9 @@ export type HistorySessionManyWhereInput = {
   /** All values that are not contained in given list. */
   createdAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
   createdBy?: InputMaybe<UserWhereInput>;
+  documentInStages_every?: InputMaybe<HistorySessionWhereStageInput>;
+  documentInStages_none?: InputMaybe<HistorySessionWhereStageInput>;
+  documentInStages_some?: InputMaybe<HistorySessionWhereStageInput>;
   id?: InputMaybe<Scalars['ID']>;
   /** All values containing the given string. */
   id_contains?: InputMaybe<Scalars['ID']>;
@@ -2514,6 +2569,12 @@ export type HistorySessionUpsertWithNestedWhereUniqueInput = {
   where: HistorySessionWhereUniqueInput;
 };
 
+/** This contains a set of filters that can be used to compare values internally */
+export type HistorySessionWhereComparatorInput = {
+  /** This field can be used to request to check if the entry is outdated by internal comparison */
+  outdated_to?: InputMaybe<Scalars['Boolean']>;
+};
+
 /** Identifies documents */
 export type HistorySessionWhereInput = {
   /** Logical AND on all given filters. */
@@ -2559,6 +2620,9 @@ export type HistorySessionWhereInput = {
   /** All values that are not contained in given list. */
   createdAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
   createdBy?: InputMaybe<UserWhereInput>;
+  documentInStages_every?: InputMaybe<HistorySessionWhereStageInput>;
+  documentInStages_none?: InputMaybe<HistorySessionWhereStageInput>;
+  documentInStages_some?: InputMaybe<HistorySessionWhereStageInput>;
   id?: InputMaybe<Scalars['ID']>;
   /** All values containing the given string. */
   id_contains?: InputMaybe<Scalars['ID']>;
@@ -2651,6 +2715,20 @@ export type HistorySessionWhereInput = {
   /** All values that are not contained in given list. */
   updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
   updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+/** The document in stages filter allows specifying a stage entry to cross compare the same document between different stages */
+export type HistorySessionWhereStageInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<HistorySessionWhereStageInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<HistorySessionWhereStageInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<HistorySessionWhereStageInput>>;
+  /** This field contains fields which can be set as true or false to specify an internal comparison */
+  compareWithParent?: InputMaybe<HistorySessionWhereComparatorInput>;
+  /** Specify the stage to compare with */
+  stage?: InputMaybe<Stage>;
 };
 
 /** References HistorySession record uniquely */
@@ -4691,6 +4769,9 @@ export type UserManyWhereInput = {
   createdAt_not?: InputMaybe<Scalars['DateTime']>;
   /** All values that are not contained in given list. */
   createdAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  documentInStages_every?: InputMaybe<UserWhereStageInput>;
+  documentInStages_none?: InputMaybe<UserWhereStageInput>;
+  documentInStages_some?: InputMaybe<UserWhereStageInput>;
   id?: InputMaybe<Scalars['ID']>;
   /** All values containing the given string. */
   id_contains?: InputMaybe<Scalars['ID']>;
@@ -4825,6 +4906,12 @@ export type UserUpdateOneInlineInput = {
   disconnect?: InputMaybe<Scalars['Boolean']>;
 };
 
+/** This contains a set of filters that can be used to compare values internally */
+export type UserWhereComparatorInput = {
+  /** This field can be used to request to check if the entry is outdated by internal comparison */
+  outdated_to?: InputMaybe<Scalars['Boolean']>;
+};
+
 /** Identifies documents */
 export type UserWhereInput = {
   /** Logical AND on all given filters. */
@@ -4850,6 +4937,9 @@ export type UserWhereInput = {
   createdAt_not?: InputMaybe<Scalars['DateTime']>;
   /** All values that are not contained in given list. */
   createdAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  documentInStages_every?: InputMaybe<UserWhereStageInput>;
+  documentInStages_none?: InputMaybe<UserWhereStageInput>;
+  documentInStages_some?: InputMaybe<UserWhereStageInput>;
   id?: InputMaybe<Scalars['ID']>;
   /** All values containing the given string. */
   id_contains?: InputMaybe<Scalars['ID']>;
@@ -4947,6 +5037,20 @@ export type UserWhereInput = {
   updatedAt_not?: InputMaybe<Scalars['DateTime']>;
   /** All values that are not contained in given list. */
   updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+};
+
+/** The document in stages filter allows specifying a stage entry to cross compare the same document between different stages */
+export type UserWhereStageInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<UserWhereStageInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<UserWhereStageInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<UserWhereStageInput>>;
+  /** This field contains fields which can be set as true or false to specify an internal comparison */
+  compareWithParent?: InputMaybe<UserWhereComparatorInput>;
+  /** Specify the stage to compare with */
+  stage?: InputMaybe<Stage>;
 };
 
 /** References User record uniquely */
@@ -5079,12 +5183,19 @@ export type CreateNewCharacterMutationVariables = Exact<{
 
 export type CreateNewCharacterMutation = { __typename?: 'Mutation', createCharacter?: { __typename?: 'Character', id: string } | null };
 
-export type PublishCharacterMutationVariables = Exact<{
+export type PublishUpdateCharacterMutationVariables = Exact<{
   id?: InputMaybe<Scalars['ID']>;
 }>;
 
 
-export type PublishCharacterMutation = { __typename?: 'Mutation', publishCharacter?: { __typename?: 'Character', id: string } | null };
+export type PublishUpdateCharacterMutation = { __typename?: 'Mutation', publishCharacter?: { __typename?: 'Character', agility: number, avatarURL: string, characterDescription: string, charisma: number, connection: string, createdAt: any, disposal: number, force: number, inteligence: number, id: string, inventory: string, level: number, money: string, motivation: string, name: string, origin: string, password: string, perception: number, personality: string, physical: string, player: string, points: number, problem: string, psychological: string, publishedAt?: any | null, resistance: number, route: string, skills: string, stage: Stage, updatedAt: any, xp: number } | null };
+
+export type PublishUpdateHistoryMutationVariables = Exact<{
+  id?: InputMaybe<Scalars['ID']>;
+}>;
+
+
+export type PublishUpdateHistoryMutation = { __typename?: 'Mutation', publishHistorySession?: { __typename?: 'HistorySession', author: string, createdAt: any, id: string, publishedAt?: any | null, textHistory: string, title: string, updatedAt: any, stage: Stage } | null };
 
 export type UpdateCharacterByIdMutationVariables = Exact<{
   id?: InputMaybe<Scalars['ID']>;
@@ -5214,39 +5325,109 @@ export function useCreateNewCharacterMutation(baseOptions?: Apollo.MutationHookO
 export type CreateNewCharacterMutationHookResult = ReturnType<typeof useCreateNewCharacterMutation>;
 export type CreateNewCharacterMutationResult = Apollo.MutationResult<CreateNewCharacterMutation>;
 export type CreateNewCharacterMutationOptions = Apollo.BaseMutationOptions<CreateNewCharacterMutation, CreateNewCharacterMutationVariables>;
-export const PublishCharacterDocument = gql`
-    mutation PublishCharacter($id: ID = "") {
-  publishCharacter(where: {id: $id}) {
+export const PublishUpdateCharacterDocument = gql`
+    mutation publishUpdateCharacter($id: ID) {
+  publishCharacter(where: {id: $id}, to: PUBLISHED) {
+    agility
+    avatarURL
+    characterDescription
+    charisma
+    connection
+    createdAt
+    disposal
+    force
+    inteligence
     id
+    inventory
+    level
+    money
+    motivation
+    name
+    origin
+    password
+    perception
+    personality
+    physical
+    player
+    points
+    problem
+    psychological
+    publishedAt
+    resistance
+    route
+    skills
+    stage
+    updatedAt
+    xp
   }
 }
     `;
-export type PublishCharacterMutationFn = Apollo.MutationFunction<PublishCharacterMutation, PublishCharacterMutationVariables>;
+export type PublishUpdateCharacterMutationFn = Apollo.MutationFunction<PublishUpdateCharacterMutation, PublishUpdateCharacterMutationVariables>;
 
 /**
- * __usePublishCharacterMutation__
+ * __usePublishUpdateCharacterMutation__
  *
- * To run a mutation, you first call `usePublishCharacterMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `usePublishCharacterMutation` returns a tuple that includes:
+ * To run a mutation, you first call `usePublishUpdateCharacterMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `usePublishUpdateCharacterMutation` returns a tuple that includes:
  * - A mutate function that you can call at any time to execute the mutation
  * - An object with fields that represent the current status of the mutation's execution
  *
  * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
  *
  * @example
- * const [publishCharacterMutation, { data, loading, error }] = usePublishCharacterMutation({
+ * const [publishUpdateCharacterMutation, { data, loading, error }] = usePublishUpdateCharacterMutation({
  *   variables: {
  *      id: // value for 'id'
  *   },
  * });
  */
-export function usePublishCharacterMutation(baseOptions?: Apollo.MutationHookOptions<PublishCharacterMutation, PublishCharacterMutationVariables>) {
+export function usePublishUpdateCharacterMutation(baseOptions?: Apollo.MutationHookOptions<PublishUpdateCharacterMutation, PublishUpdateCharacterMutationVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<PublishCharacterMutation, PublishCharacterMutationVariables>(PublishCharacterDocument, options);
+        return Apollo.useMutation<PublishUpdateCharacterMutation, PublishUpdateCharacterMutationVariables>(PublishUpdateCharacterDocument, options);
       }
-export type PublishCharacterMutationHookResult = ReturnType<typeof usePublishCharacterMutation>;
-export type PublishCharacterMutationResult = Apollo.MutationResult<PublishCharacterMutation>;
-export type PublishCharacterMutationOptions = Apollo.BaseMutationOptions<PublishCharacterMutation, PublishCharacterMutationVariables>;
+export type PublishUpdateCharacterMutationHookResult = ReturnType<typeof usePublishUpdateCharacterMutation>;
+export type PublishUpdateCharacterMutationResult = Apollo.MutationResult<PublishUpdateCharacterMutation>;
+export type PublishUpdateCharacterMutationOptions = Apollo.BaseMutationOptions<PublishUpdateCharacterMutation, PublishUpdateCharacterMutationVariables>;
+export const PublishUpdateHistoryDocument = gql`
+    mutation publishUpdateHistory($id: ID = "") {
+  publishHistorySession(where: {id: $id}, to: PUBLISHED) {
+    author
+    createdAt
+    id
+    publishedAt
+    textHistory
+    title
+    updatedAt
+    stage
+  }
+}
+    `;
+export type PublishUpdateHistoryMutationFn = Apollo.MutationFunction<PublishUpdateHistoryMutation, PublishUpdateHistoryMutationVariables>;
+
+/**
+ * __usePublishUpdateHistoryMutation__
+ *
+ * To run a mutation, you first call `usePublishUpdateHistoryMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `usePublishUpdateHistoryMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [publishUpdateHistoryMutation, { data, loading, error }] = usePublishUpdateHistoryMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function usePublishUpdateHistoryMutation(baseOptions?: Apollo.MutationHookOptions<PublishUpdateHistoryMutation, PublishUpdateHistoryMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<PublishUpdateHistoryMutation, PublishUpdateHistoryMutationVariables>(PublishUpdateHistoryDocument, options);
+      }
+export type PublishUpdateHistoryMutationHookResult = ReturnType<typeof usePublishUpdateHistoryMutation>;
+export type PublishUpdateHistoryMutationResult = Apollo.MutationResult<PublishUpdateHistoryMutation>;
+export type PublishUpdateHistoryMutationOptions = Apollo.BaseMutationOptions<PublishUpdateHistoryMutation, PublishUpdateHistoryMutationVariables>;
 export const UpdateCharacterByIdDocument = gql`
     mutation UpdateCharacterById($id: ID, $agility: Int, $avatarURL: String, $characterDescription: String, $charisma: Int, $connection: String, $disposal: Int, $force: Int, $inteligence: Int, $inventory: String, $level: Int, $money: String, $motivation: String, $name: String, $origin: String, $password: String, $perception: Int, $personality: String, $physical: String, $player: String, $points: Int, $problem: String, $psychological: String, $resistance: Int, $route: String, $skills: String, $xp: Int) {
   updateCharacter(

@@ -1,5 +1,5 @@
 import { useState, FormEvent } from 'react'
-import { useGetHistorySessionByIdQuery, useUpdateHistoryMutation} from '../graphql/generated'
+import { useGetHistorySessionByIdQuery, useUpdateHistoryMutation, usePublishUpdateHistoryMutation} from '../graphql/generated'
 import { Link, useParams, useNavigate } from 'react-router-dom'
 import { ArrowLeft } from 'phosphor-react'
 import { Header } from '../components/Header'
@@ -14,7 +14,7 @@ export function UpdateHistory() {
    	 	variables: {
        		id
     	},
-	});
+	})
 
 	const [updateHistoryMutation] = useUpdateHistoryMutation({
     	variables: {
@@ -22,15 +22,21 @@ export function UpdateHistory() {
 		}
 	})
 
+	const [publishUpdateHistoryMutation] = usePublishUpdateHistoryMutation({
+		variables: {
+    		id
+		},
+	})
+
 	const [title, setTitle] = useState(data?.historySession?.title)
 	const [text, setText] = useState(data?.historySession?.textHistory)
 	const [author, setAuthor] = useState(data?.historySession?.author)
 	const [password, setPassword] = useState("")
 
-	function handleSubmit(event: FormEvent) {
+	async function handleSubmit(event: FormEvent) {
 		event.preventDefault()
 
-		updateHistoryMutation({
+		await updateHistoryMutation({
   			variables: {
   				title,
   				author,
@@ -38,6 +44,12 @@ export function UpdateHistory() {
   				textHistory: text,	
   			}
   		})
+
+		await publishUpdateHistoryMutation({
+			variables: {
+				id
+			}
+		})		
 
   		navigate(`/history/session/${id}`)
 	}

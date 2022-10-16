@@ -3,7 +3,7 @@ import { Header } from '../components/Header'
 import { ArrowLeft } from 'phosphor-react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useState, FormEvent } from 'react'
-import { useCreateNewCharacterMutation, usePublishCharacterMutation } from '../graphql/generated'
+import { useCreateNewCharacterMutation } from '../graphql/generated'
 
 export function CreateCharacter() {
 	const navigate = useNavigate()
@@ -37,15 +37,10 @@ export function CreateCharacter() {
 
 	const [createNewCharacter, {data, loading }] = useCreateNewCharacterMutation()
 
-	const [publishCharacterMutation, {client}] = usePublishCharacterMutation({
-		variables: {
-			id: ''
-		},
-	})
-
 	async function handleSubmit(event: FormEvent) {
 		event.preventDefault()
-		const getCharacterId = await createNewCharacter({
+
+		await createNewCharacter({
 			variables: {
 				avatarURL,
 				characterDescription,
@@ -75,8 +70,6 @@ export function CreateCharacter() {
 				xp: Number(xp),
 			}
 		})
-
-		await publishCharacterMutation()
 
 		navigate(`/`)
 	}

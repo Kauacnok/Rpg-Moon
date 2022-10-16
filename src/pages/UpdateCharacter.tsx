@@ -1,7 +1,7 @@
 import { Link, useParams, useNavigate } from 'react-router-dom'
 import { useState, FormEvent } from 'react'
 import { ArrowLeft } from 'phosphor-react'
-import { useGetCharacterInfooQuery, useUpdateCharacterByIdMutation, usePublishCharacterMutation } from '../graphql/generated'
+import { useGetCharacterInfooQuery, useUpdateCharacterByIdMutation, usePublishUpdateCharacterMutation } from '../graphql/generated'
 import { InputForm } from '../components/InputForm'
 import { Header } from '../components/Header'
 
@@ -20,13 +20,13 @@ export function UpdateCharacter() {
 		variables: {
 		    id
 		},
-	});
+	})
 
-	const [publishCharacterMutation, {}] = usePublishCharacterMutation({
-		variables: {
-       		id
-    	},
-  	});
+  	const [publishUpdateCharacterMutation] = usePublishUpdateCharacterMutation({
+ 		variables: {
+ 	    	id: id || 'ops'
+ 		},
+ 	})
 
 	const [name, setName] = useState(data?.character?.name)
 	const [avatarURL, setAvatarURL] = useState(data?.character?.avatarURL)
@@ -87,6 +87,12 @@ export function UpdateCharacter() {
 				skills,
 				xp: Number(xp),
 			}
+  		})
+
+  		await publishUpdateCharacterMutation({
+  			variables: {
+  				id: id || 'ops'
+  			}
   		})
 
   		navigate(`/character/${id}`)
@@ -166,7 +172,7 @@ export function UpdateCharacter() {
 					type="submit" 
 					className="w-[80%] mx-auto px-5 py-2 bg-green-500 hover:bg-green-700 disabled:opacity-50"
 					disabled={password != data?.character?.password}
-				>Criar personagem</button>
+				>Atualizar personagem</button>
 			</form>
 		</>
 	)
