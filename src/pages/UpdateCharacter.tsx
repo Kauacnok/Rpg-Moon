@@ -1,6 +1,6 @@
 import { Link, useParams, useNavigate } from 'react-router-dom'
 import { useState, FormEvent } from 'react'
-import { ArrowLeft } from 'phosphor-react'
+import { ArrowLeft, CircleNotch  } from 'phosphor-react'
 import { useGetCharacterInfooQuery, useUpdateCharacterByIdMutation, usePublishUpdateCharacterMutation } from '../graphql/generated'
 import { InputForm } from '../components/InputForm'
 import { Header } from '../components/Header'
@@ -27,6 +27,8 @@ export function UpdateCharacter() {
  	    	id: id || 'ops'
  		},
  	})
+
+ 	const [isDataSent, setIsDataSent] = useState(false)
 
 	const [name, setName] = useState(data?.character?.name)
 	const [avatarURL, setAvatarURL] = useState(data?.character?.avatarURL)
@@ -57,6 +59,8 @@ export function UpdateCharacter() {
 
 	async function handleSubmit(event: FormEvent) {
 		event.preventDefault()
+
+		setIsDataSent(true)
 
   		await updateCharacterByIdMutation({
   			variables: {
@@ -94,6 +98,8 @@ export function UpdateCharacter() {
   				id: id || 'ops'
   			}
   		})
+
+  		setIsDataSent(false)
 
   		navigate(`/character/${id}`)
   	}
@@ -168,11 +174,20 @@ export function UpdateCharacter() {
 				<p className="bg-gray-700 px-5 py-2 my-5">Dado atual: { money == "" ? data?.character?.money : money}</p>
 				<InputForm key="26" typeInput="text" placeholderInput="Digite a senha do personagem para confirmar as alterações" setValue={setPassword} />
 
-				<button 
-					type="submit" 
-					className="w-[80%] mx-auto px-5 py-2 bg-green-500 hover:bg-green-700 disabled:opacity-50"
-					disabled={password != data?.character?.password}
-				>Atualizar personagem</button>
+
+				{ isDataSent == false ? (
+					<button 
+						type="submit" 
+						className="w-[80%] mx-auto px-5 py-2 bg-green-500 hover:bg-green-700 disabled:opacity-50"
+						disabled={password != data?.character?.password}
+					>Atualizar personagem</button>
+					) : (
+						<button 
+							type="submit" 
+							className="w-[80%] mx-auto px-5 py-2 bg-green-500 hover:bg-green-700 disabled:opacity-50"
+							disabled
+						><CircleNotch weight="bold" className="mx-auto w-4 h-4 animate-spin" /></button>)}
+				
 			</form>
 		</>
 	)

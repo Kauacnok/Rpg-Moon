@@ -1,7 +1,7 @@
 import { useState, FormEvent } from 'react'
 import { useGetHistorySessionByIdQuery, useUpdateHistoryMutation, usePublishUpdateHistoryMutation} from '../graphql/generated'
 import { Link, useParams, useNavigate } from 'react-router-dom'
-import { ArrowLeft } from 'phosphor-react'
+import { ArrowLeft, CircleNotch } from 'phosphor-react'
 import { Header } from '../components/Header'
 import { InputForm } from '../components/InputForm'
 
@@ -28,6 +28,8 @@ export function UpdateHistory() {
 		},
 	})
 
+	const [isDataSent, setIsDataSent] = useState(false)
+
 	const [title, setTitle] = useState(data?.historySession?.title)
 	const [text, setText] = useState(data?.historySession?.textHistory)
 	const [author, setAuthor] = useState(data?.historySession?.author)
@@ -35,6 +37,8 @@ export function UpdateHistory() {
 
 	async function handleSubmit(event: FormEvent) {
 		event.preventDefault()
+
+		setIsDataSent(true)
 
 		await updateHistoryMutation({
   			variables: {
@@ -49,7 +53,9 @@ export function UpdateHistory() {
 			variables: {
 				id
 			}
-		})		
+		})	
+
+		setIsDataSent(false)	
 
   		navigate(`/history/session/${id}`)
 	}
@@ -73,11 +79,18 @@ export function UpdateHistory() {
 					<InputForm key="3" typeInput="text" placeholderInput="Nome do autor" setValue={setAuthor} isUpdateCharacter={true} dataDefaultValue={data?.historySession?.author}  />
 					<p className="bg-gray-700 px-5 py-2 my-5">Dado atual: { author == "" ? data?.historySession?.author : author}</p>
 					<InputForm key="4" typeInput="text" placeholderInput="Digite a senha dos mestres para confirmar as alterações" setValue={setPassword}/>
-					<button 
-						type="submit" 
-						className="w-[100%] mx-auto px-5 py-2 bg-green-500 hover:bg-green-700 disabled:opacity-50"
-						disabled={password != "mestre8595"}
-					>Atualizar sessão</button>
+					{ isDataSent == false ? ( 
+						<button 
+							type="submit" 
+							className="w-[100%] mx-auto px-5 py-2 bg-green-500 hover:bg-green-700 disabled:opacity-50"
+							disabled={password != "mestre8595"} 
+						>Atualizar sessão</button>
+					) : (
+						<button 
+							type="submit" 
+							className="w-[100%] mx-auto px-5 py-2 bg-green-500 hover:bg-green-700 disabled:opacity-50"
+							disabled
+						><CircleNotch weight="bold" className="mx-auto w-4 h-4 animate-spin" /></button>)}
 				</form>
 			</main>
 		</>
