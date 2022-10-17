@@ -2799,6 +2799,8 @@ export type Mutation = {
   createCharacter?: Maybe<Character>;
   /** Create one historySession */
   createHistorySession?: Maybe<HistorySession>;
+  /** Create one rollDices */
+  createRollDices?: Maybe<RollDices>;
   /** Create one scheduledRelease */
   createScheduledRelease?: Maybe<ScheduledRelease>;
   /** Delete one asset from _all_ existing stages. Returns deleted document. */
@@ -2828,6 +2830,15 @@ export type Mutation = {
   deleteManyHistorySessions: BatchPayload;
   /** Delete many HistorySession documents, return deleted documents */
   deleteManyHistorySessionsConnection: HistorySessionConnection;
+  /**
+   * Delete many RollDices documents
+   * @deprecated Please use the new paginated many mutation (deleteManyRollDicessConnection)
+   */
+  deleteManyRollDicess: BatchPayload;
+  /** Delete many RollDices documents, return deleted documents */
+  deleteManyRollDicessConnection: RollDicesConnection;
+  /** Delete one rollDices from _all_ existing stages. Returns deleted document. */
+  deleteRollDices?: Maybe<RollDices>;
   /** Delete and return scheduled operation */
   deleteScheduledOperation?: Maybe<ScheduledOperation>;
   /** Delete one scheduledRelease from _all_ existing stages. Returns deleted document. */
@@ -2859,18 +2870,31 @@ export type Mutation = {
   publishManyHistorySessions: BatchPayload;
   /** Publish many HistorySession documents */
   publishManyHistorySessionsConnection: HistorySessionConnection;
+  /**
+   * Publish many RollDices documents
+   * @deprecated Please use the new paginated many mutation (publishManyRollDicessConnection)
+   */
+  publishManyRollDicess: BatchPayload;
+  /** Publish many RollDices documents */
+  publishManyRollDicessConnection: RollDicesConnection;
+  /** Publish one rollDices */
+  publishRollDices?: Maybe<RollDices>;
   /** Schedule to publish one asset */
   schedulePublishAsset?: Maybe<Asset>;
   /** Schedule to publish one character */
   schedulePublishCharacter?: Maybe<Character>;
   /** Schedule to publish one historySession */
   schedulePublishHistorySession?: Maybe<HistorySession>;
+  /** Schedule to publish one rollDices */
+  schedulePublishRollDices?: Maybe<RollDices>;
   /** Unpublish one asset from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishAsset?: Maybe<Asset>;
   /** Unpublish one character from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishCharacter?: Maybe<Character>;
   /** Unpublish one historySession from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishHistorySession?: Maybe<HistorySession>;
+  /** Unpublish one rollDices from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  scheduleUnpublishRollDices?: Maybe<RollDices>;
   /** Unpublish one asset from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishAsset?: Maybe<Asset>;
   /** Unpublish one character from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
@@ -2898,6 +2922,15 @@ export type Mutation = {
   unpublishManyHistorySessions: BatchPayload;
   /** Find many HistorySession documents that match criteria in specified stage and unpublish from target stages */
   unpublishManyHistorySessionsConnection: HistorySessionConnection;
+  /**
+   * Unpublish many RollDices documents
+   * @deprecated Please use the new paginated many mutation (unpublishManyRollDicessConnection)
+   */
+  unpublishManyRollDicess: BatchPayload;
+  /** Find many RollDices documents that match criteria in specified stage and unpublish from target stages */
+  unpublishManyRollDicessConnection: RollDicesConnection;
+  /** Unpublish one rollDices from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  unpublishRollDices?: Maybe<RollDices>;
   /** Update one asset */
   updateAsset?: Maybe<Asset>;
   /** Update one character */
@@ -2925,6 +2958,15 @@ export type Mutation = {
   updateManyHistorySessions: BatchPayload;
   /** Update many HistorySession documents */
   updateManyHistorySessionsConnection: HistorySessionConnection;
+  /**
+   * Update many rollDicess
+   * @deprecated Please use the new paginated many mutation (updateManyRollDicessConnection)
+   */
+  updateManyRollDicess: BatchPayload;
+  /** Update many RollDices documents */
+  updateManyRollDicessConnection: RollDicesConnection;
+  /** Update one rollDices */
+  updateRollDices?: Maybe<RollDices>;
   /** Update one scheduledRelease */
   updateScheduledRelease?: Maybe<ScheduledRelease>;
   /** Upsert one asset */
@@ -2933,6 +2975,8 @@ export type Mutation = {
   upsertCharacter?: Maybe<Character>;
   /** Upsert one historySession */
   upsertHistorySession?: Maybe<HistorySession>;
+  /** Upsert one rollDices */
+  upsertRollDices?: Maybe<RollDices>;
 };
 
 
@@ -2948,6 +2992,11 @@ export type MutationCreateCharacterArgs = {
 
 export type MutationCreateHistorySessionArgs = {
   data: HistorySessionCreateInput;
+};
+
+
+export type MutationCreateRollDicesArgs = {
+  data: RollDicesCreateInput;
 };
 
 
@@ -3013,6 +3062,26 @@ export type MutationDeleteManyHistorySessionsConnectionArgs = {
   last?: InputMaybe<Scalars['Int']>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<HistorySessionManyWhereInput>;
+};
+
+
+export type MutationDeleteManyRollDicessArgs = {
+  where?: InputMaybe<RollDicesManyWhereInput>;
+};
+
+
+export type MutationDeleteManyRollDicessConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']>;
+  before?: InputMaybe<Scalars['ID']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<RollDicesManyWhereInput>;
+};
+
+
+export type MutationDeleteRollDicesArgs = {
+  where: RollDicesWhereUniqueInput;
 };
 
 
@@ -3107,6 +3176,30 @@ export type MutationPublishManyHistorySessionsConnectionArgs = {
 };
 
 
+export type MutationPublishManyRollDicessArgs = {
+  to?: Array<Stage>;
+  where?: InputMaybe<RollDicesManyWhereInput>;
+};
+
+
+export type MutationPublishManyRollDicessConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']>;
+  before?: InputMaybe<Scalars['ID']>;
+  first?: InputMaybe<Scalars['Int']>;
+  from?: InputMaybe<Stage>;
+  last?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  to?: Array<Stage>;
+  where?: InputMaybe<RollDicesManyWhereInput>;
+};
+
+
+export type MutationPublishRollDicesArgs = {
+  to?: Array<Stage>;
+  where: RollDicesWhereUniqueInput;
+};
+
+
 export type MutationSchedulePublishAssetArgs = {
   locales?: InputMaybe<Array<Locale>>;
   publishBase?: InputMaybe<Scalars['Boolean']>;
@@ -3134,6 +3227,14 @@ export type MutationSchedulePublishHistorySessionArgs = {
 };
 
 
+export type MutationSchedulePublishRollDicesArgs = {
+  releaseAt?: InputMaybe<Scalars['DateTime']>;
+  releaseId?: InputMaybe<Scalars['String']>;
+  to?: Array<Stage>;
+  where: RollDicesWhereUniqueInput;
+};
+
+
 export type MutationScheduleUnpublishAssetArgs = {
   from?: Array<Stage>;
   locales?: InputMaybe<Array<Locale>>;
@@ -3157,6 +3258,14 @@ export type MutationScheduleUnpublishHistorySessionArgs = {
   releaseAt?: InputMaybe<Scalars['DateTime']>;
   releaseId?: InputMaybe<Scalars['String']>;
   where: HistorySessionWhereUniqueInput;
+};
+
+
+export type MutationScheduleUnpublishRollDicesArgs = {
+  from?: Array<Stage>;
+  releaseAt?: InputMaybe<Scalars['DateTime']>;
+  releaseId?: InputMaybe<Scalars['String']>;
+  where: RollDicesWhereUniqueInput;
 };
 
 
@@ -3238,6 +3347,30 @@ export type MutationUnpublishManyHistorySessionsConnectionArgs = {
 };
 
 
+export type MutationUnpublishManyRollDicessArgs = {
+  from?: Array<Stage>;
+  where?: InputMaybe<RollDicesManyWhereInput>;
+};
+
+
+export type MutationUnpublishManyRollDicessConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']>;
+  before?: InputMaybe<Scalars['ID']>;
+  first?: InputMaybe<Scalars['Int']>;
+  from?: Array<Stage>;
+  last?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  stage?: InputMaybe<Stage>;
+  where?: InputMaybe<RollDicesManyWhereInput>;
+};
+
+
+export type MutationUnpublishRollDicesArgs = {
+  from?: Array<Stage>;
+  where: RollDicesWhereUniqueInput;
+};
+
+
 export type MutationUpdateAssetArgs = {
   data: AssetUpdateInput;
   where: AssetWhereUniqueInput;
@@ -3307,6 +3440,29 @@ export type MutationUpdateManyHistorySessionsConnectionArgs = {
 };
 
 
+export type MutationUpdateManyRollDicessArgs = {
+  data: RollDicesUpdateManyInput;
+  where?: InputMaybe<RollDicesManyWhereInput>;
+};
+
+
+export type MutationUpdateManyRollDicessConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']>;
+  before?: InputMaybe<Scalars['ID']>;
+  data: RollDicesUpdateManyInput;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<RollDicesManyWhereInput>;
+};
+
+
+export type MutationUpdateRollDicesArgs = {
+  data: RollDicesUpdateInput;
+  where: RollDicesWhereUniqueInput;
+};
+
+
 export type MutationUpdateScheduledReleaseArgs = {
   data: ScheduledReleaseUpdateInput;
   where: ScheduledReleaseWhereUniqueInput;
@@ -3328,6 +3484,12 @@ export type MutationUpsertCharacterArgs = {
 export type MutationUpsertHistorySessionArgs = {
   upsert: HistorySessionUpsertInput;
   where: HistorySessionWhereUniqueInput;
+};
+
+
+export type MutationUpsertRollDicesArgs = {
+  upsert: RollDicesUpsertInput;
+  where: RollDicesWhereUniqueInput;
 };
 
 /** An object with an ID */
@@ -3388,6 +3550,14 @@ export type Query = {
   historySessionsConnection: HistorySessionConnection;
   /** Fetches an object given its ID */
   node?: Maybe<Node>;
+  /** Retrieve a single rollDices */
+  rollDices?: Maybe<RollDices>;
+  /** Retrieve document version */
+  rollDicesVersion?: Maybe<DocumentVersion>;
+  /** Retrieve multiple rollDicess */
+  rollDicess: Array<RollDices>;
+  /** Retrieve multiple rollDicess using the Relay connection interface */
+  rollDicessConnection: RollDicesConnection;
   /** Retrieve a single scheduledOperation */
   scheduledOperation?: Maybe<ScheduledOperation>;
   /** Retrieve multiple scheduledOperations */
@@ -3530,6 +3700,44 @@ export type QueryNodeArgs = {
 };
 
 
+export type QueryRollDicesArgs = {
+  locales?: Array<Locale>;
+  stage?: Stage;
+  where: RollDicesWhereUniqueInput;
+};
+
+
+export type QueryRollDicesVersionArgs = {
+  where: VersionWhereInput;
+};
+
+
+export type QueryRollDicessArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: Array<Locale>;
+  orderBy?: InputMaybe<RollDicesOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  stage?: Stage;
+  where?: InputMaybe<RollDicesWhereInput>;
+};
+
+
+export type QueryRollDicessConnectionArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: Array<Locale>;
+  orderBy?: InputMaybe<RollDicesOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  stage?: Stage;
+  where?: InputMaybe<RollDicesWhereInput>;
+};
+
+
 export type QueryScheduledOperationArgs = {
   locales?: Array<Locale>;
   stage?: Stage;
@@ -3658,6 +3866,548 @@ export type RichText = {
   text: Scalars['String'];
 };
 
+export type RollDices = Node & {
+  __typename?: 'RollDices';
+  addNumberToDice: Scalars['Int'];
+  /** The time the document was created */
+  createdAt: Scalars['DateTime'];
+  /** User that created this document */
+  createdBy?: Maybe<User>;
+  /** Get the document in other stages */
+  documentInStages: Array<RollDices>;
+  /** List of RollDices versions */
+  history: Array<Version>;
+  /** The unique identifier */
+  id: Scalars['ID'];
+  player: Scalars['String'];
+  /** The time the document was published. Null on documents in draft stage. */
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  /** User that last published this document */
+  publishedBy?: Maybe<User>;
+  resultDiceString: Scalars['String'];
+  scheduledIn: Array<ScheduledOperation>;
+  /** System stage field */
+  stage: Stage;
+  totalNumberResult: Scalars['Int'];
+  /** The time the document was updated */
+  updatedAt: Scalars['DateTime'];
+  /** User that last updated this document */
+  updatedBy?: Maybe<User>;
+};
+
+
+export type RollDicesCreatedByArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+
+export type RollDicesDocumentInStagesArgs = {
+  includeCurrent?: Scalars['Boolean'];
+  inheritLocale?: Scalars['Boolean'];
+  stages?: Array<Stage>;
+};
+
+
+export type RollDicesHistoryArgs = {
+  limit?: Scalars['Int'];
+  skip?: Scalars['Int'];
+  stageOverride?: InputMaybe<Stage>;
+};
+
+
+export type RollDicesPublishedByArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+
+export type RollDicesScheduledInArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: InputMaybe<Array<Locale>>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<ScheduledOperationWhereInput>;
+};
+
+
+export type RollDicesUpdatedByArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+export type RollDicesConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: RollDicesWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type RollDicesConnection = {
+  __typename?: 'RollDicesConnection';
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<RollDicesEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type RollDicesCreateInput = {
+  addNumberToDice: Scalars['Int'];
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  player: Scalars['String'];
+  resultDiceString: Scalars['String'];
+  totalNumberResult: Scalars['Int'];
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type RollDicesCreateManyInlineInput = {
+  /** Connect multiple existing RollDices documents */
+  connect?: InputMaybe<Array<RollDicesWhereUniqueInput>>;
+  /** Create and connect multiple existing RollDices documents */
+  create?: InputMaybe<Array<RollDicesCreateInput>>;
+};
+
+export type RollDicesCreateOneInlineInput = {
+  /** Connect one existing RollDices document */
+  connect?: InputMaybe<RollDicesWhereUniqueInput>;
+  /** Create and connect one RollDices document */
+  create?: InputMaybe<RollDicesCreateInput>;
+};
+
+/** An edge in a connection. */
+export type RollDicesEdge = {
+  __typename?: 'RollDicesEdge';
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String'];
+  /** The item at the end of the edge. */
+  node: RollDices;
+};
+
+/** Identifies documents */
+export type RollDicesManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<RollDicesWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<RollDicesWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<RollDicesWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']>;
+  addNumberToDice?: InputMaybe<Scalars['Int']>;
+  /** All values greater than the given value. */
+  addNumberToDice_gt?: InputMaybe<Scalars['Int']>;
+  /** All values greater than or equal the given value. */
+  addNumberToDice_gte?: InputMaybe<Scalars['Int']>;
+  /** All values that are contained in given list. */
+  addNumberToDice_in?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
+  /** All values less than the given value. */
+  addNumberToDice_lt?: InputMaybe<Scalars['Int']>;
+  /** All values less than or equal the given value. */
+  addNumberToDice_lte?: InputMaybe<Scalars['Int']>;
+  /** All values that are not equal to given value. */
+  addNumberToDice_not?: InputMaybe<Scalars['Int']>;
+  /** All values that are not contained in given list. */
+  addNumberToDice_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  createdAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  createdBy?: InputMaybe<UserWhereInput>;
+  documentInStages_every?: InputMaybe<RollDicesWhereStageInput>;
+  documentInStages_none?: InputMaybe<RollDicesWhereStageInput>;
+  documentInStages_some?: InputMaybe<RollDicesWhereStageInput>;
+  id?: InputMaybe<Scalars['ID']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** All values that are not equal to given value. */
+  id_not?: InputMaybe<Scalars['ID']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']>;
+  player?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  player_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  player_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  player_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values that are not equal to given value. */
+  player_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  player_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  player_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  player_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values not starting with the given string. */
+  player_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  player_starts_with?: InputMaybe<Scalars['String']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  publishedAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  resultDiceString?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  resultDiceString_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  resultDiceString_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  resultDiceString_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values that are not equal to given value. */
+  resultDiceString_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  resultDiceString_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  resultDiceString_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  resultDiceString_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values not starting with the given string. */
+  resultDiceString_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  resultDiceString_starts_with?: InputMaybe<Scalars['String']>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  totalNumberResult?: InputMaybe<Scalars['Int']>;
+  /** All values greater than the given value. */
+  totalNumberResult_gt?: InputMaybe<Scalars['Int']>;
+  /** All values greater than or equal the given value. */
+  totalNumberResult_gte?: InputMaybe<Scalars['Int']>;
+  /** All values that are contained in given list. */
+  totalNumberResult_in?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
+  /** All values less than the given value. */
+  totalNumberResult_lt?: InputMaybe<Scalars['Int']>;
+  /** All values less than or equal the given value. */
+  totalNumberResult_lte?: InputMaybe<Scalars['Int']>;
+  /** All values that are not equal to given value. */
+  totalNumberResult_not?: InputMaybe<Scalars['Int']>;
+  /** All values that are not contained in given list. */
+  totalNumberResult_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+export enum RollDicesOrderByInput {
+  AddNumberToDiceAsc = 'addNumberToDice_ASC',
+  AddNumberToDiceDesc = 'addNumberToDice_DESC',
+  CreatedAtAsc = 'createdAt_ASC',
+  CreatedAtDesc = 'createdAt_DESC',
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  PlayerAsc = 'player_ASC',
+  PlayerDesc = 'player_DESC',
+  PublishedAtAsc = 'publishedAt_ASC',
+  PublishedAtDesc = 'publishedAt_DESC',
+  ResultDiceStringAsc = 'resultDiceString_ASC',
+  ResultDiceStringDesc = 'resultDiceString_DESC',
+  TotalNumberResultAsc = 'totalNumberResult_ASC',
+  TotalNumberResultDesc = 'totalNumberResult_DESC',
+  UpdatedAtAsc = 'updatedAt_ASC',
+  UpdatedAtDesc = 'updatedAt_DESC'
+}
+
+export type RollDicesUpdateInput = {
+  addNumberToDice?: InputMaybe<Scalars['Int']>;
+  player?: InputMaybe<Scalars['String']>;
+  resultDiceString?: InputMaybe<Scalars['String']>;
+  totalNumberResult?: InputMaybe<Scalars['Int']>;
+};
+
+export type RollDicesUpdateManyInlineInput = {
+  /** Connect multiple existing RollDices documents */
+  connect?: InputMaybe<Array<RollDicesConnectInput>>;
+  /** Create and connect multiple RollDices documents */
+  create?: InputMaybe<Array<RollDicesCreateInput>>;
+  /** Delete multiple RollDices documents */
+  delete?: InputMaybe<Array<RollDicesWhereUniqueInput>>;
+  /** Disconnect multiple RollDices documents */
+  disconnect?: InputMaybe<Array<RollDicesWhereUniqueInput>>;
+  /** Override currently-connected documents with multiple existing RollDices documents */
+  set?: InputMaybe<Array<RollDicesWhereUniqueInput>>;
+  /** Update multiple RollDices documents */
+  update?: InputMaybe<Array<RollDicesUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple RollDices documents */
+  upsert?: InputMaybe<Array<RollDicesUpsertWithNestedWhereUniqueInput>>;
+};
+
+export type RollDicesUpdateManyInput = {
+  addNumberToDice?: InputMaybe<Scalars['Int']>;
+  player?: InputMaybe<Scalars['String']>;
+  resultDiceString?: InputMaybe<Scalars['String']>;
+  totalNumberResult?: InputMaybe<Scalars['Int']>;
+};
+
+export type RollDicesUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: RollDicesUpdateManyInput;
+  /** Document search */
+  where: RollDicesWhereInput;
+};
+
+export type RollDicesUpdateOneInlineInput = {
+  /** Connect existing RollDices document */
+  connect?: InputMaybe<RollDicesWhereUniqueInput>;
+  /** Create and connect one RollDices document */
+  create?: InputMaybe<RollDicesCreateInput>;
+  /** Delete currently connected RollDices document */
+  delete?: InputMaybe<Scalars['Boolean']>;
+  /** Disconnect currently connected RollDices document */
+  disconnect?: InputMaybe<Scalars['Boolean']>;
+  /** Update single RollDices document */
+  update?: InputMaybe<RollDicesUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single RollDices document */
+  upsert?: InputMaybe<RollDicesUpsertWithNestedWhereUniqueInput>;
+};
+
+export type RollDicesUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: RollDicesUpdateInput;
+  /** Unique document search */
+  where: RollDicesWhereUniqueInput;
+};
+
+export type RollDicesUpsertInput = {
+  /** Create document if it didn't exist */
+  create: RollDicesCreateInput;
+  /** Update document if it exists */
+  update: RollDicesUpdateInput;
+};
+
+export type RollDicesUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: RollDicesUpsertInput;
+  /** Unique document search */
+  where: RollDicesWhereUniqueInput;
+};
+
+/** This contains a set of filters that can be used to compare values internally */
+export type RollDicesWhereComparatorInput = {
+  /** This field can be used to request to check if the entry is outdated by internal comparison */
+  outdated_to?: InputMaybe<Scalars['Boolean']>;
+};
+
+/** Identifies documents */
+export type RollDicesWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<RollDicesWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<RollDicesWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<RollDicesWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']>;
+  addNumberToDice?: InputMaybe<Scalars['Int']>;
+  /** All values greater than the given value. */
+  addNumberToDice_gt?: InputMaybe<Scalars['Int']>;
+  /** All values greater than or equal the given value. */
+  addNumberToDice_gte?: InputMaybe<Scalars['Int']>;
+  /** All values that are contained in given list. */
+  addNumberToDice_in?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
+  /** All values less than the given value. */
+  addNumberToDice_lt?: InputMaybe<Scalars['Int']>;
+  /** All values less than or equal the given value. */
+  addNumberToDice_lte?: InputMaybe<Scalars['Int']>;
+  /** All values that are not equal to given value. */
+  addNumberToDice_not?: InputMaybe<Scalars['Int']>;
+  /** All values that are not contained in given list. */
+  addNumberToDice_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  createdAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  createdBy?: InputMaybe<UserWhereInput>;
+  documentInStages_every?: InputMaybe<RollDicesWhereStageInput>;
+  documentInStages_none?: InputMaybe<RollDicesWhereStageInput>;
+  documentInStages_some?: InputMaybe<RollDicesWhereStageInput>;
+  id?: InputMaybe<Scalars['ID']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** All values that are not equal to given value. */
+  id_not?: InputMaybe<Scalars['ID']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']>;
+  player?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  player_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  player_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  player_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values that are not equal to given value. */
+  player_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  player_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  player_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  player_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values not starting with the given string. */
+  player_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  player_starts_with?: InputMaybe<Scalars['String']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  publishedAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  resultDiceString?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  resultDiceString_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  resultDiceString_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  resultDiceString_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values that are not equal to given value. */
+  resultDiceString_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  resultDiceString_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  resultDiceString_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  resultDiceString_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values not starting with the given string. */
+  resultDiceString_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  resultDiceString_starts_with?: InputMaybe<Scalars['String']>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  totalNumberResult?: InputMaybe<Scalars['Int']>;
+  /** All values greater than the given value. */
+  totalNumberResult_gt?: InputMaybe<Scalars['Int']>;
+  /** All values greater than or equal the given value. */
+  totalNumberResult_gte?: InputMaybe<Scalars['Int']>;
+  /** All values that are contained in given list. */
+  totalNumberResult_in?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
+  /** All values less than the given value. */
+  totalNumberResult_lt?: InputMaybe<Scalars['Int']>;
+  /** All values less than or equal the given value. */
+  totalNumberResult_lte?: InputMaybe<Scalars['Int']>;
+  /** All values that are not equal to given value. */
+  totalNumberResult_not?: InputMaybe<Scalars['Int']>;
+  /** All values that are not contained in given list. */
+  totalNumberResult_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+/** The document in stages filter allows specifying a stage entry to cross compare the same document between different stages */
+export type RollDicesWhereStageInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<RollDicesWhereStageInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<RollDicesWhereStageInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<RollDicesWhereStageInput>>;
+  /** This field contains fields which can be set as true or false to specify an internal comparison */
+  compareWithParent?: InputMaybe<RollDicesWhereComparatorInput>;
+  /** Specify the stage to compare with */
+  stage?: InputMaybe<Stage>;
+};
+
+/** References RollDices record uniquely */
+export type RollDicesWhereUniqueInput = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
 /** Scheduled Operation system model */
 export type ScheduledOperation = Node & {
   __typename?: 'ScheduledOperation';
@@ -3735,7 +4485,7 @@ export type ScheduledOperationUpdatedByArgs = {
   locales?: InputMaybe<Array<Locale>>;
 };
 
-export type ScheduledOperationAffectedDocument = Asset | Character | HistorySession;
+export type ScheduledOperationAffectedDocument = Asset | Character | HistorySession | RollDices;
 
 export type ScheduledOperationConnectInput = {
   /** Allow to specify document position in list of connected documents, will default to appending at end of list */
@@ -5183,6 +5933,23 @@ export type CreateNewCharacterMutationVariables = Exact<{
 
 export type CreateNewCharacterMutation = { __typename?: 'Mutation', createCharacter?: { __typename?: 'Character', id: string } | null };
 
+export type CreateRollDiceMutationVariables = Exact<{
+  addNumberToDice?: InputMaybe<Scalars['Int']>;
+  player?: InputMaybe<Scalars['String']>;
+  resultDiceString?: InputMaybe<Scalars['String']>;
+  totalNumberResult?: InputMaybe<Scalars['Int']>;
+}>;
+
+
+export type CreateRollDiceMutation = { __typename?: 'Mutation', createRollDices?: { __typename?: 'RollDices', id: string } | null };
+
+export type PublishRollDiceMutationVariables = Exact<{
+  id?: InputMaybe<Scalars['ID']>;
+}>;
+
+
+export type PublishRollDiceMutation = { __typename?: 'Mutation', publishRollDices?: { __typename?: 'RollDices', id: string, player: string, addNumberToDice: number, createdAt: any, resultDiceString: string, totalNumberResult: number } | null };
+
 export type PublishUpdateCharacterMutationVariables = Exact<{
   id?: InputMaybe<Scalars['ID']>;
 }>;
@@ -5251,6 +6018,11 @@ export type GetCharactersListQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetCharactersListQuery = { __typename?: 'Query', characters: Array<{ __typename?: 'Character', id: string, name: string, avatarURL: string }> };
+
+export type GetDicesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetDicesQuery = { __typename?: 'Query', rollDicess: Array<{ __typename?: 'RollDices', createdAt: any, addNumberToDice: number, player: string, totalNumberResult: number, resultDiceString: string }> };
 
 export type GetHistorySessionByIdQueryVariables = Exact<{
   id?: InputMaybe<Scalars['ID']>;
@@ -5325,6 +6097,82 @@ export function useCreateNewCharacterMutation(baseOptions?: Apollo.MutationHookO
 export type CreateNewCharacterMutationHookResult = ReturnType<typeof useCreateNewCharacterMutation>;
 export type CreateNewCharacterMutationResult = Apollo.MutationResult<CreateNewCharacterMutation>;
 export type CreateNewCharacterMutationOptions = Apollo.BaseMutationOptions<CreateNewCharacterMutation, CreateNewCharacterMutationVariables>;
+export const CreateRollDiceDocument = gql`
+    mutation CreateRollDice($addNumberToDice: Int = 0, $player: String = "", $resultDiceString: String = "", $totalNumberResult: Int = 0) {
+  createRollDices(
+    data: {player: $player, resultDiceString: $resultDiceString, addNumberToDice: $addNumberToDice, totalNumberResult: $totalNumberResult}
+  ) {
+    id
+  }
+}
+    `;
+export type CreateRollDiceMutationFn = Apollo.MutationFunction<CreateRollDiceMutation, CreateRollDiceMutationVariables>;
+
+/**
+ * __useCreateRollDiceMutation__
+ *
+ * To run a mutation, you first call `useCreateRollDiceMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateRollDiceMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createRollDiceMutation, { data, loading, error }] = useCreateRollDiceMutation({
+ *   variables: {
+ *      addNumberToDice: // value for 'addNumberToDice'
+ *      player: // value for 'player'
+ *      resultDiceString: // value for 'resultDiceString'
+ *      totalNumberResult: // value for 'totalNumberResult'
+ *   },
+ * });
+ */
+export function useCreateRollDiceMutation(baseOptions?: Apollo.MutationHookOptions<CreateRollDiceMutation, CreateRollDiceMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateRollDiceMutation, CreateRollDiceMutationVariables>(CreateRollDiceDocument, options);
+      }
+export type CreateRollDiceMutationHookResult = ReturnType<typeof useCreateRollDiceMutation>;
+export type CreateRollDiceMutationResult = Apollo.MutationResult<CreateRollDiceMutation>;
+export type CreateRollDiceMutationOptions = Apollo.BaseMutationOptions<CreateRollDiceMutation, CreateRollDiceMutationVariables>;
+export const PublishRollDiceDocument = gql`
+    mutation PublishRollDice($id: ID = "") {
+  publishRollDices(where: {id: $id}, to: PUBLISHED) {
+    id
+    player
+    addNumberToDice
+    createdAt
+    resultDiceString
+    totalNumberResult
+  }
+}
+    `;
+export type PublishRollDiceMutationFn = Apollo.MutationFunction<PublishRollDiceMutation, PublishRollDiceMutationVariables>;
+
+/**
+ * __usePublishRollDiceMutation__
+ *
+ * To run a mutation, you first call `usePublishRollDiceMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `usePublishRollDiceMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [publishRollDiceMutation, { data, loading, error }] = usePublishRollDiceMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function usePublishRollDiceMutation(baseOptions?: Apollo.MutationHookOptions<PublishRollDiceMutation, PublishRollDiceMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<PublishRollDiceMutation, PublishRollDiceMutationVariables>(PublishRollDiceDocument, options);
+      }
+export type PublishRollDiceMutationHookResult = ReturnType<typeof usePublishRollDiceMutation>;
+export type PublishRollDiceMutationResult = Apollo.MutationResult<PublishRollDiceMutation>;
+export type PublishRollDiceMutationOptions = Apollo.BaseMutationOptions<PublishRollDiceMutation, PublishRollDiceMutationVariables>;
 export const PublishUpdateCharacterDocument = gql`
     mutation publishUpdateCharacter($id: ID) {
   publishCharacter(where: {id: $id}, to: PUBLISHED) {
@@ -5626,6 +6474,44 @@ export function useGetCharactersListLazyQuery(baseOptions?: Apollo.LazyQueryHook
 export type GetCharactersListQueryHookResult = ReturnType<typeof useGetCharactersListQuery>;
 export type GetCharactersListLazyQueryHookResult = ReturnType<typeof useGetCharactersListLazyQuery>;
 export type GetCharactersListQueryResult = Apollo.QueryResult<GetCharactersListQuery, GetCharactersListQueryVariables>;
+export const GetDicesDocument = gql`
+    query GetDices {
+  rollDicess(orderBy: createdAt_DESC) {
+    createdAt
+    addNumberToDice
+    player
+    totalNumberResult
+    resultDiceString
+  }
+}
+    `;
+
+/**
+ * __useGetDicesQuery__
+ *
+ * To run a query within a React component, call `useGetDicesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetDicesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetDicesQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetDicesQuery(baseOptions?: Apollo.QueryHookOptions<GetDicesQuery, GetDicesQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetDicesQuery, GetDicesQueryVariables>(GetDicesDocument, options);
+      }
+export function useGetDicesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetDicesQuery, GetDicesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetDicesQuery, GetDicesQueryVariables>(GetDicesDocument, options);
+        }
+export type GetDicesQueryHookResult = ReturnType<typeof useGetDicesQuery>;
+export type GetDicesLazyQueryHookResult = ReturnType<typeof useGetDicesLazyQuery>;
+export type GetDicesQueryResult = Apollo.QueryResult<GetDicesQuery, GetDicesQueryVariables>;
 export const GetHistorySessionByIdDocument = gql`
     query GetHistorySessionByID($id: ID) {
   historySession(where: {id: $id}) {

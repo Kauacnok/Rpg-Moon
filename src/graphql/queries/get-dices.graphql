@@ -1,0 +1,9 @@
+query GetDices {
+  rollDicess(orderBy: createdAt_DESC) {
+    createdAt
+    addNumberToDice
+    player
+    totalNumberResult
+    resultDiceString
+  }
+}

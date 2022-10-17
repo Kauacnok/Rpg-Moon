@@ -6,6 +6,7 @@ import { UpdateCharacter } from './pages/UpdateCharacter'
 import { HistorysCards } from './pages/HistorysCards'
 import { HistoryCardFull } from './pages/HistoryCardFull'
 import { UpdateHistory } from './pages/UpdateHistory'
+import { RollDicePage } from './pages/RollDicePage'
 
 
 export function Router() {
@@ -19,6 +20,7 @@ export function Router() {
 				<Route path="/history" element={<HistorysCards />} />
 				<Route path="/history/session/:id" element={<HistoryCardFull />} />
 				<Route path="/history/session/update/:id" element={<UpdateHistory />} />
+				<Route path="/roll-dice" element={<RollDicePage />} />
 			</Routes>
 		</>
 	)
