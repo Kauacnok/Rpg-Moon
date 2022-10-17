@@ -2,6 +2,7 @@ import { useState, FormEvent } from 'react'
 import { useGetHistorySessionByIdQuery, useUpdateHistoryMutation, usePublishUpdateHistoryMutation} from '../graphql/generated'
 import { Link, useParams, useNavigate } from 'react-router-dom'
 import { ArrowLeft, CircleNotch } from 'phosphor-react'
+import { useApolloClient } from '@apollo/client'
 import { Header } from '../components/Header'
 import { InputForm } from '../components/InputForm'
 
@@ -9,6 +10,8 @@ export function UpdateHistory() {
 	const navigate = useNavigate()
 
 	const { id } = useParams<{ id: string }>()
+
+	const client = useApolloClient()
 
 	const { data, loading, error } = useGetHistorySessionByIdQuery({
    	 	variables: {
@@ -56,6 +59,7 @@ export function UpdateHistory() {
 		})	
 
 		setIsDataSent(false)	
+		client.resetStore()
 
   		navigate(`/history/session/${id}`)
 	}

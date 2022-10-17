@@ -1,6 +1,7 @@
 import { Link, useParams, useNavigate } from 'react-router-dom'
 import { useState, FormEvent } from 'react'
 import { ArrowLeft, CircleNotch  } from 'phosphor-react'
+import { useApolloClient } from '@apollo/client'
 import { useGetCharacterInfooQuery, useUpdateCharacterByIdMutation, usePublishUpdateCharacterMutation } from '../graphql/generated'
 import { InputForm } from '../components/InputForm'
 import { Header } from '../components/Header'
@@ -9,6 +10,8 @@ export function UpdateCharacter() {
 	const navigate = useNavigate()
 
 	const { id } = useParams<{ id: string }>()
+
+	const client = useApolloClient()
 
 	const { data } = useGetCharacterInfooQuery({
 		variables: {
@@ -100,6 +103,7 @@ export function UpdateCharacter() {
   		})
 
   		setIsDataSent(false)
+  		client.resetStore()
 
   		navigate(`/character/${id}`)
   	}
