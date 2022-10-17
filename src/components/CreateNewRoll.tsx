@@ -22,7 +22,7 @@ export function CreateNewRoll() {
 
 	function updateRollDicesList() {
 		client.resetStore()
-        setCounter(counter + 1)
+		setCounter(counter + 1)
 	}
 
 	const [createRollDiceMutation, { data, loading, error }] = useCreateRollDiceMutation({

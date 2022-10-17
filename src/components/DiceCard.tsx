@@ -27,8 +27,8 @@ export function DiceCard({ player, resultDiceString, addNumber, resultFull, crea
 			<article className="flex flex-col mt-4 mx-5 px-5 py-5 rounded bg-gray-700 border border-gray-500">
 				<h2 className="mb-2">Solicitado por {player}</h2>
 				<div className="mb-2">
-					<p className="flex flex-row"> {resultDiceSplit.map((dice, index) => {
-						return (<span key={index} className="bg-blue-700 text-lg mx-5 px-3 py-1 rounded">{dice.replace("-", "--")}</span>)
+					<p className="flex flex-wrap flex-row"> {resultDiceSplit.map((dice, index) => {
+						return (<span key={index} className="bg-blue-700 text-lg mx-5 mb-2 px-4 py-1 rounded">{dice.replace("-", "--")}</span>)
 					})} 
 						<span className="text-lg mx-5 px-3 py-1 rounded border border-blue-700">{addNumber}</span>
 
