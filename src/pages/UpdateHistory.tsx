@@ -87,7 +87,7 @@ export function UpdateHistory() {
 						<button 
 							type="submit" 
 							className="w-[100%] mx-auto px-5 py-2 bg-green-500 hover:bg-green-700 disabled:opacity-50"
-							disabled={password != "mestre8595"} 
+							disabled={password != import.meta.env.VITE_PASSWORD_UPDATE_HISTORY} 
 						>Atualizar sessão</button>
 					) : (
 						<button 
