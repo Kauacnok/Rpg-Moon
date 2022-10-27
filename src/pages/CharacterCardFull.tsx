@@ -34,6 +34,7 @@ export function CharacterCardFull() {
 				<div className="flex justify-around">
 					<p>Pontos: {data?.character?.points}</p>
 					<p>XP: {data?.character?.xp}</p>
+					<p>Xp gasto: {data?.character?.xpSpent}</p>
 					<p>Nível: {data?.character?.level}</p>
 				</div>
 			</aside>

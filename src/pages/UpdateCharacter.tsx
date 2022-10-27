@@ -40,6 +40,7 @@ export function UpdateCharacter() {
 	const [points, setPoints] = useState(data?.character?.points)
 	const [level, setLevel] = useState(data?.character?.level)
 	const [xp, setXp] = useState(data?.character?.xp)
+	const [xpSpent, setXpSpent] = useState(data?.character?.xpSpent)
 	const [force, setForce] = useState(data?.character?.force)
 	const [agility, setAgility] = useState(data?.character?.agility)
 	const [resistance, setResistance] = useState(data?.character?.resistance)
@@ -93,6 +94,7 @@ export function UpdateCharacter() {
 				route,
 				skills,
 				xp: Number(xp),
+				xpSpent: Number(xpSpent)
 			}
   		})
 
@@ -130,6 +132,8 @@ export function UpdateCharacter() {
 				<p className="bg-gray-700 px-5 py-2 my-5">Dado atual: { player == "" ? data?.character?.player : player}</p>
 				<InputForm key="5" typeInput="number" placeholderInput="XP" setValue={setXp} isUpdateCharacter={true} dataDefaultValue={data?.character?.xp} />
 				<p className="bg-gray-700 px-5 py-2 my-5">Dado atual: { xp == undefined ? data?.character?.xp : xp}</p>
+				<InputForm key="5" typeInput="number" placeholderInput="XP gasto" setValue={setXpSpent} isUpdateCharacter={true} dataDefaultValue={data?.character?.xpSpent} />
+				<p className="bg-gray-700 px-5 py-2 my-5">Dado atual: { xpSpent == undefined ? data?.character?.xpSpent : xpSpent}</p>
 				<InputForm key="6" typeInput="number" placeholderInput="Pontos" setValue={setPoints} isUpdateCharacter={true}  dataDefaultValue={data?.character?.points} />
 				<p className="bg-gray-700 px-5 py- my-5">Dado atual: { points == undefined ? data?.character?.points : points}</p>
 				<InputForm key="7" typeInput="number" placeholderInput="Nível" setValue={setLevel} isUpdateCharacter={true}  dataDefaultValue={data?.character?.level} />

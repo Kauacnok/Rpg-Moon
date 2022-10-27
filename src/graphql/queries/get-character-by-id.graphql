@@ -1,6 +1,6 @@
 query GetCharacterInfoo($id: ID) {
   character(where: {id: $id}) {
-  	name
+    name
     avatarURL
     characterDescription
     player
@@ -26,5 +26,6 @@ query GetCharacterInfoo($id: ID) {
     inventory
     money
     password
+    xpSpent
   }
 }

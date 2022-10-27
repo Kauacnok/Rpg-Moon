@@ -736,6 +736,7 @@ export type Character = Node & {
   /** User that last updated this document */
   updatedBy?: Maybe<User>;
   xp: Scalars['Int'];
+  xpSpent: Scalars['Int'];
 };
 
 
@@ -824,6 +825,7 @@ export type CharacterCreateInput = {
   skills: Scalars['String'];
   updatedAt?: InputMaybe<Scalars['DateTime']>;
   xp: Scalars['Int'];
+  xpSpent: Scalars['Int'];
 };
 
 export type CharacterCreateManyInlineInput = {
@@ -1372,6 +1374,21 @@ export type CharacterManyWhereInput = {
   updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
   updatedBy?: InputMaybe<UserWhereInput>;
   xp?: InputMaybe<Scalars['Int']>;
+  xpSpent?: InputMaybe<Scalars['Int']>;
+  /** All values greater than the given value. */
+  xpSpent_gt?: InputMaybe<Scalars['Int']>;
+  /** All values greater than or equal the given value. */
+  xpSpent_gte?: InputMaybe<Scalars['Int']>;
+  /** All values that are contained in given list. */
+  xpSpent_in?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
+  /** All values less than the given value. */
+  xpSpent_lt?: InputMaybe<Scalars['Int']>;
+  /** All values less than or equal the given value. */
+  xpSpent_lte?: InputMaybe<Scalars['Int']>;
+  /** All values that are not equal to given value. */
+  xpSpent_not?: InputMaybe<Scalars['Int']>;
+  /** All values that are not contained in given list. */
+  xpSpent_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
   /** All values greater than the given value. */
   xp_gt?: InputMaybe<Scalars['Int']>;
   /** All values greater than or equal the given value. */
@@ -1447,6 +1464,8 @@ export enum CharacterOrderByInput {
   SkillsDesc = 'skills_DESC',
   UpdatedAtAsc = 'updatedAt_ASC',
   UpdatedAtDesc = 'updatedAt_DESC',
+  XpSpentAsc = 'xpSpent_ASC',
+  XpSpentDesc = 'xpSpent_DESC',
   XpAsc = 'xp_ASC',
   XpDesc = 'xp_DESC'
 }
@@ -1478,6 +1497,7 @@ export type CharacterUpdateInput = {
   route?: InputMaybe<Scalars['String']>;
   skills?: InputMaybe<Scalars['String']>;
   xp?: InputMaybe<Scalars['Int']>;
+  xpSpent?: InputMaybe<Scalars['Int']>;
 };
 
 export type CharacterUpdateManyInlineInput = {
@@ -1524,6 +1544,7 @@ export type CharacterUpdateManyInput = {
   route?: InputMaybe<Scalars['String']>;
   skills?: InputMaybe<Scalars['String']>;
   xp?: InputMaybe<Scalars['Int']>;
+  xpSpent?: InputMaybe<Scalars['Int']>;
 };
 
 export type CharacterUpdateManyWithNestedWhereInput = {
@@ -2098,6 +2119,21 @@ export type CharacterWhereInput = {
   updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
   updatedBy?: InputMaybe<UserWhereInput>;
   xp?: InputMaybe<Scalars['Int']>;
+  xpSpent?: InputMaybe<Scalars['Int']>;
+  /** All values greater than the given value. */
+  xpSpent_gt?: InputMaybe<Scalars['Int']>;
+  /** All values greater than or equal the given value. */
+  xpSpent_gte?: InputMaybe<Scalars['Int']>;
+  /** All values that are contained in given list. */
+  xpSpent_in?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
+  /** All values less than the given value. */
+  xpSpent_lt?: InputMaybe<Scalars['Int']>;
+  /** All values less than or equal the given value. */
+  xpSpent_lte?: InputMaybe<Scalars['Int']>;
+  /** All values that are not equal to given value. */
+  xpSpent_not?: InputMaybe<Scalars['Int']>;
+  /** All values that are not contained in given list. */
+  xpSpent_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
   /** All values greater than the given value. */
   xp_gt?: InputMaybe<Scalars['Int']>;
   /** All values greater than or equal the given value. */
@@ -5928,6 +5964,7 @@ export type CreateNewCharacterMutationVariables = Exact<{
   route: Scalars['String'];
   skills: Scalars['String'];
   xp: Scalars['Int'];
+  xpSpent: Scalars['Int'];
 }>;
 
 
@@ -5955,7 +5992,7 @@ export type PublishUpdateCharacterMutationVariables = Exact<{
 }>;
 
 
-export type PublishUpdateCharacterMutation = { __typename?: 'Mutation', publishCharacter?: { __typename?: 'Character', agility: number, avatarURL: string, characterDescription: string, charisma: number, connection: string, createdAt: any, disposal: number, force: number, inteligence: number, id: string, inventory: string, level: number, money: string, motivation: string, name: string, origin: string, password: string, perception: number, personality: string, physical: string, player: string, points: number, problem: string, psychological: string, publishedAt?: any | null, resistance: number, route: string, skills: string, stage: Stage, updatedAt: any, xp: number } | null };
+export type PublishUpdateCharacterMutation = { __typename?: 'Mutation', publishCharacter?: { __typename?: 'Character', agility: number, avatarURL: string, characterDescription: string, charisma: number, connection: string, createdAt: any, disposal: number, force: number, inteligence: number, id: string, inventory: string, level: number, money: string, motivation: string, name: string, origin: string, password: string, perception: number, personality: string, physical: string, player: string, points: number, problem: string, psychological: string, publishedAt?: any | null, resistance: number, route: string, skills: string, stage: Stage, updatedAt: any, xp: number, xpSpent: number } | null };
 
 export type PublishUpdateHistoryMutationVariables = Exact<{
   id?: InputMaybe<Scalars['ID']>;
@@ -5992,6 +6029,7 @@ export type UpdateCharacterByIdMutationVariables = Exact<{
   route?: InputMaybe<Scalars['String']>;
   skills?: InputMaybe<Scalars['String']>;
   xp?: InputMaybe<Scalars['Int']>;
+  xpSpent?: InputMaybe<Scalars['Int']>;
 }>;
 
 
@@ -6012,7 +6050,7 @@ export type GetCharacterInfooQueryVariables = Exact<{
 }>;
 
 
-export type GetCharacterInfooQuery = { __typename?: 'Query', character?: { __typename?: 'Character', name: string, avatarURL: string, characterDescription: string, player: string, points: number, level: number, xp: number, force: number, agility: number, resistance: number, inteligence: number, perception: number, disposal: number, charisma: number, skills: string, route: string, origin: string, personality: string, motivation: string, connection: string, problem: string, physical: string, psychological: string, inventory: string, money: string, password: string } | null };
+export type GetCharacterInfooQuery = { __typename?: 'Query', character?: { __typename?: 'Character', name: string, avatarURL: string, characterDescription: string, player: string, points: number, level: number, xp: number, force: number, agility: number, resistance: number, inteligence: number, perception: number, disposal: number, charisma: number, skills: string, route: string, origin: string, personality: string, motivation: string, connection: string, problem: string, physical: string, psychological: string, inventory: string, money: string, password: string, xpSpent: number } | null };
 
 export type GetCharactersListQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -6038,9 +6076,9 @@ export type GetHistorySessionsListQuery = { __typename?: 'Query', historySession
 
 
 export const CreateNewCharacterDocument = gql`
-    mutation CreateNewCharacter($avatarURL: String!, $characterDescription: String!, $agility: Int!, $charisma: Int!, $connection: String!, $disposal: Int!, $force: Int!, $inteligence: Int!, $inventory: String!, $level: Int!, $money: String!, $motivation: String!, $name: String!, $origin: String!, $password: String!, $perception: Int!, $personality: String!, $physical: String!, $player: String!, $points: Int!, $problem: String!, $psychological: String!, $resistance: Int!, $route: String!, $skills: String!, $xp: Int!) {
+    mutation CreateNewCharacter($avatarURL: String!, $characterDescription: String!, $agility: Int!, $charisma: Int!, $connection: String!, $disposal: Int!, $force: Int!, $inteligence: Int!, $inventory: String!, $level: Int!, $money: String!, $motivation: String!, $name: String!, $origin: String!, $password: String!, $perception: Int!, $personality: String!, $physical: String!, $player: String!, $points: Int!, $problem: String!, $psychological: String!, $resistance: Int!, $route: String!, $skills: String!, $xp: Int!, $xpSpent: Int!) {
   createCharacter(
-    data: {name: $name, avatarURL: $avatarURL, characterDescription: $characterDescription, player: $player, xp: $xp, points: $points, level: $level, route: $route, origin: $origin, personality: $personality, motivation: $motivation, connection: $connection, problem: $problem, force: $force, agility: $agility, resistance: $resistance, inteligence: $inteligence, perception: $perception, disposal: $disposal, charisma: $charisma, physical: $physical, psychological: $psychological, skills: $skills, inventory: $inventory, money: $money, password: $password}
+    data: {name: $name, avatarURL: $avatarURL, characterDescription: $characterDescription, player: $player, xp: $xp, points: $points, level: $level, route: $route, origin: $origin, personality: $personality, motivation: $motivation, connection: $connection, problem: $problem, force: $force, agility: $agility, resistance: $resistance, inteligence: $inteligence, perception: $perception, disposal: $disposal, charisma: $charisma, physical: $physical, psychological: $psychological, skills: $skills, inventory: $inventory, money: $money, password: $password, xpSpent: $xpSpent}
   ) {
     id
   }
@@ -6087,6 +6125,7 @@ export type CreateNewCharacterMutationFn = Apollo.MutationFunction<CreateNewChar
  *      route: // value for 'route'
  *      skills: // value for 'skills'
  *      xp: // value for 'xp'
+ *      xpSpent: // value for 'xpSpent'
  *   },
  * });
  */
@@ -6207,6 +6246,7 @@ export const PublishUpdateCharacterDocument = gql`
     stage
     updatedAt
     xp
+    xpSpent
   }
 }
     `;
@@ -6277,9 +6317,9 @@ export type PublishUpdateHistoryMutationHookResult = ReturnType<typeof usePublis
 export type PublishUpdateHistoryMutationResult = Apollo.MutationResult<PublishUpdateHistoryMutation>;
 export type PublishUpdateHistoryMutationOptions = Apollo.BaseMutationOptions<PublishUpdateHistoryMutation, PublishUpdateHistoryMutationVariables>;
 export const UpdateCharacterByIdDocument = gql`
-    mutation UpdateCharacterById($id: ID, $agility: Int, $avatarURL: String, $characterDescription: String, $charisma: Int, $connection: String, $disposal: Int, $force: Int, $inteligence: Int, $inventory: String, $level: Int, $money: String, $motivation: String, $name: String, $origin: String, $password: String, $perception: Int, $personality: String, $physical: String, $player: String, $points: Int, $problem: String, $psychological: String, $resistance: Int, $route: String, $skills: String, $xp: Int) {
+    mutation UpdateCharacterById($id: ID, $agility: Int, $avatarURL: String, $characterDescription: String, $charisma: Int, $connection: String, $disposal: Int, $force: Int, $inteligence: Int, $inventory: String, $level: Int, $money: String, $motivation: String, $name: String, $origin: String, $password: String, $perception: Int, $personality: String, $physical: String, $player: String, $points: Int, $problem: String, $psychological: String, $resistance: Int, $route: String, $skills: String, $xp: Int, $xpSpent: Int) {
   updateCharacter(
-    data: {agility: $agility, avatarURL: $avatarURL, characterDescription: $characterDescription, charisma: $charisma, connection: $connection, disposal: $disposal, force: $force, inteligence: $inteligence, inventory: $inventory, level: $level, money: $money, motivation: $motivation, name: $name, origin: $origin, password: $password, perception: $perception, personality: $personality, physical: $physical, player: $player, points: $points, problem: $problem, psychological: $psychological, resistance: $resistance, route: $route, skills: $skills, xp: $xp}
+    data: {agility: $agility, avatarURL: $avatarURL, characterDescription: $characterDescription, charisma: $charisma, connection: $connection, disposal: $disposal, force: $force, inteligence: $inteligence, inventory: $inventory, level: $level, money: $money, motivation: $motivation, name: $name, origin: $origin, password: $password, perception: $perception, personality: $personality, physical: $physical, player: $player, points: $points, problem: $problem, psychological: $psychological, resistance: $resistance, route: $route, skills: $skills, xp: $xp, xpSpent: $xpSpent}
     where: {id: $id}
   ) {
     id
@@ -6328,6 +6368,7 @@ export type UpdateCharacterByIdMutationFn = Apollo.MutationFunction<UpdateCharac
  *      route: // value for 'route'
  *      skills: // value for 'skills'
  *      xp: // value for 'xp'
+ *      xpSpent: // value for 'xpSpent'
  *   },
  * });
  */
@@ -6407,6 +6448,7 @@ export const GetCharacterInfooDocument = gql`
     inventory
     money
     password
+    xpSpent
   }
 }
     `;

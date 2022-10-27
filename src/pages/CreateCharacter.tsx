@@ -15,6 +15,7 @@ export function CreateCharacter() {
 	const [points, setPoints] = useState(0)
 	const [level, setLevel] = useState(0)
 	const [xp, setXp] = useState(0)
+	const [xpSpent, setXpSpent] = useState(0)
 	const [force, setForce] = useState(0)
 	const [agility, setAgility] = useState(0)
 	const [resistance, setResistance] = useState(0)
@@ -68,6 +69,7 @@ export function CreateCharacter() {
 				route,
 				skills,
 				xp: Number(xp),
+				xpSpent: Number(xpSpent)
 			}
 		})
 
@@ -87,6 +89,7 @@ export function CreateCharacter() {
 				<InputForm typeInput="text" placeholderInput="Descrição do personagem" setValue={setCharacterDescription} />
 				<InputForm typeInput="text" placeholderInput="Jogador" setValue={setPlayer} />
 				<InputForm typeInput="number" placeholderInput="XP" setValue={setXp} />
+				<InputForm typeInput="number" placeholderInput="XP gasto" setValue={setXpSpent} />
 				<InputForm typeInput="number" placeholderInput="Pontos" setValue={setPoints} />
 				<InputForm typeInput="number" placeholderInput="Nível" setValue={setLevel} />
 				<h2 className="block pl-2 my-10 text-center">Conceitos</h2>

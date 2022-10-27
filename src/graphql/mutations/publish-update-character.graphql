@@ -31,5 +31,6 @@ mutation publishUpdateCharacter($id: ID) {
     stage
     updatedAt
     xp
+    xpSpent
   }
 }
