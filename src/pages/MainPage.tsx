@@ -3,6 +3,7 @@ import { CharacterCard } from '../components/CharacterCard'
 import { CreateCharacter } from './CreateCharacter'
 import { Link } from 'react-router-dom'
 import { useGetCharactersListQuery } from '../graphql/generated'
+import { NavBarMobile } from '../components/NavBarMobile'
 
 export function MainPage() {
 	const { data } = useGetCharactersListQuery()
@@ -28,6 +29,7 @@ export function MainPage() {
 					})}
 				</div>
 			</main>
+			<NavBarMobile />
 		</div>
 	)
 }

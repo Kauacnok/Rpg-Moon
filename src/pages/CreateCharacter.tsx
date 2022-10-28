@@ -4,6 +4,7 @@ import { ArrowLeft } from 'phosphor-react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useState, FormEvent } from 'react'
 import { useCreateNewCharacterMutation } from '../graphql/generated'
+import { NavBarMobile } from '../components/NavBarMobile'
 
 export function CreateCharacter() {
 	const navigate = useNavigate()
@@ -124,6 +125,7 @@ export function CreateCharacter() {
 					disabled={loading}
 				>Criar personagem</button>
 			</form>
+			<NavBarMobile />
 		</>
 	)
 }

@@ -4,6 +4,7 @@ import { Header } from '../components/Header'
 import { useGetHistorySessionByIdQuery } from '../graphql/generated'
 import { Link, useParams } from 'react-router-dom'
 import { ArrowLeft } from 'phosphor-react'
+import { NavBarMobile } from '../components/NavBarMobile'
 
 export function HistoryCardFull() {
 
@@ -34,6 +35,7 @@ export function HistoryCardFull() {
 				<p className="my-4">Autor do texto: {data?.historySession?.author}</p>
 				<p className="my-4">Atualizado no {formattedDate}</p>
 			</main>
+			<NavBarMobile />
 		</>
 	)
 }

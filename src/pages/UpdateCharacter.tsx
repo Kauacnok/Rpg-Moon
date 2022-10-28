@@ -5,6 +5,7 @@ import { useApolloClient } from '@apollo/client'
 import { useGetCharacterInfooQuery, useUpdateCharacterByIdMutation, usePublishUpdateCharacterMutation } from '../graphql/generated'
 import { InputForm } from '../components/InputForm'
 import { Header } from '../components/Header'
+import { NavBarMobile } from '../components/NavBarMobile'
 
 export function UpdateCharacter() {
 	const navigate = useNavigate()
@@ -130,7 +131,7 @@ export function UpdateCharacter() {
 				<p className="bg-gray-700 px-5 py-2 my-5">Dado atual: { characterDescription == "" ? data?.character?.characterDescription : characterDescription}</p>
 				<InputForm key="4" typeInput="text" placeholderInput="Jogador" setValue={setPlayer} isUpdateCharacter={true} dataDefaultValue={data?.character?.player} />
 				<p className="bg-gray-700 px-5 py-2 my-5">Dado atual: { player == "" ? data?.character?.player : player}</p>
-				<InputForm key="5" typeInput="number" placeholderInput="XP" setValue={setXp} isUpdateCharacter={true} dataDefaultValue={data?.character?.xp} />
+				<InputForm key="98" typeInput="number" placeholderInput="XP" setValue={setXp} isUpdateCharacter={true} dataDefaultValue={data?.character?.xp} />
 				<p className="bg-gray-700 px-5 py-2 my-5">Dado atual: { xp == undefined ? data?.character?.xp : xp}</p>
 				<InputForm key="5" typeInput="number" placeholderInput="XP gasto" setValue={setXpSpent} isUpdateCharacter={true} dataDefaultValue={data?.character?.xpSpent} />
 				<p className="bg-gray-700 px-5 py-2 my-5">Dado atual: { xpSpent == undefined ? data?.character?.xpSpent : xpSpent}</p>
@@ -197,6 +198,7 @@ export function UpdateCharacter() {
 						><CircleNotch weight="bold" className="mx-auto w-4 h-4 animate-spin" /></button>)}
 				
 			</form>
+			<NavBarMobile />
 		</>
 	)
 }

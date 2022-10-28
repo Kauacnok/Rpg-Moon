@@ -8,7 +8,7 @@ export function Header() {
 				<h1 className="mr-2 text-lg">Rpg Moon</h1>	
 				<Moon size={40} color="gray" />
 			</div>
-			<nav className="flex flex-col md:flex-row">
+			<nav className="hidden md:flex md:flex-row">
 				<Link to="/" className="mb-2 hover:text-white hover:underline md:mb-0 md:mr-10">Lista dos personagens</Link>
 				<Link to="/history" className=" mb-2 hover:text-white hover:underline md:mb-0 md:mr-10">História das sessões</Link>
 				<Link to="/roll-dice" className="hover:text-white hover:underline">Rolar dados</Link>

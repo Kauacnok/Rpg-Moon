@@ -5,6 +5,7 @@ import { ArrowLeft, CircleNotch } from 'phosphor-react'
 import { useApolloClient } from '@apollo/client'
 import { Header } from '../components/Header'
 import { InputForm } from '../components/InputForm'
+import { NavBarMobile } from '../components/NavBarMobile'
 
 export function UpdateHistory() {
 	const navigate = useNavigate()
@@ -97,6 +98,7 @@ export function UpdateHistory() {
 						><CircleNotch weight="bold" className="mx-auto w-4 h-4 animate-spin" /></button>)}
 				</form>
 			</main>
+			<NavBarMobile />
 		</>
 	)
 }

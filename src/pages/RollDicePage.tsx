@@ -2,6 +2,7 @@ import { useGetDicesQuery } from '../graphql/generated'
 import { Header } from '../components/Header'
 import { DiceCard } from '../components/DiceCard'
 import { CreateNewRoll } from '../components/CreateNewRoll'
+import { NavBarMobile } from '../components/NavBarMobile'
 
 export function RollDicePage() {
 
@@ -25,6 +26,7 @@ export function RollDicePage() {
 			<footer className="mt-4 pl-2 py-5 bg-gray-700 border-b border-gray-500" >	
 				<CreateNewRoll />
 			</footer>
+			<NavBarMobile />
 		</>	
 	)
 }

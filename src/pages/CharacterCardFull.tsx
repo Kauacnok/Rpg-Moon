@@ -1,4 +1,5 @@
 import { Header } from '../components/Header'
+import { NavBarMobile } from '../components/NavBarMobile'
 import { useGetCharacterInfooQuery } from '../graphql/generated'
 import DOMPurify from 'dompurify'
 import { Link, useParams } from 'react-router-dom'
@@ -79,6 +80,7 @@ export function CharacterCardFull() {
 					<div dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(data?.character?.money || '')}} />		
 				</ul>
 			</div>
+			<NavBarMobile />
 		</>
 	)
 }
