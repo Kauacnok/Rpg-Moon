@@ -80,7 +80,7 @@ export function CharacterCardFull() {
 					<div dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(data?.character?.money || '')}} />		
 				</ul>
 			</div>
-			<NavBarMobile />
+			<NavBarMobile typeIntImage={1} />
 		</>
 	)
 }

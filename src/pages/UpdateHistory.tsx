@@ -98,7 +98,7 @@ export function UpdateHistory() {
 						><CircleNotch weight="bold" className="mx-auto w-4 h-4 animate-spin" /></button>)}
 				</form>
 			</main>
-			<NavBarMobile />
+			<NavBarMobile typeIntImage={2} />
 		</>
 	)
 }

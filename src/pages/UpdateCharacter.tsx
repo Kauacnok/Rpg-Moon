@@ -198,7 +198,7 @@ export function UpdateCharacter() {
 						><CircleNotch weight="bold" className="mx-auto w-4 h-4 animate-spin" /></button>)}
 				
 			</form>
-			<NavBarMobile />
+			<NavBarMobile typeIntImage={1} />
 		</>
 	)
 }

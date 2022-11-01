@@ -29,7 +29,7 @@ export function MainPage() {
 					})}
 				</div>
 			</main>
-			<NavBarMobile />
+			<NavBarMobile typeIntImage={1} />
 		</div>
 	)
 }

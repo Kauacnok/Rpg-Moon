@@ -125,7 +125,7 @@ export function CreateCharacter() {
 					disabled={loading}
 				>Criar personagem</button>
 			</form>
-			<NavBarMobile />
+			<NavBarMobile typeIntImage={1} />
 		</>
 	)
 }

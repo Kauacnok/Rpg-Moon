@@ -23,7 +23,7 @@ export function HistorysCards() {
 					)
 				})}
 			</main>
-			<NavBarMobile />
+			<NavBarMobile typeIntImage={2} />
 		</>
 	)
 }
