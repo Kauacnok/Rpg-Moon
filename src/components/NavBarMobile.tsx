@@ -8,7 +8,7 @@ interface NavBarMobileProps {
 export function NavBarMobile({ typeIntImage }: NavBarMobileProps) {
 	return (
 		<>
-			<menu className="sticky bg-gray-900 w-full h-16 bottom-0 rounded-t-lg px-5 z-40 md:hidden">
+			<menu className="fixed bg-gray-900 w-full h-16 border-[1px] border-gray-500 bottom-0 rounded-t-lg px-5 z-40 md:hidden">
 				<ul className="flex flex-row h-full justify-center items-center gap-5">
 					<li>
 						<Link to="/">

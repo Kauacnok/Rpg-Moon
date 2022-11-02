@@ -198,7 +198,9 @@ export function UpdateCharacter() {
 						><CircleNotch weight="bold" className="mx-auto w-4 h-4 animate-spin" /></button>)}
 				
 			</form>
-			<NavBarMobile typeIntImage={1} />
+			<footer className="mt-20">
+				<NavBarMobile typeIntImage={1} />
+			</footer>
 		</>
 	)
 }

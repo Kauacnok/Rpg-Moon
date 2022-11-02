@@ -23,7 +23,9 @@ export function HistorysCards() {
 					)
 				})}
 			</main>
-			<NavBarMobile typeIntImage={2} />
+			<footer className="mt-20">
+				<NavBarMobile typeIntImage={2} />
+			</footer>
 		</>
 	)
 }

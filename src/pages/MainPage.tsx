@@ -29,7 +29,9 @@ export function MainPage() {
 					})}
 				</div>
 			</main>
-			<NavBarMobile typeIntImage={1} />
+			<footer className="mt-20">
+				<NavBarMobile typeIntImage={1} />	
+			</footer>
 		</div>
 	)
 }

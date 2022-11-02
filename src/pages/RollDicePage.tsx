@@ -23,10 +23,12 @@ export function RollDicePage() {
 					}
 				})}
 			</main>
-			<footer className="mt-4 pl-2 py-5 bg-gray-700 border-b border-gray-500" >	
+			<aside className="mt-4 pl-2 py-5 bg-gray-700 border-b border-gray-500" >	
 				<CreateNewRoll />
+			</aside>
+			<footer className="mt-20">
+				<NavBarMobile typeIntImage={3} />
 			</footer>
-			<NavBarMobile typeIntImage={3} />
 		</>	
 	)
 }
