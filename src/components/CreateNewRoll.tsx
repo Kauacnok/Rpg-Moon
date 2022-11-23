@@ -13,8 +13,8 @@ export function CreateNewRoll() {
 
 	const client = useApolloClient()
 
-	const rollDiceString = ["+", "-", "0"]
-	const rollDiceNumber = [+1, -1, 0]
+	const rollDiceString = ["-", "+", "0"]
+	const rollDiceNumber = [-1, 1, 0]
 
 	function randomIntFromInterval(min: number, max: number) {
     	return Math.round(Math.random() * (max - min) + min);
