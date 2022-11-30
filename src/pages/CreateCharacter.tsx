@@ -125,7 +125,7 @@ export function CreateCharacter() {
 					disabled={loading}
 				>Criar personagem</button>
 			</form>
-			<footer className="mt-20">
+			<footer className="mt-20 md:mt-0">
 				<NavBarMobile typeIntImage={1} />
 			</footer>
 		</>

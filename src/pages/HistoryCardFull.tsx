@@ -35,7 +35,7 @@ export function HistoryCardFull() {
 				<p className="my-4">Autor do texto: {data?.historySession?.author}</p>
 				<p className="my-4">Atualizado no {formattedDate}</p>
 			</main>
-			<footer className="mt-20">
+			<footer className="mt-20 md:mt-0">
 				<NavBarMobile typeIntImage={2} />
 			</footer>
 		</>

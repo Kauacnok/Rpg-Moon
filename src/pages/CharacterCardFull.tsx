@@ -80,7 +80,7 @@ export function CharacterCardFull() {
 					<div dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(data?.character?.money || '')}} />		
 				</ul>
 			</div>
-			<footer className="mt-20">
+			<footer className="mt-20 md:mt-0">
 				<NavBarMobile typeIntImage={1} />
 			</footer>
 		</>
