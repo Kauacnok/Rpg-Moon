@@ -1,20 +1,21 @@
-import { ChangeEvent } from 'react'
+import { SyntheticEvent } from 'react'
 
 interface InputFormProps {
 	typeInput: string,
 	placeholderInput: string,
-	setValue: any,
+	setValue: Function,
 	isUpdateCharacter?: boolean,
-	dataDefaultValue?: any
+	dataDefaultValue?: string | number | undefined
 }
 
 export function InputForm(props: InputFormProps) {
 	
-	function addDataValue(event: any, value: any, defaultValue: any) {
+	function addDataValue(event: SyntheticEvent, value: Function, defaultValue: string | number | undefined) {
+		let target = event.target as HTMLInputElement
 		if ( props.isUpdateCharacter ) {
-			event.target.value == "" ? value(defaultValue) : value(event.target.value)
+			target.value == "" ? value(defaultValue) : value(target.value)
 		} else {
-			value(event.target.value)
+			value(target.value)
 		}
 	}
 
@@ -24,7 +25,7 @@ export function InputForm(props: InputFormProps) {
 			<input 
 				className="bg-gray-900 block rounded w-[97%] px-5 h-14 mb-2"
 				type={props.typeInput}
-				key={props.setValue}
+				key={props.placeholderInput}
 				placeholder={props.placeholderInput}
 				onChange={(event) => addDataValue(event, props.setValue, props.dataDefaultValue)}
 			/>
