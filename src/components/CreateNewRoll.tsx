@@ -1,4 +1,6 @@
-import { useState, useEffect, FormEvent } from 'react'
+import { useState, useEffect, FormEvent, useRef } from 'react'
+import { Fireworks } from '@fireworks-js/react'
+import type { FireworksHandlers } from '@fireworks-js/react'
 import { useApolloClient } from '@apollo/client';
 import { CircleNotch  } from 'phosphor-react'
 
@@ -6,10 +8,14 @@ import { useCreateRollDiceMutation, usePublishRollDiceMutation } from '../graphq
 import { InputForm } from './InputForm'
 
 export function CreateNewRoll() {
+
+	const ref = useRef<FireworksHandlers>(null)
 	const [name, setName] = useState("")
 	const [aditionalNumber, setAditionalNumber] = useState(0)
 	const [counter, setCounter] = useState(0)
 	const [isDataSent, setIsDataSent] = useState(false)
+	const [isFireworksEnabled, setIsFireworksEnabled] = useState(false)
+
 
 	const client = useApolloClient()
 
@@ -53,6 +59,7 @@ export function CreateNewRoll() {
 		let randomNumber3 = randomIntFromInterval(0, 2)
 		let randomNumber4 = randomIntFromInterval(0, 2)
 
+		const totalNumberResultOnlyDice = rollDiceNumber[randomNumber1] + rollDiceNumber[randomNumber2] + rollDiceNumber[randomNumber3] + rollDiceNumber[randomNumber4]
 		const resultDiceStringFull = `${rollDiceString[randomNumber1]} ${rollDiceString[randomNumber2]} ${rollDiceString[randomNumber3]} ${rollDiceString[randomNumber4]}`
 		const totalNumberResultFull = rollDiceNumber[randomNumber1] + rollDiceNumber[randomNumber2] + rollDiceNumber[randomNumber3] + rollDiceNumber[randomNumber4] + Number(aditionalNumber)
 
@@ -71,6 +78,15 @@ export function CreateNewRoll() {
 			}
 		})
 
+		if (totalNumberResultOnlyDice === 4 || totalNumberResultOnlyDice === -4) {
+			setIsFireworksEnabled(true)
+			ref?.current?.start()
+			setTimeout(() => {
+				ref?.current?.stop()
+				setIsFireworksEnabled(false)
+			}, 15000)
+		}
+
 		client.resetStore()
         setCounter(counter + 1)
 
@@ -81,6 +97,20 @@ export function CreateNewRoll() {
 
 	return (
 		<>
+			{isFireworksEnabled && 
+				<Fireworks
+					ref={ref}
+					options={{ opacity: 0.5 }}
+					style={{
+						top: 0,
+						left: 0,
+						width: '100%',
+						height: '100%',
+						position: 'fixed',
+						background: 'transparent'
+					}}
+     			 />
+			}
 			<form onSubmit={handleSubmit} className="bg-gray-700 flex flex-col pl-2 pb-2">
 				<InputForm typeInput="text" placeholderInput="Nome do jogador" setValue={setName}/>
 				<InputForm typeInput="number" placeholderInput="Valor a adicionar ao dado" setValue={setAditionalNumber}/>
