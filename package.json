@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.6.9",
+    "@fireworks-js/react": "^2.10.0",
     "classnames": "^2.3.2",
     "date-fns": "^2.29.2",
     "dompurify": "^2.4.0",
