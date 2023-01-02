@@ -1,4 +1,4 @@
-import { useState, FormEvent } from 'react'
+import { useState, FormEvent, SyntheticEvent } from 'react'
 import { useGetHistorySessionByIdQuery, useUpdateHistoryMutation, usePublishUpdateHistoryMutation} from '../graphql/generated'
 import { Link, useParams, useNavigate } from 'react-router-dom'
 import { ArrowLeft, CircleNotch } from 'phosphor-react'
@@ -65,8 +65,9 @@ export function UpdateHistory() {
   		navigate(`/history/session/${id}`)
 	}
 
-	function addDataOnTextArea(event: any, value: any, defaultValue: any) {
-  		event.target.value == "" ? value(defaultValue) : value(event.target.value)
+	function addDataOnTextArea(event: SyntheticEvent, value: Function, defaultValue: string | number | undefined) {
+  		let target = event.target as HTMLInputElement
+  		target.value == "" ? value(defaultValue) : value(target.value)
   	}
 
 	return (
@@ -79,8 +80,7 @@ export function UpdateHistory() {
 				<form onSubmit={handleSubmit}>
 					<InputForm key="1" typeInput="text" placeholderInput="Digite o titulo" setValue={setTitle} isUpdateCharacter={true} dataDefaultValue={data?.historySession?.title}  />
 					<p className="bg-gray-700 px-5 py-2 my-5">Dado atual: { title == "" ? data?.historySession?.title : title}</p>
-					<textarea key="2" className="bg-gray-900 block rounded w-[90%] px-5 h-14 mb-2" onChange={event => addDataOnTextArea(event, setText, data?.historySession?.textHistory)} ></textarea>
-					<p className="bg-gray-700 px-5 py-2 my-5">Dado atual: { text == "" ? data?.historySession?.textHistory : text}</p>
+					<textarea key="2" className="bg-gray-900 block rounded w-[90%] px-5 h-14 mb-2" value={text} onChange={event => addDataOnTextArea(event, setText, data?.historySession?.textHistory)} ></textarea>	
 					<InputForm key="3" typeInput="text" placeholderInput="Nome do autor" setValue={setAuthor} isUpdateCharacter={true} dataDefaultValue={data?.historySession?.author}  />
 					<p className="bg-gray-700 px-5 py-2 my-5">Dado atual: { author == "" ? data?.historySession?.author : author}</p>
 					<InputForm key="4" typeInput="text" placeholderInput="Digite a senha dos mestres para confirmar as alterações" setValue={setPassword}/>

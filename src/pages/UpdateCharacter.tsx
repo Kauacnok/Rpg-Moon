@@ -1,5 +1,5 @@
 import { Link, useParams, useNavigate } from 'react-router-dom'
-import { useState, FormEvent } from 'react'
+import { useState, FormEvent, SyntheticEvent } from 'react'
 import { ArrowLeft, CircleNotch  } from 'phosphor-react'
 import { useApolloClient } from '@apollo/client'
 import { useGetCharacterInfooQuery, useUpdateCharacterByIdMutation, usePublishUpdateCharacterMutation } from '../graphql/generated'
@@ -111,8 +111,9 @@ export function UpdateCharacter() {
   		navigate(`/character/${id}`)
   	}
 
-  	function addDataOnTextArea(event: any, value: any, defaultValue: any) {
-  		event.target.value == "" ? value(defaultValue) : value(event.target.value)
+  	function addDataOnTextArea(event: SyntheticEvent, value: Function, defaultValue: string | number | undefined) {
+  		let target = event.target as HTMLInputElement
+  		target.value == "" ? value(defaultValue) : value(target.value)
   	}
 
 	return (
@@ -123,7 +124,7 @@ export function UpdateCharacter() {
 					<Link to={`/character/${id}`} className="rounded-full cursor-pointer hover:bg-gray-500 transition"><ArrowLeft size={40}/></Link>
 					<p className="mx-auto">Ficha do personagem</p>
 				</h2>
-				<InputForm key="1" typeInput="text" placeholderInput="Nome do personagem" setValue={setName} isUpdateCharacter={true} dataDefaultValue={data?.character?.name}  />
+				<InputForm key="1" typeInput="text" placeholderInput="Nome do personagem" setValue={setName} isUpdateCharacter={true} dataDefaultValue={data?.character?.name} />
 				<p className="bg-gray-700 px-5 py-2 my-5">Dado atual: { name == "" ? data?.character?.name : name}</p>
 				<InputForm key="2" typeInput="url" placeholderInput="Imagem URL" setValue={setAvatarURL} isUpdateCharacter={true} dataDefaultValue={data?.character?.avatarURL} />
 				<p className="bg-gray-700 px-5 py-2 my-5">Dado atual: { avatarURL == "" ? data?.character?.avatarURL : avatarURL}</p>
@@ -165,23 +166,18 @@ export function UpdateCharacter() {
 				<p className="bg-gray-700 px-5 py-2 my-5">Dado atual: { perception == undefined ? data?.character?.perception : perception}</p>
 				<InputForm key="19" typeInput="number" placeholderInput="Vontade" setValue={setDisposal} isUpdateCharacter={true} dataDefaultValue={data?.character?.disposal} />
 				<p className="bg-gray-700 px-5 py-2 my-5">Dado atual: { disposal == undefined ? data?.character?.disposal : disposal}</p>
-				<InputForm key="20" typeInput="number" placeholderInput="Carisma" setValue={setCharisma}isUpdateCharacter={true} dataDefaultValue={data?.character?.charisma} />
+				<InputForm key="20" typeInput="number" placeholderInput="Carisma" setValue={setCharisma} isUpdateCharacter={true} dataDefaultValue={data?.character?.charisma} />
 				<p className="bg-gray-700 px-5 py-2 my-5">Dado atual: { charisma == undefined ? data?.character?.charisma : charisma}</p>
 				<h2 className="block pl-2 my-10 text-center">Desgaste (0,1) 0000 / (2,3,4) 00 / (5,6) 0 / (7,8) 0 / (9+) X</h2>
-				<InputForm key="21" typeInput="text" placeholderInput="Mental" setValue={setPsychological}isUpdateCharacter={true} dataDefaultValue={data?.character?.psychological} />
-				<p className="bg-gray-700 px-5 py-2 my-5">Dado atual: { psychological == "" ? data?.character?.psychological : psychological}</p>
-				<InputForm key="22" typeInput="text" placeholderInput="Físico" setValue={setPhysical} isUpdateCharacter={true} dataDefaultValue={data?.character?.physical} />
-				<p className="bg-gray-700 px-5 py-2 my-5">Dado atual: { physical == "" ? data?.character?.physical : physical}</p>
+				<InputForm key="21" typeInput="text" placeholderInput="Mental" setValue={setPsychological} valueOnState={psychological} isUpdateCharacter={true} dataDefaultValue={data?.character?.psychological} />
+				<InputForm key="22" typeInput="text" placeholderInput="Físico" setValue={setPhysical} valueOnState={physical} isUpdateCharacter={true} dataDefaultValue={data?.character?.physical} />
 				<h2 className="block pl-2 my-10 text-center">Habilidades</h2>
-				<textarea key="23" className="bg-gray-900 block rounded w-[90%] px-5 h-14 mb-2" onChange={event => addDataOnTextArea(event, setSkills, data?.character?.skills)} ></textarea>
-				<p className="bg-gray-700 px-5 py-2 my-5">Dado atual: { skills == "" ? data?.character?.skills : skills}</p>
+				<textarea key="23" className="bg-gray-900 block rounded w-[90%] px-5 h-14 mb-2" onChange={event => addDataOnTextArea(event, setSkills, data?.character?.skills)} value={skills} ></textarea>
 				<h2 className="block pl-2 my-10 text-center">Inventário</h2>
-				<textarea key="24" className="bg-gray-900 block rounded w-[90%] px-5 h-14 mb-2" onChange={event =>  addDataOnTextArea(event, setInventory, data?.character?.inventory)} ></textarea>
-				<p className="bg-gray-700 px-5 py-2 my-5">Dado atual: { inventory == "" ? data?.character?.inventory : inventory}</p>
+				<textarea key="24" className="bg-gray-900 block rounded w-[90%] px-5 h-14 mb-2" onChange={event =>  addDataOnTextArea(event, setInventory, data?.character?.inventory)} value={inventory}></textarea>
 				<h2 className="block pl-2 my-10 text-center">Dinheiro</h2>
-				<InputForm key="25" typeInput="text" placeholderInput="Coloque todos os valores de dinheiro aqui (HL, HO, HP, HC)" setValue={setMoney} isUpdateCharacter={true} dataDefaultValue={data?.character?.money} />
-				<p className="bg-gray-700 px-5 py-2 my-5">Dado atual: { money == "" ? data?.character?.money : money}</p>
-				<InputForm key="26" typeInput="text" placeholderInput="Digite a senha do personagem para confirmar as alterações" setValue={setPassword} />
+				<InputForm key="25" typeInput="text" placeholderInput="Coloque todos os valores de dinheiro aqui (HL, HO, HP, HC)" setValue={setMoney} valueOnState={money} isUpdateCharacter={true} dataDefaultValue={data?.character?.money} />
+				<InputForm key="26" typeInput="password" placeholderInput="Digite a senha do personagem para confirmar as alterações" setValue={setPassword} />
 
 
 				{ isDataSent == false ? (

@@ -4,6 +4,7 @@ interface InputFormProps {
 	typeInput: string,
 	placeholderInput: string,
 	setValue: Function,
+	valueOnState?: string | number | undefined,
 	isUpdateCharacter?: boolean,
 	dataDefaultValue?: string | number | undefined
 }
@@ -27,6 +28,7 @@ export function InputForm(props: InputFormProps) {
 				type={props.typeInput}
 				key={props.placeholderInput}
 				placeholder={props.placeholderInput}
+				value={props.valueOnState}
 				onChange={(event) => addDataValue(event, props.setValue, props.dataDefaultValue)}
 			/>
 		</>
