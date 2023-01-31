@@ -1,6 +1,10 @@
 import { Link } from 'react-router-dom'
 import classNames from 'classnames'
 
+import House from '../assets/house.png'
+import News from '../assets/news.png'
+import More from '../assets/more.png'
+
 interface NavBarMobileProps {
 	typeIntImage: number // 1- Home 2- History sessions 3- Roll dices
 }
@@ -13,7 +17,7 @@ export function NavBarMobile({ typeIntImage }: NavBarMobileProps) {
 					<li>
 						<Link to="/">
 							<img 
-								src="https://i.imgur.com/XrOYZdN.png" 
+								src={House}
 								className={classNames("p-2 hover:border-2 hover:border-gray-300 hover:rounded", {
 									'border-2 border-blue-700 rounded': typeIntImage === 1
 								})} 
@@ -24,7 +28,7 @@ export function NavBarMobile({ typeIntImage }: NavBarMobileProps) {
 					<li>
 						<Link to="/history">
 							<img 
-								src="https://i.imgur.com/hgEDFIS.png" 
+								src={News} 
 								className={classNames("p-2 hover:border-2 hover:border-gray-300 hover:rounded", {
 									'border-2 border-blue-700 rounded': typeIntImage === 2
 								})} 
@@ -34,7 +38,7 @@ export function NavBarMobile({ typeIntImage }: NavBarMobileProps) {
 					</li>
 					<li>
 						<Link to="/roll-dice">
-							<img src="https://i.imgur.com/qlGhJYL.png" 
+							<img src={More} 
 								className={classNames("p-2 hover:border-2 hover:border-gray-300 hover:rounded", {
 									'border-2 border-blue-700 rounded': typeIntImage === 3
 								})} 
