@@ -80,7 +80,7 @@ export function UpdateHistory() {
 				<form onSubmit={handleSubmit}>
 					<InputForm key="1" typeInput="text" placeholderInput="Digite o titulo" setValue={setTitle} isUpdateCharacter={true} dataDefaultValue={data?.historySession?.title}  />
 					<p className="bg-gray-700 px-5 py-2 my-5">Dado atual: { title == "" ? data?.historySession?.title : title}</p>
-					<textarea key="2" className="bg-gray-900 block rounded w-[90%] px-5 h-14 mb-2" value={text} onChange={event => addDataOnTextArea(event, setText, data?.historySession?.textHistory)} ></textarea>	
+					<textarea key="2" className="bg-gray-900 block rounded w-[90%] px-5 h-14 mb-2 focus:outline-none" value={text} onChange={event => addDataOnTextArea(event, setText, data?.historySession?.textHistory)} ></textarea>	
 					<InputForm key="3" typeInput="text" placeholderInput="Nome do autor" setValue={setAuthor} isUpdateCharacter={true} dataDefaultValue={data?.historySession?.author}  />
 					<p className="bg-gray-700 px-5 py-2 my-5">Dado atual: { author == "" ? data?.historySession?.author : author}</p>
 					<InputForm key="4" typeInput="text" placeholderInput="Digite a senha dos mestres para confirmar as alterações" setValue={setPassword}/>

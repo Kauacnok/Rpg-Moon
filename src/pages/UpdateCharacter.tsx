@@ -172,9 +172,9 @@ export function UpdateCharacter() {
 				<InputForm key="21" typeInput="text" placeholderInput="Mental" setValue={setPsychological} valueOnState={psychological} isUpdateCharacter={true} dataDefaultValue={data?.character?.psychological} />
 				<InputForm key="22" typeInput="text" placeholderInput="Físico" setValue={setPhysical} valueOnState={physical} isUpdateCharacter={true} dataDefaultValue={data?.character?.physical} />
 				<h2 className="block pl-2 my-10 text-center">Habilidades</h2>
-				<textarea key="23" className="bg-gray-900 block rounded w-[90%] px-5 h-14 mb-2" onChange={event => addDataOnTextArea(event, setSkills, data?.character?.skills)} value={skills} ></textarea>
+				<textarea key="23" className="bg-gray-900 block rounded w-[90%] px-5 h-14 mb-2 focus:outline-none" onChange={event => addDataOnTextArea(event, setSkills, data?.character?.skills)} value={skills} ></textarea>
 				<h2 className="block pl-2 my-10 text-center">Inventário</h2>
-				<textarea key="24" className="bg-gray-900 block rounded w-[90%] px-5 h-14 mb-2" onChange={event =>  addDataOnTextArea(event, setInventory, data?.character?.inventory)} value={inventory}></textarea>
+				<textarea key="24" className="bg-gray-900 block rounded w-[90%] px-5 h-14 mb-2 focus:outline-none" onChange={event =>  addDataOnTextArea(event, setInventory, data?.character?.inventory)} value={inventory}></textarea>
 				<h2 className="block pl-2 my-10 text-center">Dinheiro</h2>
 				<InputForm key="25" typeInput="text" placeholderInput="Coloque todos os valores de dinheiro aqui (HL, HO, HP, HC)" setValue={setMoney} valueOnState={money} isUpdateCharacter={true} dataDefaultValue={data?.character?.money} />
 				<InputForm key="26" typeInput="password" placeholderInput="Digite a senha do personagem para confirmar as alterações" setValue={setPassword} />

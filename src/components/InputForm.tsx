@@ -24,7 +24,7 @@ export function InputForm(props: InputFormProps) {
 		<>
 			<h2 className="block bt-2">{props.placeholderInput}</h2>
 			<input 
-				className="bg-gray-900 block rounded w-[97%] px-5 h-14 mb-2"
+				className="bg-gray-900 block rounded w-[97%] px-5 h-14 mb-2 focus:outline-none"
 				type={props.typeInput}
 				key={props.placeholderInput}
 				placeholder={props.placeholderInput}
