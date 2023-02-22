@@ -3,9 +3,9 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
     "codegen": "graphql-codegen"
   },
   "dependencies": {
@@ -16,10 +16,11 @@
     "date-fns": "^2.29.2",
     "dompurify": "^2.4.0",
     "graphql": "^16.5.0",
+    "next": "^12.3.4",
     "phosphor-react": "^1.4.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "react-router-dom": "^6.3.0"
+    "xss": "^1.0.14"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^2.16.4",
@@ -27,13 +28,12 @@
     "@graphql-codegen/typescript-operations": "^2.4.3",
     "@graphql-codegen/typescript-react-apollo": "^3.2.17",
     "@types/dompurify": "^2.3.4",
+    "@types/node": "^18.14.0",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
-    "@vitejs/plugin-react": "^1.3.0",
     "autoprefixer": "^10.4.7",
     "postcss": "^8.4.14",
     "tailwindcss": "^3.1.4",
-    "typescript": "^4.6.3",
-    "vite": "^2.9.9"
+    "typescript": "^4.6.3"
   }
 }
