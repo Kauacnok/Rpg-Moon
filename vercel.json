@@ -1,3 +1,12 @@
 {
-  "routes": [{ "src": "/[^.]+", "dest": "/", "status": 200 }]
+  "routes": [
+    { "src": "/", "dest": "/", "status": 200 },
+    { "src": "/character", "dest": "/character" },
+    { "src": "/character/(.+)", "dest": "/character/(.+)" },
+    { "src": "/character/update/(.+)", "dest": "/character/update/(.+)" },
+    { "src": "/history", "dest": "/history" },
+    { "src": "/history/(.+)", "dest": "/history/(.+)" },
+    { "src": "/history/update/(.+)", "dest": "/history/update/(.+)" },
+    { "src": "/roll", "dest": "/roll" }
+  ]
 }
