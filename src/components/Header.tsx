@@ -1,5 +1,5 @@
 import { Moon } from 'phosphor-react'
-import { Link } from 'react-router-dom'
+import Link  from 'next/link'
 
 export function Header() {
 	return (
@@ -9,9 +9,9 @@ export function Header() {
 				<Moon size={40} color="gray" />
 			</div>
 			<nav className="hidden md:flex md:flex-row">
-				<Link to="/" className="mb-2 hover:text-white hover:underline md:mb-0 md:mr-10">Lista dos personagens</Link>
-				<Link to="/history" className=" mb-2 hover:text-white hover:underline md:mb-0 md:mr-10">História das sessões</Link>
-				<Link to="/roll-dice" className="hover:text-white hover:underline">Rolar dados</Link>
+				<div className="mb-2 hover:text-white hover:underline md:mb-0 md:mr-10"><Link href="/">Lista dos personagens</Link></div>
+				<div className=" mb-2 hover:text-white hover:underline md:mb-0 md:mr-10"><Link href="/history">História das sessões</Link></div>
+				<div className="hover:text-white hover:underline"><Link href="/roll">Rolar dados</Link></div>
 			</nav>
 		</header>
 	)

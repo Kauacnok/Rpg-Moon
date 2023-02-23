@@ -1,23 +1,35 @@
+import { GraphQLClient } from 'graphql-request'
 import { useState, useEffect, FormEvent, useRef } from 'react'
 import { Fireworks } from '@fireworks-js/react'
 import type { FireworksHandlers } from '@fireworks-js/react'
-import { useApolloClient } from '@apollo/client';
+import { useApolloClient, gql } from '@apollo/client';
 import { CircleNotch  } from 'phosphor-react'
 
-import { useCreateRollDiceMutation, usePublishRollDiceMutation } from '../graphql/generated'
+import { createNewRollMutation } from '../graphql/mutations/create-roll-dice'
+import { publishNewRollMutation } from '../graphql/mutations/publish-roll-dice'
 import { InputForm } from './InputForm'
 
-export function CreateNewRoll() {
+interface createNewRollProps {
+	VITE_API_URL: string,
+	VITE_API_ACCESS_TOKEN: string
+}
+
+export function CreateNewRoll({ VITE_API_URL, VITE_API_ACCESS_TOKEN }: createNewRollProps) {
 
 	const ref = useRef<FireworksHandlers>(null)
-	const [name, setName] = useState("")
+	const [name, setName] = useState("...")
 	const [aditionalNumber, setAditionalNumber] = useState(0)
 	const [counter, setCounter] = useState(0)
 	const [isDataSent, setIsDataSent] = useState(false)
 	const [isFireworksEnabled, setIsFireworksEnabled] = useState(false)
 
-
 	const client = useApolloClient()
+
+	const graphQLClient = new GraphQLClient((VITE_API_URL), {
+		headers: {
+			authorization: `Bearer ${VITE_API_ACCESS_TOKEN}`,
+		}
+	})
 
 	const rollDiceString = ["-", "+", "0"]
 	const rollDiceNumber = [-1, 1, 0]
@@ -30,21 +42,6 @@ export function CreateNewRoll() {
 		client.resetStore()
 		setCounter(counter + 1)
 	}
-
-	const [createRollDiceMutation, { data, loading, error }] = useCreateRollDiceMutation({
-		variables: {
-			addNumberToDice: 0,
-			player: '',
-			resultDiceString: '',
-			totalNumberResult: 0
-		},
-	})
-
-	const [publishRollDiceMutation] = usePublishRollDiceMutation({
-		variables: {
-			id: ''
-		},
-	})
 
 	useEffect(() => {
         console.log('Fetching data')
@@ -63,20 +60,16 @@ export function CreateNewRoll() {
 		const resultDiceStringFull = `${rollDiceString[randomNumber1]} ${rollDiceString[randomNumber2]} ${rollDiceString[randomNumber3]} ${rollDiceString[randomNumber4]}`
 		const totalNumberResultFull = rollDiceNumber[randomNumber1] + rollDiceNumber[randomNumber2] + rollDiceNumber[randomNumber3] + rollDiceNumber[randomNumber4] + Number(aditionalNumber)
 
-		const newRollDice = await createRollDiceMutation({
-			variables: {
-				player: name,
-				addNumberToDice: Number(aditionalNumber),
-				resultDiceString: resultDiceStringFull,
-				totalNumberResult: Number(totalNumberResultFull)
-			}
+		const newRollDice = await graphQLClient.request(createNewRollMutation, {
+			player: name,
+			addNumberToDice: Number(aditionalNumber),
+			resultDiceString: resultDiceStringFull,
+			totalNumberResult: Number(totalNumberResultFull),
 		})
 
-		await publishRollDiceMutation({
-			variables: {
-				id: newRollDice?.data?.createRollDices?.id
-			}
-		})
+		await graphQLClient.request(publishNewRollMutation, {
+			id: newRollDice?.createRollDices?.id
+		})	
 
 		if (totalNumberResultOnlyDice === 4 || totalNumberResultOnlyDice === -4) {
 			setIsFireworksEnabled(true)
@@ -91,8 +84,6 @@ export function CreateNewRoll() {
         setCounter(counter + 1)
 
         setIsDataSent(false)
-
-		console.log(newRollDice?.data?.createRollDices?.id)
 	}
 
 	return (

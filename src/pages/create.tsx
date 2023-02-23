@@ -1,13 +1,30 @@
+import { GraphQLClient } from 'graphql-request'
+import { gql } from "@apollo/client"
+import { client } from "../lib/apollo"
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { InputForm } from '../components/InputForm'
 import { Header } from '../components/Header'
 import { ArrowLeft } from 'phosphor-react'
-import { Link, useNavigate } from 'react-router-dom'
 import { useState, FormEvent } from 'react'
-import { useCreateNewCharacterMutation } from '../graphql/generated'
 import { NavBarMobile } from '../components/NavBarMobile'
+import { createCharacter } from '../graphql/mutations/create-character-mutation'
 
-export function CreateCharacter() {
-	const navigate = useNavigate()
+interface createCharacterProps {
+	VITE_API_URL: string,
+	VITE_API_ACCESS_TOKEN: string
+}
+
+export default function CreateCharacter({ VITE_API_URL, VITE_API_ACCESS_TOKEN }: createCharacterProps) {
+	const router = useRouter()
+
+	const graphQLClient = new GraphQLClient((VITE_API_URL), {
+		headers: {
+			authorization: `Bearer ${VITE_API_ACCESS_TOKEN}`,
+		}
+	})
+
+	const create_Character = createCharacter
 
 	const [name, setName] = useState("")
 	const [avatarURL, setAvatarURL] = useState("")
@@ -37,44 +54,40 @@ export function CreateCharacter() {
 	const [money, setMoney] = useState("")
 	const [password, setPassword] = useState("")
 
-	const [createNewCharacter, {data, loading }] = useCreateNewCharacterMutation()
-
 	async function handleSubmit(event: FormEvent) {
 		event.preventDefault()
 
-		await createNewCharacter({
-			variables: {
-				avatarURL,
-				characterDescription,
-				agility: Number(agility),
-				charisma: Number(charisma),
-				connection,
-				disposal: Number(disposal),
-				force: Number(force),
-				inteligence: Number(inteligence),
-				inventory,
-				level: Number(level),
-				money,
-				motivation,
-				name,
-				origin,
-				password,
-				perception: Number(perception),
-				personality,
-				physical,
-				player,
-				points: Number(points),
-				problem,
-				psychological,
-				resistance: Number(resistance),
-				route,
-				skills,
-				xp: Number(xp),
-				xpSpent: Number(xpSpent)
-			}
+		await graphQLClient.request(create_Character, {		
+			avatarURL,
+			characterDescription,
+			agility: Number(agility),
+			charisma: Number(charisma),
+			connection,
+			disposal: Number(disposal),
+			force: Number(force),
+			inteligence: Number(inteligence),
+			inventory,
+			level: Number(level),
+			money,
+			motivation,
+			name,
+			origin,
+			password,
+			perception: Number(perception),
+			personality,
+			physical,
+			player,
+			points: Number(points),
+			problem,
+			psychological,
+			resistance: Number(resistance),
+			route,
+			skills,
+			xp: Number(xp),
+			xpSpent: Number(xpSpent)
 		})
 
-		navigate(`/`)
+		router.push('/')
 	}
 
 	return (
@@ -82,7 +95,7 @@ export function CreateCharacter() {
 			<Header />
 			<form onSubmit={handleSubmit} className="bg-gray-700 flex flex-col pl-2 pb-2">
 				<h2 className="flex items-center pl-2 my-10 text-center">
-					<Link to="/" className="rounded-full cursor-pointer hover:bg-gray-500 transition"><ArrowLeft size={40}/></Link>
+					<Link href="/" className="rounded-full cursor-pointer hover:bg-gray-500 transition"><ArrowLeft size={40}/></Link>
 					<p className="mx-auto">Ficha do personagem</p>
 				</h2>
 				<InputForm typeInput="text" placeholderInput="Nome do personagem" setValue={setName} />
@@ -122,7 +135,6 @@ export function CreateCharacter() {
 				<button 
 					type="submit" 
 					className="w-[80%] mx-auto px-5 py-2 bg-green-500 hover:bg-green-700 disabled:opacity-50"
-					disabled={loading}
 				>Criar personagem</button>
 			</form>
 			<footer className="mt-20 md:mt-0">
@@ -130,4 +142,15 @@ export function CreateCharacter() {
 			</footer>
 		</>
 	)
+}
+
+export async function getStaticProps() {
+	const VITE_API_URL = process.env.VITE_API_URL
+	const VITE_API_ACCESS_TOKEN = process.env.VITE_API_ACCESS_TOKEN
+
+	return {
+		props: {
+			VITE_API_URL, VITE_API_ACCESS_TOKEN
+		}
+	}
 }
