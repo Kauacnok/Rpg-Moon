@@ -194,7 +194,7 @@ export default function UpdateCharacter({ data, id, VITE_API_URL, VITE_API_ACCES
 				
 			</form>
 			<footer className="mt-20 md:mt-0">
-				
+				<NavBarMobile typeIntImage={1} />	
 			</footer>
 		</>
 	)
@@ -274,6 +274,6 @@ export async function getStaticProps(context: contextProps) {
 
 	return {
 		props: { data: data, id, VITE_API_URL, VITE_API_ACCESS_TOKEN},
-		revalidate: 5
+		revalidate: 10
 	}
 }

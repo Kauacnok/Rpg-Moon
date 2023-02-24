@@ -151,6 +151,6 @@ export async function getStaticProps(context: contextProps) {
 
 	return {
 		props: { data: data, id, VITE_API_URL, VITE_API_ACCESS_TOKEN, VITE_PASSWORD_UPDATE_HISTORY},
-		revalidate: 60
+		revalidate: 10
 	}
 }

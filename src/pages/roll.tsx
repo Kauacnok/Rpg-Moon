@@ -62,6 +62,6 @@ export async function getStaticProps() {
 
 	return {
 		props: { data: data, VITE_API_URL, VITE_API_ACCESS_TOKEN },
-		revalidate: 5
+		revalidate: 10
 	}
 }
