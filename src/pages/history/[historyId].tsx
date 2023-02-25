@@ -59,32 +59,7 @@ export default function HistoryCardFull({ data, id }: historyProps) {
 	)
 }
 
-export async function getStaticPaths() {
-	const { data } = await client.query({
-		query: gql`
-			query GetHistorySessionsList {
-				historySessions(where: {}) {
-					id
-				}
-			}
-		`
-	})
-
-	const paths = data.historySessions.map((history: HistoryId) => {
-		const historyId = history.id
-
-		return {
-            params: { historyId: historyId.toString() },
-        }
-	})
-
-	return {
-        paths,
-        fallback: false,
-    }
-}
-
-export async function getStaticProps(context: contextProps) {
+export async function getServerSideProps(context: contextProps) {
 	const id = context.params.historyId
 
 	const { data } = await client.query({

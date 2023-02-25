@@ -129,32 +129,7 @@ export default function CharacterCardFull({ data, id }: CharacterCardFullProps) 
 	)
 }
 
-export async function getStaticPaths() {
-	const { data } = await client.query({
-		query: gql`
-			query GetCharactersList {
-				characters(where: {}) {
-					id
-				}
-			}
-		`
-	})
-
-	const paths = data.characters.map((character: CharacterListId) => {
-		const characterId = character.id
-
-		return {
-            params: { characterId: characterId.toString() },
-        }
-	})
-
-	return {
-        paths,
-        fallback: 'blocking',
-    }
-}
-
-export async function getStaticProps(context: contextProps) {
+export async function getServerSideProps(context: contextProps) {
 
 	const id = context.params.characterId
 
@@ -167,6 +142,5 @@ export async function getStaticProps(context: contextProps) {
 
 	return {
 		props: { data: data, id},
-		revalidate: 10
 	}
 }

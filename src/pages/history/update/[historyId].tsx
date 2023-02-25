@@ -110,32 +110,7 @@ export default function UpdateHistory({ data, id, VITE_API_URL, VITE_API_ACCESS_
 	)
 }
 
-export async function getStaticPaths() {
-	const { data } = await client.query({
-		query: gql`
-			query GetHistorySessionsList {
-				historySessions(where: {}) {
-					id
-				}
-			}
-		`
-	})
-
-	const paths = data.historySessions.map((history: HistoryId) => {
-		const historyId = history.id
-
-		return {
-            params: { historyId: historyId.toString() },
-        }
-	})
-
-	return {
-        paths,
-        fallback: false,
-    }
-}
-
-export async function getStaticProps(context: contextProps) {
+export async function getServerSideProps(context: contextProps) {
 	const id = context.params.historyId
 
 	const VITE_API_URL = process.env.VITE_API_URL
@@ -151,6 +126,5 @@ export async function getStaticProps(context: contextProps) {
 
 	return {
 		props: { data: data, id, VITE_API_URL, VITE_API_ACCESS_TOKEN, VITE_PASSWORD_UPDATE_HISTORY},
-		revalidate: 10
 	}
 }

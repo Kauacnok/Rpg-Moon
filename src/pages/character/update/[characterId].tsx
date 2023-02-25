@@ -12,6 +12,7 @@ import { NavBarMobile } from '../../../components/NavBarMobile'
 import { contextProps, CharacterListId, CharacterCardFullProps } from '../[characterId]'
 import { mutationUpdateCharacterById } from '../../../graphql/mutations/update-character-mutation'
 import { publishUpdateCharacter } from '../../../graphql/mutations/publish-update-character'
+import { getCharactersById } from '../../../graphql/queries/get-character-by-id'
 import { LinkNext } from '../../../components/LinkNext'
 
 interface updateCharacterProps extends CharacterCardFullProps {
@@ -200,32 +201,7 @@ export default function UpdateCharacter({ data, id, VITE_API_URL, VITE_API_ACCES
 	)
 }
 
-export async function getStaticPaths() {
-	const { data } = await client.query({
-		query: gql`
-			query GetCharactersList {
-				characters(where: {}) {
-					id
-				}
-			}
-		`
-	})
-
-	const paths = data.characters.map((character: CharacterListId) => {
-		const characterId = character.id
-
-		return {
-            params: { characterId: characterId.toString() },
-        }
-	})
-
-	return {
-        paths,
-        fallback: false
-    }
-}
-
-export async function getStaticProps(context: contextProps) {
+export async function getServerSideProps(context: contextProps) {
 
 	const id = context.params.characterId
 
@@ -233,40 +209,7 @@ export async function getStaticProps(context: contextProps) {
 	const VITE_API_ACCESS_TOKEN = process.env.VITE_API_ACCESS_TOKEN
 
 	const { data } = await client.query({
-		query: gql`
-			query GetCharacterInfoo($id: ID) {
-				character(where: {id: $id}) {
-					name
-					avatarURL
-					characterDescription
-					player
-					points
-					level
-					xp
-					force
-					agility
-					resistance
-					inteligence
-					perception
-					disposal
-					charisma
-					skills
-					route
-					origin
-					personality
-					motivation
-					connection
-					problem
-					physical
-					psychological
-					inventory
-					money
-					password
-					xpSpent
-				}
-			}
-
-		`,
+		query: getCharactersById,
 		variables: {
 			id
 		}
@@ -274,6 +217,5 @@ export async function getStaticProps(context: contextProps) {
 
 	return {
 		props: { data: data, id, VITE_API_URL, VITE_API_ACCESS_TOKEN},
-		revalidate: 10
 	}
 }

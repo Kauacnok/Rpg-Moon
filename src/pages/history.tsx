@@ -44,7 +44,7 @@ export default function HistorysCards({ data }: GetHistorySessionsProps) {
 	)
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
 
 	const { data } = await client.query({
 		query: getHistorySessions
@@ -52,6 +52,5 @@ export async function getStaticProps() {
 
 	return {
 		props: { data: data},
-		revalidate: 10
 	}
 }

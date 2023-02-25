@@ -47,7 +47,7 @@ export default function MainPage({ data }: MainPageProps) {
 	)
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
 	const { data } = await client.query({
 		query: gql`
 			query GetCharactersList {
@@ -62,7 +62,6 @@ export async function getStaticProps() {
 	})
 
 	return {
-		props: { data: data },
-		revalidate: 10
+		props: { data: data }
 	}
 }

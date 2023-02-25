@@ -51,7 +51,7 @@ export default function RollDicePage({ data, VITE_API_URL, VITE_API_ACCESS_TOKEN
 	)
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
 
 	const VITE_API_URL = process.env.VITE_API_URL
 	const VITE_API_ACCESS_TOKEN = process.env.VITE_API_ACCESS_TOKEN
@@ -61,7 +61,6 @@ export async function getStaticProps() {
 	})
 
 	return {
-		props: { data: data, VITE_API_URL, VITE_API_ACCESS_TOKEN },
-		revalidate: 10
+		props: { data: data, VITE_API_URL, VITE_API_ACCESS_TOKEN }
 	}
 }
