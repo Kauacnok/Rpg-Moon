@@ -100,7 +100,7 @@ export default function CreateCharacter({ VITE_API_URL, VITE_API_ACCESS_TOKEN }:
 				<meta name="description" content="Página para criar um novo personagem no Rpg Moon" />i
 				<meta name="keywords" content="Rpg Moon, criar de personagem, Rpg Moon criar personagem" />
 				<meta name="author" content="Kauã C. N." />
-				<meta property="og:image" content="/favicon.ico" />
+				<meta property="og:image" content="https://i.imgur.com/vaKcNK2.png" />
 			</Head>
 			<Header />
 			<form onSubmit={handleSubmit} className="bg-gray-700 flex flex-col pl-2 pb-2">

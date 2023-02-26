@@ -29,7 +29,7 @@ export default function MainPage({ data }: MainPageProps) {
 				<meta name="description" content="Página inicial com a lista de personagens do Rpg Moon" />
 				<meta name="keywords" content="Rpg Moon, Lista de personagens, Rpg Moon lista de personagens" />
 				<meta name="author" content="Kauã C. N." />
-				<meta property="og:image" content="/favicon.ico" />
+				<meta property="og:image" content="https://i.imgur.com/vaKcNK2.png" />
 			</Head>
 			<Header />
 			<main className="flex flex-col mt-10 justify-center bg-gray-700 border border-gray-500 rounded">
