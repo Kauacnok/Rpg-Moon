@@ -49,6 +49,8 @@ Fixei o conhecimento que havia aprendido no Event Platform no Ignite Lab usamos 
 
 Hospedei o projeto na [Vercel](https://vercel.com/)
 
+Atualização (26/02/2023): Migrei pela primeira vez um projeto react para o next e acredito que foi uma experiência boa já que eu considero um rpg moon um projeto médio em questão de complexidade e tamanho e ter conseguido migrar pra uma nova biblioteca acho que é um ponto positivo pessoal para mim e acredito que com a migração eu posso explorar toda a biblioteca do next para conseguir potencializar o site da melhor forma.
+
 ## 📝 License
 
 Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](https://github.com/Kauacnok/Rpg-Moon/blob/main/license) para mais detalhes.
