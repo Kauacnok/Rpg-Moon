@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import { gql } from "@apollo/client"
 import { client } from "../../lib/apollo"
 import { parseISO, format } from 'date-fns'
@@ -41,6 +42,15 @@ export default function HistoryCardFull({ data, id }: historyProps) {
 
 	return (
 		<>
+			<Head>
+				<title>Rpg Moon | {data.historySession.title}</title>
+				<link rel="icon" href="/favicon.ico" />
+				<meta name="title" content={`Rpg Moon | ${data.historySession.title}`} />
+				<meta name="description" content={`Venha saber o que aconteceu na ${data.historySession.title} \n\n Autor do último texto escrito: ${data.historySession.author}`} />
+				<meta name="keywords" content={`Rpg Moon, ${data.historySession.title}, Rpg Moon ${data.historySession.title}`} />
+				<meta name="author" content="Kauã C. N." />
+				<meta property="og:image" content="https://i.imgur.com/hgEDFIS.png" />
+			</Head>
 			<Header />
 			<nav className="flex justify-between mt-10 items-center bg-gray-700 p-5">
 				<div className="rounded-full px-5 py-2 cursor-pointer hover:bg-gray-500 transition"><LinkNext target="/history"><ArrowLeft size={40} /></LinkNext></div>
@@ -71,6 +81,5 @@ export async function getServerSideProps(context: contextProps) {
 
 	return {
 		props: { data: data, id},
-		revalidate: 10
 	}
 }

@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import { GraphQLClient } from 'graphql-request'
 import { gql } from "@apollo/client"
 import { client } from "../../../lib/apollo"
@@ -118,6 +119,15 @@ export default function UpdateCharacter({ data, id, VITE_API_URL, VITE_API_ACCES
 
 	return (
 		<>
+			<Head>
+				<title>Rpg Moon | Personagem - {data.character.name}</title>
+				<link rel="icon" href="/favicon.ico" />
+				<meta name="title" content={`Rpg Moon | Atualizar personagem - ${data.character.name}`} />
+				<meta name="description" content={`${data.character.characterDescription}\n\nPontos: ${data.character.points} | XP: ${data.character.xp} | XP gasto: ${data.character.xpSpent} | Nível: ${data.character.level}`} />
+				<meta name="keywords" content={`Rpg Moon, ${data.character.name}, Rpg Moon atualizar personagem ${data.character.name}`} />
+				<meta name="author" content="Kauã C. N." />
+				<meta property="og:image" content={data.character.avatarURL} />
+			</Head>
 			<Header />
 			<form onSubmit={handleSubmit} className="bg-gray-700 flex flex-col pl-2 pb-2">
 				<h2 className="flex items-center pl-2 my-10 text-center">
@@ -127,7 +137,7 @@ export default function UpdateCharacter({ data, id, VITE_API_URL, VITE_API_ACCES
 				<InputForm typeInput="text" placeholderInput="Nome do personagem" setValue={setName} isUpdateCharacter={true} dataDefaultValue={data.character.name} />
 				<p className="bg-gray-700 px-5 py-2 my-5">Dado atual: { name == "" ? data.character.name : name}</p>
 				<InputForm typeInput="url" placeholderInput="Imagem URL" setValue={setAvatarURL} isUpdateCharacter={true} dataDefaultValue={data.character.avatarURL} />
-				<p className="bg-gray-700 px-5 py-2 my-5">Dado atual: { avatarURL == "" ? data.character.avatarURL : avatarURL}</p>
+				<p className="bg-gray-700 px-5 py-2 my-5 break-words">Dado atual: { avatarURL == "" ? data.character.avatarURL : avatarURL}</p>
 				<InputForm typeInput="text" placeholderInput="Descrição do personagem" setValue={setCharacterDescription} isUpdateCharacter={true} dataDefaultValue={data.character.characterDescription} />
 				<p className="bg-gray-700 px-5 py-2 my-5">Dado atual: { characterDescription == "" ? data.character.characterDescription : characterDescription}</p>
 				<InputForm typeInput="text" placeholderInput="Jogador" setValue={setPlayer} isUpdateCharacter={true} dataDefaultValue={data.character.player} />

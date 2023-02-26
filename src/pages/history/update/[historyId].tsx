@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import { useState, FormEvent, SyntheticEvent } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -77,9 +78,18 @@ export default function UpdateHistory({ data, id, VITE_API_URL, VITE_API_ACCESS_
 
 	return (
 		<>
+			<Head>
+				<title>Rpg Moon | Atualizar - {data.historySession.title}</title>
+				<link rel="icon" href="/favicon.ico" />
+				<meta name="title" content={`Rpg Moon | Atualizar - ${data.historySession.title}`} />
+				<meta name="description" content={`Página para atualizar ${data.historySession.title} \n\n Autor do último texto escrito: ${data.historySession.author}`} />
+				<meta name="keywords" content={`Rpg Moon, ${data.historySession.title}, Rpg Moon atualizar ${data.historySession.title}`} />
+				<meta name="author" content="Kauã C. N." />
+				<meta property="og:image" content="https://i.imgur.com/hgEDFIS.png" />
+			</Head>
 			<Header />
 			<nav className="flex justify-between mt-10 items-center bg-gray-700 p-5">
-				<p className="rounded-full px-5 py-2 cursor-pointer hover:bg-gray-500 transition"><LinkNext target={`/history/session/${id}`}><ArrowLeft size={40} /></LinkNext></p>
+				<p className="rounded-full px-5 py-2 cursor-pointer hover:bg-gray-500 transition"><LinkNext target={`/history/${id}`}><ArrowLeft size={40} /></LinkNext></p>
 			</nav>
 			<main className="pl-2 py-5 bg-gray-700 border-b border-gray-500" >
 				<form onSubmit={handleSubmit}>

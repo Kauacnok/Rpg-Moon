@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import { gql } from "@apollo/client"
 import { client } from "../lib/apollo"
 import { getDices } from '../graphql/queries/get-dices'
@@ -31,6 +32,15 @@ interface createNewRollProps {
 export default function RollDicePage({ data, VITE_API_URL, VITE_API_ACCESS_TOKEN }: rollDiceProps) {
 	return (
 		<>
+			<Head>
+				<title>Rpg Moon | Rolar dados</title>
+				<link rel="icon" href="/favicon.ico" />
+				<meta name="title" content="Rpg Moon | Criar um personagem" />
+				<meta name="description" content="Página para rolar dados 4df no Rpg Moon" />i
+				<meta name="keywords" content="Rpg Moon, rolar dados, Rpg Moon rolar dados" />
+				<meta name="author" content="Kauã C. N." />
+				<meta property="og:image" content="https://i.imgur.com/qlGhJYL.png" />
+			</Head>
 			<Header />
 			<main className="flex flex-wrap flex-col justify-center mt-4 pl-2 py-5 bg-gray-700 border-b border-gray-500 md:flex-row">	
 				{ data.rollDicess.map((dice, index) => {

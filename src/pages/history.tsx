@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import { gql } from "@apollo/client"
 import { client } from "../lib/apollo"
 import { getHistorySessions } from '../graphql/queries/get-history-sessions-list'
@@ -23,6 +24,15 @@ interface GetHistorySessionsProps {
 export default function HistorysCards({ data }: GetHistorySessionsProps) {
 	return (
 		<>
+			<Head>
+				<title>Rpg Moon | História das sessões</title>
+				<link rel="icon" href="/favicon.ico" />
+				<meta name="title" content="Rpg Moon | Criar um personagem" />
+				<meta name="description" content="Página com a lista de sessões da história do Rpg Moon" />i
+				<meta name="keywords" content="Rpg Moon, história das sessões, Rpg Moon história das sessões" />
+				<meta name="author" content="Kauã C. N." />
+				<meta property="og:image" content="https://i.imgur.com/hgEDFIS.png" />
+			</Head>
 			<Header />
 			<main className="flex flex-col justify-center mt-4 pl-2 py-5 bg-gray-700 border-b border-gray-500 md:flex-row" >	
 				{data?.historySessions.map((session, index) => {

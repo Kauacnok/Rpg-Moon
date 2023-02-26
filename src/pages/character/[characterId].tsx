@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import { gql } from "@apollo/client"
 import { client } from "../../lib/apollo"
 import { getCharactersById } from '../../graphql/queries/get-character-by-id'
@@ -58,6 +59,15 @@ export default function CharacterCardFull({ data, id }: CharacterCardFullProps) 
 
 	return (
 		<>
+			<Head>
+				<title>Rpg Moon | Personagem - {data.character.name}</title>
+				<link rel="icon" href="/favicon.ico" />
+				<meta name="title" content={`Rpg Moon | Personagem - ${data.character.name}`} />
+				<meta name="description" content={`${data.character.characterDescription}\n\nPontos: ${data.character.points} | XP: ${data.character.xp} | XP gasto: ${data.character.xpSpent} | Nível: ${data.character.level}`} />
+				<meta name="keywords" content={`Rpg Moon, ${data.character.name}, Rpg Moon ${data.character.name}`} />
+				<meta name="author" content="Kauã C. N." />
+				<meta property="og:image" content={data.character.avatarURL} />
+			</Head>
 			<Header />
 			<nav className="flex justify-between items-center bg-gray-700 p-5">
 				<div className="rounded-full px-5 py-2 cursor-pointer hover:bg-gray-500 transition"><LinkNext target="/"><ArrowLeft size={40} /></LinkNext></div>

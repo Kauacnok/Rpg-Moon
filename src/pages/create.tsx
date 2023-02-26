@@ -1,6 +1,7 @@
 import { GraphQLClient } from 'graphql-request'
 import { gql } from "@apollo/client"
 import { client } from "../lib/apollo"
+import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { InputForm } from '../components/InputForm'
@@ -92,6 +93,15 @@ export default function CreateCharacter({ VITE_API_URL, VITE_API_ACCESS_TOKEN }:
 
 	return (
 		<>
+			<Head>
+				<title>Rpg Moon | Criar personagem</title>
+				<link rel="icon" href="/favicon.ico" />
+				<meta name="title" content="Rpg Moon | Criar um personagem" />
+				<meta name="description" content="Página para criar um novo personagem no Rpg Moon" />i
+				<meta name="keywords" content="Rpg Moon, criar de personagem, Rpg Moon criar personagem" />
+				<meta name="author" content="Kauã C. N." />
+				<meta property="og:image" content="/favicon.ico" />
+			</Head>
 			<Header />
 			<form onSubmit={handleSubmit} className="bg-gray-700 flex flex-col pl-2 pb-2">
 				<h2 className="flex items-center pl-2 my-10 text-center">

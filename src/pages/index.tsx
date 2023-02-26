@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import { gql } from "@apollo/client"
 import { client } from "../lib/apollo"
 import { Header } from '../components/Header'
@@ -21,6 +22,15 @@ interface MainPageProps {
 export default function MainPage({ data }: MainPageProps) {
 	return (
 		<div>
+			<Head>
+				<title>Rpg Moon | Lista de personagens</title>
+				<link rel="icon" href="/favicon.ico" />
+				<meta name="title" content="Rpg Moon | Lista de personagens" />
+				<meta name="description" content="Página inicial com a lista de personagens do Rpg Moon" />
+				<meta name="keywords" content="Rpg Moon, Lista de personagens, Rpg Moon lista de personagens" />
+				<meta name="author" content="Kauã C. N." />
+				<meta property="og:image" content="/favicon.ico" />
+			</Head>
 			<Header />
 			<main className="flex flex-col mt-10 justify-center bg-gray-700 border border-gray-500 rounded">
 				<div className="flex items-center gap-5 mx-auto">
