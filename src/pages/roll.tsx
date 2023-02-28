@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import { useEffect, useState } from 'react'
 import { gql } from "@apollo/client"
 import { client } from "../lib/apollo"
 import { getDices } from '../graphql/queries/get-dices'
@@ -8,7 +9,7 @@ import { CreateNewRoll } from '../components/CreateNewRoll'
 import { NavBarMobile } from '../components/NavBarMobile'
 
 interface rollDiceProps extends createNewRollProps {
-	data: {
+	dataa: {
 	    __typename?: "Query" | undefined;
 
 	    rollDicess: Array<{
@@ -24,12 +25,26 @@ interface rollDiceProps extends createNewRollProps {
 
 interface createNewRollProps {
 	VITE_API_URL: string,
-	VITE_API_ACCESS_TOKEN: string
+	VITE_API_ACCESS_TOKEN: string,
+	URL_WEBSITE: string
 }
 
+export default function RollDicePage({ dataa, VITE_API_URL, VITE_API_ACCESS_TOKEN, URL_WEBSITE }: rollDiceProps) {
+	const [dataDices, setDataDices] = useState<any>(dataa);
+	const [refreshToken, setRefreshToken] = useState(Math.random());
 
+	async function fetchData() {
+		const getAllDices = await fetch(`${URL_WEBSITE}/api/getDices`)
+		const data = getAllDices.json()
+		data.then(value => setDataDices(value))
 
-export default function RollDicePage({ data, VITE_API_URL, VITE_API_ACCESS_TOKEN }: rollDiceProps) {
+		setTimeout(() => setRefreshToken(Math.random()), 3000);
+  	}
+
+	useEffect(() => {
+ 		fetchData()
+	}, [refreshToken])
+
 	return (
 		<>
 			<Head>
@@ -43,7 +58,7 @@ export default function RollDicePage({ data, VITE_API_URL, VITE_API_ACCESS_TOKEN
 			</Head>
 			<Header />
 			<main className="flex flex-wrap flex-col justify-center mt-4 pl-2 py-5 bg-gray-700 border-b border-gray-500 md:flex-row">	
-				{ data.rollDicess.map((dice, index) => {
+				{ dataDices.rollDicess.map((dice: any, index: number) => {
 					if (index >= 0 && index <= 4 ) {
 						return (
 							<DiceCard key={index} player={dice.player} resultDiceString={dice.resultDiceString} addNumber={dice.addNumberToDice} resultFull={dice.totalNumberResult} createdAt={dice.createdAt} />
@@ -65,12 +80,13 @@ export async function getServerSideProps() {
 
 	const VITE_API_URL = process.env.VITE_API_URL
 	const VITE_API_ACCESS_TOKEN = process.env.VITE_API_ACCESS_TOKEN
+	const URL_WEBSITE = process.env.URL_WEBSITE
 
 	const { data } = await client.query({
 		query: getDices
 	})
 
 	return {
-		props: { data: data, VITE_API_URL, VITE_API_ACCESS_TOKEN }
+		props: { dataa: data, VITE_API_URL, VITE_API_ACCESS_TOKEN, URL_WEBSITE }
 	}
 }
