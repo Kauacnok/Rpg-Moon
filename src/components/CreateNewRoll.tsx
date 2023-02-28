@@ -19,7 +19,6 @@ export function CreateNewRoll({ VITE_API_URL, VITE_API_ACCESS_TOKEN }: createNew
 	const ref = useRef<FireworksHandlers>(null)
 	const [name, setName] = useState("...")
 	const [aditionalNumber, setAditionalNumber] = useState(0)
-	const [counter, setCounter] = useState(0)
 	const [isDataSent, setIsDataSent] = useState(false)
 	const [isFireworksEnabled, setIsFireworksEnabled] = useState(false)
 
@@ -37,15 +36,6 @@ export function CreateNewRoll({ VITE_API_URL, VITE_API_ACCESS_TOKEN }: createNew
 	function randomIntFromInterval(min: number, max: number) {
     	return Math.round(Math.random() * (max - min) + min);
 	}
-
-	function updateRollDicesList() {
-		client.resetStore()
-		setCounter(counter + 1)
-	}
-
-	useEffect(() => {
-        console.log('Fetching data')
-    }, [counter, setCounter])
 
 	async function handleSubmit(event: FormEvent) {
 		event.preventDefault()
@@ -80,9 +70,6 @@ export function CreateNewRoll({ VITE_API_URL, VITE_API_ACCESS_TOKEN }: createNew
 			}, 15000)
 		}
 
-		client.resetStore()
-        setCounter(counter + 1)
-
         setIsDataSent(false)
 	}
 
@@ -114,9 +101,8 @@ export function CreateNewRoll({ VITE_API_URL, VITE_API_ACCESS_TOKEN }: createNew
 						<button 
 							type="submit" 
 							className="w-[80%] mx-auto px-5 py-2 bg-green-500 hover:bg-green-700"
-							disabled
+							disabled={isDataSent == true}
 						><CircleNotch weight="bold" className="mx-auto w-4 h-4 animate-spin" /></button>)}
-						<button type="button" className="w-[80%] mx-auto text-center px-5 py-2 mt-2 bg-green-500 hover:bg-green-700 cursor-pointer" onClick={updateRollDicesList}>Atualizar lista dos dados</button>
 			</form>
 		</>
 	)
