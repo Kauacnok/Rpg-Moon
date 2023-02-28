@@ -7,7 +7,7 @@
     { "src": "/history", "dest": "/history" },
     { "src": "/history/(.+)", "dest": "/history/(.+)" },
     { "src": "/history/update/(.+)", "dest": "/history/update/(.+)" },
-    { "src": "/roll", "dest": "/roll" }
+    { "src": "/roll", "dest": "/roll" },
     { "src": "/api/getDices", "dest": "/api/getDices" }
   ]
 }
