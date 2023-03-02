@@ -17,6 +17,8 @@ interface createNewRollProps {
 export function CreateNewRoll({ VITE_API_URL, VITE_API_ACCESS_TOKEN }: createNewRollProps) {
 
 	const ref = useRef<FireworksHandlers>(null)
+	const [refreshTokenApi, setRefreshTokenApi] = useState(Math.random());
+	const [isActiveFireworks, setIsActiveFireworks] = useState(false)
 	const [name, setName] = useState("...")
 	const [aditionalNumber, setAditionalNumber] = useState(0)
 	const [isDataSent, setIsDataSent] = useState(false)
@@ -29,6 +31,18 @@ export function CreateNewRoll({ VITE_API_URL, VITE_API_ACCESS_TOKEN }: createNew
 			authorization: `Bearer ${VITE_API_ACCESS_TOKEN}`,
 		}
 	})
+
+	async function fetchData() {
+		const activeFireworks = await fetch('https://rpg-moon-simple-api.onrender.com/')
+		const activeFireworksData = activeFireworks.json()
+		activeFireworksData.then(value => setIsFireworksEnabled(value.isActive))
+		
+		setTimeout(() => setRefreshTokenApi(Math.random()), 3000);
+  	}
+
+	useEffect(() => {
+ 		fetchData()
+	}, [refreshTokenApi])
 
 	const rollDiceString = ["-", "+", "0"]
 	const rollDiceNumber = [-1, 1, 0]
@@ -62,11 +76,12 @@ export function CreateNewRoll({ VITE_API_URL, VITE_API_ACCESS_TOKEN }: createNew
 		})	
 
 		if (totalNumberResultOnlyDice === 4 || totalNumberResultOnlyDice === -4) {
-			setIsFireworksEnabled(true)
+			await fetch('https://rpg-moon-simple-api.onrender.com/fireworks/true')
 			ref?.current?.start()
-			setTimeout(() => {
+			setTimeout( async () => {
+				await fetch('https://rpg-moon-simple-api.onrender.com/fireworks/false')
 				ref?.current?.stop()
-				setIsFireworksEnabled(false)
+
 			}, 15000)
 		}
 
