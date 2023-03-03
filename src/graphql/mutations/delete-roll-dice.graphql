@@ -1,0 +1,5 @@
+mutation MyMutation($id: ID = "") {
+  deleteRollDices(where: {id: $id}) {
+    createdAt
+  }
+}
