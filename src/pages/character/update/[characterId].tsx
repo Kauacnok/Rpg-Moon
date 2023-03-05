@@ -15,10 +15,47 @@ import { mutationUpdateCharacterById } from '../../../graphql/mutations/update-c
 import { publishUpdateCharacter } from '../../../graphql/mutations/publish-update-character'
 import { getCharactersById } from '../../../graphql/queries/get-character-by-id'
 import { LinkNext } from '../../../components/LinkNext'
+import { InputCheckbox } from '../../../components/InputCheckbox'
 
 interface updateCharacterProps extends CharacterCardFullProps {
 	VITE_API_URL: string,
 	VITE_API_ACCESS_TOKEN: string
+}
+
+function sliceStringToArrays(array: any, str: string) {
+	let count = 0
+	var result = ""
+	let regex = /([0X]+ \/)+/g
+
+	str.replace(regex, (regex_result: string, group1: string, regex_first_search_ocurrency: string, full_string: string ): any => 
+		{
+			
+			result = group1.replace(" /", "")
+			for(var i = 0; i < result.length; i++) {
+	 
+				array[count][i] = result.slice(i, i+1)
+			
+			}
+			count = count + 1
+		}
+	)
+
+	return array
+}
+
+function defragmentArrayToSmallParts(array: any) {
+	const arr = []
+	let concatStr = ""
+
+	for (var i = 0; i < 4; i++) {
+		array[i].map((subArray: any, index: number) => {
+			concatStr += subArray
+		})
+		arr.push(concatStr)
+		concatStr = ""
+	}
+
+	return arr
 }
 
 export default function UpdateCharacter({ data, id, VITE_API_URL, VITE_API_ACCESS_TOKEN }: updateCharacterProps) {
@@ -35,6 +72,24 @@ export default function UpdateCharacter({ data, id, VITE_API_URL, VITE_API_ACCES
 	const mutationUpdateCharacter = mutationUpdateCharacterById
 
  	const [isDataSent, setIsDataSent] = useState(false)
+
+ 	let str = data.character.psychological
+	
+	var result = ""
+
+	let psychologicalArray: any = [
+	    [],
+	    [],
+	    [],
+	    []
+	]
+
+	let physicalArray: any = [
+	    [],
+	    [],
+	    [],
+	    []
+	]
 
 	const [name, setName] = useState(data.character.name)
 	const [avatarURL, setAvatarURL] = useState(data.character.avatarURL)
@@ -58,14 +113,19 @@ export default function UpdateCharacter({ data, id, VITE_API_URL, VITE_API_ACCES
 	const [motivation, setMotivation] = useState(data.character.motivation)
 	const [connection, setConnection] = useState(data.character.connection)
 	const [problem, setProblem] = useState(data.character.problem)
-	const [physical, setPhysical] = useState(data.character.physical)
-	const [psychological, setPsychological] = useState(data.character.psychological)
+	const [physical, setPhysical] = useState(sliceStringToArrays(physicalArray, data.character.physical))
+	const [psychological, setPsychological] = useState(sliceStringToArrays(psychologicalArray, data.character.psychological))
 	const [inventory, setInventory] = useState(data.character.inventory)
 	const [money, setMoney] = useState(data.character.money)
 	const [password, setPassword] = useState("")
 
 	async function handleSubmit(event: FormEvent) {
 		event.preventDefault()
+
+		const physicalArrayDefragment = defragmentArrayToSmallParts(physical)
+		const psychologicalArrayDefragment = defragmentArrayToSmallParts(psychological)
+		const psychologicalString = `(0,1) ${psychologicalArrayDefragment[0]} / (2,3,4) ${psychologicalArrayDefragment[1]} / (5,6) ${psychologicalArrayDefragment[2]} / (7,8) ${psychologicalArrayDefragment[3]} / (9+) X`
+		const physicalString = `(0,1) ${physicalArrayDefragment[0]} / (2,3,4) ${physicalArrayDefragment[1]} / (5,6) ${physicalArrayDefragment[2]} / (7,8) ${physicalArrayDefragment[3]} / (9+) X`
 
 		setIsDataSent(true)
 
@@ -87,11 +147,11 @@ export default function UpdateCharacter({ data, id, VITE_API_URL, VITE_API_ACCES
 			password,
 			perception: Number(perception),
 			personality,
-			physical,
+			physical: physicalString,
 			player,
 			points: Number(points),
 			problem,
-			psychological,
+			psychological: psychologicalString,
 			resistance: Number(resistance),
 			route,
 			skills,
@@ -179,8 +239,10 @@ export default function UpdateCharacter({ data, id, VITE_API_URL, VITE_API_ACCES
 				<InputForm typeInput="number" placeholderInput="Carisma" setValue={setCharisma} isUpdateCharacter={true} dataDefaultValue={data.character.charisma} />
 				<p className="bg-gray-700 px-5 py-2 my-5">Dado atual: { charisma == undefined ? data.character.charisma : charisma}</p>
 				<h2 className="block pl-2 my-10 text-center">Desgaste (0,1) 0000 / (2,3,4) 00 / (5,6) 0 / (7,8) 0 / (9+) X</h2>
-				<InputForm typeInput="text" placeholderInput="Mental" setValue={setPsychological} valueOnState={psychological} isUpdateCharacter={true} dataDefaultValue={data.character.psychological} />
-				<InputForm typeInput="text" placeholderInput="Físico" setValue={setPhysical} valueOnState={physical} isUpdateCharacter={true} dataDefaultValue={data.character.physical} />
+				<h2 className="block bt-2">Mental</h2>
+				<InputCheckbox type="psychological" array={psychological} setArray={setPsychological} />
+				<h2 className="block bt-2">Físico</h2>
+				<InputCheckbox type="physical" array={physical} setArray={setPhysical} />
 				<h2 className="block pl-2 my-10 text-center">Habilidades</h2>
 				<textarea className="bg-gray-900 block rounded w-[90%] px-5 h-14 mb-2 focus:outline-none" onChange={event => addDataOnTextArea(event, setSkills, data.character.skills)} value={skills} ></textarea>
 				<h2 className="block pl-2 my-10 text-center">Inventário</h2>
