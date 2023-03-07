@@ -3,6 +3,7 @@ import { GraphQLClient } from 'graphql-request'
 import { gql } from "@apollo/client"
 import { client } from "../../lib/apollo"
 import { deleteDices } from '../../graphql/mutations/delete-roll-dice'
+import { unpublishDices } from '../../graphql/mutations/unpublish-roll-dice'
 import { parseISO, differenceInDays } from 'date-fns'
 
 interface DiceProps {
@@ -44,6 +45,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 			const differenceInDaysResult = differenceInDays(DateNow, createdAtDate)
 
 			if (differenceInDaysResult >= 2) {
+				await graphQLClient.request(unpublishDices, {
+					id: dice.id
+				})
+
 				await graphQLClient.request(deleteDices, {
 					id: dice.id
 				})
