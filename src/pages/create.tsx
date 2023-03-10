@@ -135,9 +135,9 @@ export default function CreateCharacter({ VITE_API_URL, VITE_API_ACCESS_TOKEN }:
 				<InputForm typeInput="text" placeholderInput="Mental" setValue={setPsychological} />
 				<InputForm typeInput="text" placeholderInput="Físico" setValue={setPhysical} />
 				<h2 className="block pl-2 my-10 text-center">Habilidades</h2>
-				<textarea className="bg-gray-900 block rounded w-[90%] px-5 h-14 mb-2 focus:outline-none" onChange={event => setSkills(event.target.value)}></textarea>
+				<textarea className="bg-gray-900 block rounded w-[90%] px-5 h-14 mb-2 focus:outline-none focus:border-b-2 focus:border-purple-600" onChange={event => setSkills(event.target.value)}></textarea>
 				<h2 className="block pl-2 my-10 text-center">Inventário</h2>
-				<textarea className="bg-gray-900 block rounded w-[90%] px-5 h-14 mb-2 focus:outline-none" onChange={event => setInventory(event.target.value)}></textarea>
+				<textarea className="bg-gray-900 block rounded w-[90%] px-5 h-14 mb-2 focus:outline-none focus:border-b-2 focus:border-purple-600" onChange={event => setInventory(event.target.value)}></textarea>
 				<h2 className="block pl-2 my-10 text-center">Dinheiro</h2>
 				<InputForm typeInput="text" placeholderInput="Coloque todos os valores de dinheiro aqui (HL, HO, HP, HC)" setValue={setMoney} />
 				<InputForm typeInput="text" placeholderInput="Digite uma senha" setValue={setPassword} />

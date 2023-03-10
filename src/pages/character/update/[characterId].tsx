@@ -244,9 +244,9 @@ export default function UpdateCharacter({ data, id, VITE_API_URL, VITE_API_ACCES
 				<h2 className="block bt-2">Físico</h2>
 				<InputCheckbox type="physical" array={physical} setArray={setPhysical} />
 				<h2 className="block pl-2 my-10 text-center">Habilidades</h2>
-				<textarea className="bg-gray-900 block rounded w-[90%] px-5 h-14 mb-2 focus:outline-none" onChange={event => addDataOnTextArea(event, setSkills, data.character.skills)} value={skills} ></textarea>
+				<textarea className="bg-gray-900 block rounded w-[90%] px-5 h-14 mb-2 focus:outline-none focus:border-b-2 focus:border-purple-600" onChange={event => addDataOnTextArea(event, setSkills, data.character.skills)} value={skills} ></textarea>
 				<h2 className="block pl-2 my-10 text-center">Inventário</h2>
-				<textarea className="bg-gray-900 block rounded w-[90%] px-5 h-14 mb-2 focus:outline-none" onChange={event =>  addDataOnTextArea(event, setInventory, data.character.inventory)} value={inventory}></textarea>
+				<textarea className="bg-gray-900 block rounded w-[90%] px-5 h-14 mb-2 focus:outline-none focus:border-b-2 focus:border-purple-600" onChange={event =>  addDataOnTextArea(event, setInventory, data.character.inventory)} value={inventory}></textarea>
 				<h2 className="block pl-2 my-10 text-center">Dinheiro</h2>
 				<InputForm typeInput="text" placeholderInput="Coloque todos os valores de dinheiro aqui (HL, HO, HP, HC)" setValue={setMoney} valueOnState={money} isUpdateCharacter={true} dataDefaultValue={data.character.money} />
 				<InputForm typeInput="password" placeholderInput="Digite a senha do personagem para confirmar as alterações" setValue={setPassword} />
