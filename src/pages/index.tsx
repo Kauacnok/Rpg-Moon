@@ -15,6 +15,7 @@ interface MainPageProps {
 	        id: string;
 	        name: string;
 	        avatarURL: string;
+	        slug: string
 	    }>;
 	}
 }
@@ -42,7 +43,7 @@ export default function MainPage({ data }: MainPageProps) {
 						return (
 							<CharacterCard 
 								key={character.id}
-								id={character.id}
+								id={character.slug}
 								name={character.name}
 								avatarURL={character.avatarURL}
 							/>
@@ -65,6 +66,7 @@ export async function getServerSideProps() {
 					id
 					name
 					avatarURL
+					slug
 				}
 			}
 

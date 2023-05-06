@@ -3,5 +3,6 @@ query GetCharactersList {
   	id
     name
     avatarURL
+    slug
   }
 }

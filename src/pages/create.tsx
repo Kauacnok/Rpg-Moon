@@ -57,6 +57,7 @@ export default function CreateCharacter({ VITE_API_URL, VITE_API_ACCESS_TOKEN }:
 
 	async function handleSubmit(event: FormEvent) {
 		event.preventDefault()
+		let slug = name.toLowerCase().replace(" ", "-")
 
 		await graphQLClient.request(create_Character, {		
 			avatarURL,
@@ -85,7 +86,8 @@ export default function CreateCharacter({ VITE_API_URL, VITE_API_ACCESS_TOKEN }:
 			route,
 			skills,
 			xp: Number(xp),
-			xpSpent: Number(xpSpent)
+			xpSpent: Number(xpSpent),
+			slug: slug
 		})
 
 		router.push('/')

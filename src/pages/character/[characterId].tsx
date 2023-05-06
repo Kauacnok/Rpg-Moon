@@ -146,7 +146,7 @@ export async function getServerSideProps(context: contextProps) {
 	const { data } = await client.query({
 		query: getCharactersById,
 		variables: {
-			id
+			slug: id
 		}
 	})
 

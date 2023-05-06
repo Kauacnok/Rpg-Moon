@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client"
 
 export const getCharactersById = gql`
-	query GetCharacterInfoo($id: ID) {
-		character(where: {id: $id}) {
+	query GetCharacterInfoo($slug: String) {
+		character(where: {slug: $slug}) {
 			name
 			avatarURL
 			characterDescription

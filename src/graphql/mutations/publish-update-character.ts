@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client"
 
 export const publishUpdateCharacter = gql`
-	mutation publishUpdateCharacter($id: ID) {
-		publishCharacter(where: {id: $id}, to: PUBLISHED) {
+	mutation publishUpdateCharacter($slug: String) {
+		publishCharacter(where: {slug: $slug}, to: PUBLISHED) {
 			agility
 			avatarURL
 			characterDescription
@@ -12,7 +12,6 @@ export const publishUpdateCharacter = gql`
 			disposal
 			force
 			inteligence
-			id
 			inventory
 			level
 			money

@@ -1,5 +1,5 @@
-mutation publishUpdateCharacter($id: ID) {
-  publishCharacter(where: {id: $id}, to: PUBLISHED) {
+mutation publishUpdateCharacter($slug: String) {
+  publishCharacter(where: {slug: $slug}, to: PUBLISHED) {
     agility
     avatarURL
     characterDescription
@@ -9,7 +9,6 @@ mutation publishUpdateCharacter($id: ID) {
     disposal
     force
     inteligence
-    id
     inventory
     level
     money

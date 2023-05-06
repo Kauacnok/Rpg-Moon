@@ -157,11 +157,11 @@ export default function UpdateCharacter({ data, id, VITE_API_URL, VITE_API_ACCES
 			skills,
 			xp: Number(xp),
 			xpSpent: Number(xpSpent),
-			id
+			slug: id
 		})
 
 		await graphQLClient.request(publishUpdateCharacter, {
-			id
+			slug: id
 		})
 	
 
@@ -283,7 +283,7 @@ export async function getServerSideProps(context: contextProps) {
 	const { data } = await client.query({
 		query: getCharactersById,
 		variables: {
-			id
+			slug: id
 		}
 	})
 
