@@ -118,9 +118,9 @@ export function CreateNewRoll({ VITE_API_URL, VITE_API_ACCESS_TOKEN }: createNew
      			 />
 			}
 			{showSystemMessage && 
-				<div className="fixed bg-gray-700 w-[100%] rounded top-4 px-8 py-10 flex flex-col justify-center items-center text-center border-[2px] border-gray-500 gap-5">
+				<div className="fixed bg-gray-700 w-[100%] rounded top-4 px-8 py-10 flex flex-col justify-center items-center text-center border-[2px] border-gray-500 gap-5 md:w-[75%] md:left-[50%] md:translate-x-[-50%]">
 					<div>
-						Mensagem do sistema: Você tirou <span className="text-blue-500">[ {resultString} ] ({aditionalNumber})</span> e o resultado total foi <span className="text-blue-500">{totalNumberResult}</span>	
+						Mensagem do sistema: Você tirou <span className="text-blue-500 text-2xl">[ {resultString} ] ({aditionalNumber})</span> e o resultado total foi <span className="text-blue-500 text-2xl">{totalNumberResult}</span>	
 					</div>
 					<button type="button" className="rounded px-5 py-2 bg-green-500 cursor-pointer hover:bg-green-700 transition" onClick={closeSystemMessage}>Fechar mensagem</button>
 				</div>
