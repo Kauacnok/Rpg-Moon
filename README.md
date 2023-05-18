@@ -8,6 +8,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 Frontend
 - [React]
+- [Next]
 - [TailwindCSS]
 - [Typescript]
 - [Date-fns]
