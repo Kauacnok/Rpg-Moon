@@ -26,10 +26,11 @@ interface rollDiceProps extends createNewRollProps {
 interface createNewRollProps {
 	VITE_API_URL: string,
 	VITE_API_ACCESS_TOKEN: string,
-	URL_WEBSITE: string
+	URL_WEBSITE: string,
+	TOKEN_ACCESS_RPG_MOON_API: string
 }
 
-export default function RollDicePage({ dataa, VITE_API_URL, VITE_API_ACCESS_TOKEN, URL_WEBSITE }: rollDiceProps) {
+export default function RollDicePage({ dataa, VITE_API_URL, VITE_API_ACCESS_TOKEN, URL_WEBSITE, TOKEN_ACCESS_RPG_MOON_API }: rollDiceProps) {
 	const [dataDices, setDataDices] = useState<any>(dataa);
 	const [refreshToken, setRefreshToken] = useState(Math.random());
 
@@ -67,7 +68,7 @@ export default function RollDicePage({ dataa, VITE_API_URL, VITE_API_ACCESS_TOKE
 				})}
 			</main>
 			<aside className="mt-4 pl-2 py-5 bg-gray-700 border-b border-gray-500" >	
-				<CreateNewRoll VITE_API_URL={VITE_API_URL} VITE_API_ACCESS_TOKEN={VITE_API_ACCESS_TOKEN} />
+				<CreateNewRoll VITE_API_URL={VITE_API_URL} VITE_API_ACCESS_TOKEN={VITE_API_ACCESS_TOKEN} TOKEN_ACCESS_RPG_MOON_API={TOKEN_ACCESS_RPG_MOON_API} />
 			</aside>
 			<footer className="mt-20 md:mt-0">
 				<NavBarMobile typeIntImage={3} />
@@ -81,12 +82,13 @@ export async function getServerSideProps() {
 	const VITE_API_URL = process.env.VITE_API_URL
 	const VITE_API_ACCESS_TOKEN = process.env.VITE_API_ACCESS_TOKEN
 	const URL_WEBSITE = process.env.URL_WEBSITE
+	const TOKEN_ACCESS_RPG_MOON_API = process.env.TOKEN_ACCESS_RPG_MOON_API
 
 	const { data } = await client.query({
 		query: getDices
 	})
 
 	return {
-		props: { dataa: data, VITE_API_URL, VITE_API_ACCESS_TOKEN, URL_WEBSITE }
+		props: { dataa: data, VITE_API_URL, VITE_API_ACCESS_TOKEN, URL_WEBSITE, TOKEN_ACCESS_RPG_MOON_API }
 	}
 }

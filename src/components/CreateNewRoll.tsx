@@ -11,10 +11,11 @@ import { InputForm } from './InputForm'
 
 interface createNewRollProps {
 	VITE_API_URL: string,
-	VITE_API_ACCESS_TOKEN: string
+	VITE_API_ACCESS_TOKEN: string,
+	TOKEN_ACCESS_RPG_MOON_API: string
 }
 
-export function CreateNewRoll({ VITE_API_URL, VITE_API_ACCESS_TOKEN }: createNewRollProps) {
+export function CreateNewRoll({ VITE_API_URL, VITE_API_ACCESS_TOKEN, TOKEN_ACCESS_RPG_MOON_API }: createNewRollProps) {
 
 	const ref = useRef<FireworksHandlers>(null)
 	const [refreshTokenApi, setRefreshTokenApi] = useState(Math.random());
@@ -86,13 +87,26 @@ export function CreateNewRoll({ VITE_API_URL, VITE_API_ACCESS_TOKEN }: createNew
 
 		await graphQLClient.request(publishNewRollMutation, {
 			id: newRollDice?.createRollDices?.id
-		})	
+		})
+
 
 		if (totalNumberResultOnlyDice === 4 || totalNumberResultOnlyDice === -4) {
-			await fetch('https://rpg-moon-simple-api.onrender.com/fireworks/true')
+			await fetch('https://rpg-moon-simple-api.onrender.com/fireworks', {
+				method: 'PUT',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({isActive: true, token: TOKEN_ACCESS_RPG_MOON_API})
+			})
 			ref?.current?.start()
 			setTimeout( async () => {
-				await fetch('https://rpg-moon-simple-api.onrender.com/fireworks/false')
+				await fetch('https://rpg-moon-simple-api.onrender.com/fireworks', {
+					method: 'PUT',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify({isActive: false, token: TOKEN_ACCESS_RPG_MOON_API})
+				})
 				ref?.current?.stop()
 
 			}, 10000)
