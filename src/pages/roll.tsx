@@ -2,26 +2,13 @@ import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import { gql } from "@apollo/client"
 import { client } from "../lib/apollo"
+
+import { rollDiceProps } from '../interfaces/roll-dice'
 import { getDices } from '../graphql/queries/get-dices'
 import { Header } from '../components/Header'
 import { DiceCard } from '../components/DiceCard'
 import { CreateNewRoll } from '../components/CreateNewRoll'
 import { NavBarMobile } from '../components/NavBarMobile'
-
-interface rollDiceProps extends createNewRollProps {
-	dataa: {
-	    __typename?: "Query" | undefined;
-
-	    rollDicess: Array<{
-	        __typename?: 'RollDices';
-	        createdAt: any;
-	        addNumberToDice: number;
-	        player: string;
-	        totalNumberResult: number;
-	        resultDiceString: string;
-	    }>
-	}
-}
 
 interface createNewRollProps {
 	VITE_API_URL: string,
@@ -30,7 +17,9 @@ interface createNewRollProps {
 	TOKEN_ACCESS_RPG_MOON_API: string
 }
 
-export default function RollDicePage({ dataa, VITE_API_URL, VITE_API_ACCESS_TOKEN, URL_WEBSITE, TOKEN_ACCESS_RPG_MOON_API }: rollDiceProps) {
+interface rollDicePageProps extends rollDiceProps, createNewRollProps {}
+
+export default function RollDicePage({ dataa, VITE_API_URL, VITE_API_ACCESS_TOKEN, URL_WEBSITE, TOKEN_ACCESS_RPG_MOON_API }: rollDicePageProps) {
 	const [dataDices, setDataDices] = useState<any>(dataa);
 	const [refreshToken, setRefreshToken] = useState(Math.random());
 

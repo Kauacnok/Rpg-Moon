@@ -6,6 +6,7 @@ import { ArrowLeft, CircleNotch } from 'phosphor-react'
 import { useApolloClient } from '@apollo/client'
 import { GraphQLClient } from 'graphql-request'
 import { gql } from "@apollo/client"
+
 import { client } from "../../../lib/apollo"
 import { updateHistoryMutationById } from '../../../graphql/mutations/updateHistory'
 import { publishUpdateHistory } from '../../../graphql/mutations/publish-update-history'
@@ -13,8 +14,8 @@ import { getHistorySession } from '../../../graphql/queries/get-history-session-
 import { Header } from '../../../components/Header'
 import { InputForm } from '../../../components/InputForm'
 import { NavBarMobile } from '../../../components/NavBarMobile'
-import { historyProps } from '../[historyId]'
 import { LinkNext } from '../../../components/LinkNext'
+import { historyProps } from '../../../interfaces/history-session'
 
 interface HistoryId {
 	id: string

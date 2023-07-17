@@ -1,25 +1,13 @@
 import Head from 'next/head'
 import { gql } from "@apollo/client"
+import { GetHistorySessionsProps } from '../interfaces/historys-sessions'
+
 import { client } from "../lib/apollo"
 import { getHistorySessions } from '../graphql/queries/get-history-sessions-list'
-
 import { Header } from '../components/Header'
 import { HistoryCard } from '../components/HistoryCard'
 import { useGetHistorySessionsListQuery, GetHistorySessionsListQuery } from '../graphql/generated'
 import { NavBarMobile } from '../components/NavBarMobile'
-
-interface GetHistorySessionsProps {
-	data: {
-	    __typename?: "Query" | undefined;
-	    historySessions: Array<{
-	        __typename?: 'HistorySession';
-	        id: string;
-	        title: string;
-	        author: string;
-	        updatedAt: any;
-	    }>
-	}
-}
 
 export default function HistorysCards({ data }: GetHistorySessionsProps) {
 	return (

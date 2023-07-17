@@ -1,16 +1,18 @@
 import Head from 'next/head'
 import { GraphQLClient } from 'graphql-request'
-import { gql } from "@apollo/client"
-import { client } from "../../../lib/apollo"
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useState, FormEvent, SyntheticEvent } from 'react'
 import { ArrowLeft, CircleNotch  } from 'phosphor-react'
 import { useApolloClient } from '@apollo/client'
+import { gql } from "@apollo/client"
+import { client } from "../../../lib/apollo"
+
+import { CharacterCardFullProps } from '../../../interfaces/character-card-full'
 import { InputForm } from '../../../components/InputForm'
 import { Header } from '../../../components/Header'
 import { NavBarMobile } from '../../../components/NavBarMobile'
-import { contextProps, CharacterListId, CharacterCardFullProps } from '../[characterId]'
+import { contextProps, CharacterListId } from '../[characterId]'
 import { mutationUpdateCharacterById } from '../../../graphql/mutations/update-character-mutation'
 import { publishUpdateCharacter } from '../../../graphql/mutations/publish-update-character'
 import { getCharactersById } from '../../../graphql/queries/get-character-by-id'

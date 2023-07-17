@@ -3,30 +3,14 @@ import { gql } from "@apollo/client"
 import { client } from "../../lib/apollo"
 import { parseISO, format } from 'date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
+import { historyProps } from '../../interfaces/history-session'
+
 import { Header } from '../../components/Header'
 import { getHistorySession } from '../../graphql/queries/get-history-session-by-id'
 import Link from 'next/link'
 import { ArrowLeft } from 'phosphor-react'
 import { NavBarMobile } from '../../components/NavBarMobile'
 import { LinkNext } from '../../components/LinkNext'
-
-export interface historyProps extends HistoryId {
-	data: {
-	    __typename?: "Query" | undefined;
-
-	    historySession: {
-	        __typename?: "HistorySession" | undefined;
-	        title: string;
-	        textHistory: string;
-	        author: string;
-	        updatedAt: any;
-	    }
-	}
-}
-
-interface HistoryId {
-	id: string
-}
 
 interface contextProps {
     params: { historyId: string }

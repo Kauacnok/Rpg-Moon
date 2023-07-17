@@ -1,5 +1,7 @@
 import Head from 'next/head'
 import { gql } from "@apollo/client"
+import { CharactersCardsProps } from '../interfaces/characters'
+
 import { client } from "../lib/apollo"
 import { Header } from '../components/Header'
 import { CharacterCard } from '../components/CharacterCard'
@@ -7,20 +9,7 @@ import Link from 'next/link'
 import { useGetCharactersListQuery } from '../graphql/generated'
 import { NavBarMobile } from '../components/NavBarMobile'
 
-interface MainPageProps {
-	data: {
-	    __typename?: "Query" | undefined;
-	    characters: Array<{
-	        __typename?: 'Character';
-	        id: string;
-	        name: string;
-	        avatarURL: string;
-	        slug: string
-	    }>;
-	}
-}
-
-export default function MainPage({ data }: MainPageProps) {
+export default function MainPage({ data }: CharactersCardsProps) {
 	return (
 		<div>
 			<Head>
