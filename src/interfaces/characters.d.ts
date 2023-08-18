@@ -6,7 +6,11 @@ export interface CharactersCardsProps {
 			id: string;
 		    name: string;
 		    avatarURL: string;
-		    slug: string
+		    slug: string;
+		    level: string;
+		    xp: string;
+		    xpSpent: string;
+		    points: string
 		}>;
 	}
 }

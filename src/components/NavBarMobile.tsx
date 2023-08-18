@@ -13,7 +13,7 @@ interface NavBarMobileProps {
 export function NavBarMobile({ typeIntImage }: NavBarMobileProps) {
 	return (
 		<>
-			<menu className="fixed bg-gray-900 w-full h-16 border-[1px] border-gray-500 bottom-0 rounded-t-lg px-5 z-40 md:hidden">
+			<menu className="fixed bg-gray-900 w-full h-16 border-[1px] border-zinc-900 bottom-0 left-1/2 -translate-x-1/2 rounded-t-lg px-5 z-40 md:hidden">
 				<ul className="flex flex-row h-full justify-center items-center gap-5">
 					<li 
 						className={classNames("flex items-center justify-center px-2 hover:border-2 hover:border-gray-300 hover:rounded", {

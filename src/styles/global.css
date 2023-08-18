@@ -6,3 +6,16 @@ html, body {
 	@apply bg-gray-900 text-gray-100;
 	--webkit-font-smoothing: antialiased;
 }
+
+.logo {
+	width: 250px;
+	background-image: url('../assets/ocean.jpg');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-clip: text;
+	text-align: center;
+	font-family: sans-serif;
+	color: transparent;
+	padding: 10px;
+	font-size: 42px;
+}
