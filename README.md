@@ -1,5 +1,6 @@
 <p align='center'> 
 	<h1 align='center'>Rpg Moon</h1>
+	<img src="https://i.imgur.com/iQGjIMB.png" alt="Imagem do layout da página inicial do Rpg Moon" />
 </p>
 
 ## 🧪 Tecnologias
