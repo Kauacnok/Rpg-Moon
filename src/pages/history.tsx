@@ -11,7 +11,7 @@ import { NavBarMobile } from '../components/NavBarMobile'
 
 export default function HistorysCards({ data }: GetHistorySessionsProps) {
 	return (
-		<>
+		<div className="px-8">
 			<Head>
 				<title>Rpg Moon | História das sessões</title>
 				<link rel="icon" href="/favicon.ico" />
@@ -38,7 +38,7 @@ export default function HistorysCards({ data }: GetHistorySessionsProps) {
 			<footer className="mt-20">
 				<NavBarMobile typeIntImage={2} />
 			</footer>
-		</>
+		</div>
 	)
 }
 

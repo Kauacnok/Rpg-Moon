@@ -5,7 +5,7 @@ import { NavBarMobile } from '../components/NavBarMobile'
 
 export default function pageNotFound() {
 	return (
-		<>
+		<div className="px-8">
 			<Head>
 				<title>Rpg Moon | Página não encontrada (Not found 404)</title>
 				<link rel="icon" href="/favicon.ico" />
@@ -23,6 +23,6 @@ export default function pageNotFound() {
 			<footer className="mt-20 md:mt-0">
 				<NavBarMobile typeIntImage={1} />
 			</footer>
-		</>
+		</div>
 	)
 }

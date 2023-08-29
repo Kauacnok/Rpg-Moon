@@ -78,7 +78,7 @@ export default function UpdateHistory({ data, id, VITE_API_URL, VITE_API_ACCESS_
   	}
 
 	return (
-		<>
+		<div className="px-8">
 			<Head>
 				<title>Rpg Moon | Atualizar - {data.historySession.title}</title>
 				<link rel="icon" href="/favicon.ico" />
@@ -117,7 +117,7 @@ export default function UpdateHistory({ data, id, VITE_API_URL, VITE_API_ACCESS_
 			<footer className="mt-20 md:mt-0">
 				<NavBarMobile typeIntImage={2} />
 			</footer>
-		</>
+		</div>
 	)
 }
 

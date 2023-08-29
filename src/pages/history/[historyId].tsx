@@ -25,7 +25,7 @@ export default function HistoryCardFull({ data, id }: historyProps) {
 	})
 
 	return (
-		<>
+		<div className="px-8">
 			<Head>
 				<title>Rpg Moon | {data.historySession.title}</title>
 				<link rel="icon" href="/favicon.ico" />
@@ -49,7 +49,7 @@ export default function HistoryCardFull({ data, id }: historyProps) {
 			<footer className="mt-20 md:mt-0">
 				<NavBarMobile typeIntImage={2} />
 			</footer>
-		</>
+		</div>
 	)
 }
 

@@ -180,7 +180,7 @@ export default function UpdateCharacter({ data, id, VITE_API_URL, VITE_API_ACCES
   	}
 
 	return (
-		<>
+		<div className="px-8">
 			<Head>
 				<title>Rpg Moon | Personagem - {data.character.name}</title>
 				<link rel="icon" href="/favicon.ico" />
@@ -271,7 +271,7 @@ export default function UpdateCharacter({ data, id, VITE_API_URL, VITE_API_ACCES
 			<footer className="mt-20 md:mt-0">
 				<NavBarMobile typeIntImage={1} />	
 			</footer>
-		</>
+		</div>
 	)
 }
 

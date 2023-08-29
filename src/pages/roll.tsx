@@ -36,7 +36,7 @@ export default function RollDicePage({ dataa, VITE_API_URL, VITE_API_ACCESS_TOKE
 	}, [refreshToken])
 
 	return (
-		<>
+		<div className="px-8">
 			<Head>
 				<title>Rpg Moon | Rolar dados</title>
 				<link rel="icon" href="/favicon.ico" />
@@ -62,7 +62,7 @@ export default function RollDicePage({ dataa, VITE_API_URL, VITE_API_ACCESS_TOKE
 			<footer className="mt-20 md:mt-0">
 				<NavBarMobile typeIntImage={3} />
 			</footer>
-		</>	
+		</div>
 	)
 }
 

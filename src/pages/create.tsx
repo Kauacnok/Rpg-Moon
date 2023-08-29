@@ -94,7 +94,7 @@ export default function CreateCharacter({ VITE_API_URL, VITE_API_ACCESS_TOKEN }:
 	}
 
 	return (
-		<>
+		<div className="px-8">
 			<Head>
 				<title>Rpg Moon | Criar personagem</title>
 				<link rel="icon" href="/favicon.ico" />
@@ -152,7 +152,7 @@ export default function CreateCharacter({ VITE_API_URL, VITE_API_ACCESS_TOKEN }:
 			<footer className="mt-20 md:mt-0">
 				<NavBarMobile typeIntImage={1} />
 			</footer>
-		</>
+		</div>
 	)
 }
 
