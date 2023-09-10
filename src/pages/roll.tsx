@@ -47,7 +47,7 @@ export default function RollDicePage({ dataa, VITE_API_URL, VITE_API_ACCESS_TOKE
 				<meta property="og:image" content="https://i.imgur.com/qlGhJYL.png" />
 			</Head>
 			<Header />
-			<main className="flex flex-wrap flex-col justify-center mt-4 pl-2 py-5 bg-gray-700 border-b border-gray-500 md:flex-row">	
+			<main className="mt-[90px] flex flex-wrap flex-col justify-center pl-2 py-5 bg-gray-900 border-[2px] border-zinc-800 rounded md:flex-row">	
 				{ dataDices.rollDicess.map((dice: any, index: number) => {
 					if (index >= 0 && index <= 4 ) {
 						return (
@@ -56,7 +56,7 @@ export default function RollDicePage({ dataa, VITE_API_URL, VITE_API_ACCESS_TOKE
 					}
 				})}
 			</main>
-			<aside className="mt-4 pl-2 py-5 bg-gray-700 border-b border-gray-500" >	
+			<aside className="mt-4 mb-[90px] pl-2 py-5 bg-gray-900 border-[2px] border-zinc-800 rounded" >
 				<CreateNewRoll VITE_API_URL={VITE_API_URL} VITE_API_ACCESS_TOKEN={VITE_API_ACCESS_TOKEN} TOKEN_ACCESS_RPG_MOON_API={TOKEN_ACCESS_RPG_MOON_API} />
 			</aside>
 			<footer className="mt-20 md:mt-0">

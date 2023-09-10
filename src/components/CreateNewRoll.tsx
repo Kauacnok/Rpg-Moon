@@ -139,18 +139,18 @@ export function CreateNewRoll({ VITE_API_URL, VITE_API_ACCESS_TOKEN, TOKEN_ACCES
 					<button type="button" className="rounded px-5 py-2 bg-green-500 cursor-pointer hover:bg-green-700 transition" onClick={closeSystemMessage}>Fechar mensagem</button>
 				</div>
 			}
-			<form onSubmit={handleSubmit} className="bg-gray-700 flex flex-col pl-2 pb-2">
+			<form onSubmit={handleSubmit} className="bg-gray-900 flex flex-col pl-2 pb-2">
 				<InputForm typeInput="text" placeholderInput="Nome do jogador" setValue={setName}/>
 				<InputForm typeInput="number" placeholderInput="Valor a adicionar ao dado" setValue={setAditionalNumber}/>
 				{ isDataSent == false ? (
 					<button 
 						type="submit" 
-						className="w-[80%] mx-auto px-5 py-2 bg-green-500 hover:bg-green-700 disabled:opacity-50"
+						className="w-[200px] mt-4 rounded px-5 py-2 bg-green-500 hover:bg-green-700 disabled:opacity-50"
 					>Rolar dado</button>
 					) : (
 						<button 
 							type="submit" 
-							className="w-[80%] mx-auto px-5 py-2 bg-green-500 hover:bg-green-700"
+							className="w-[200px] mt-4 rounded px-5 py-2 bg-green-500 hover:bg-green-700 disabled:opacity-50"
 							disabled={isDataSent == true}
 						><CircleNotch weight="bold" className="mx-auto w-4 h-4 animate-spin" /></button>)}
 			</form>

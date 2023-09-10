@@ -191,64 +191,64 @@ export default function UpdateCharacter({ data, id, VITE_API_URL, VITE_API_ACCES
 				<meta property="og:image" content={data.character.avatarURL} />
 			</Head>
 			<Header />
-			<form onSubmit={handleSubmit} className="bg-gray-700 flex flex-col pl-2 pb-2">
+			<form onSubmit={handleSubmit} className="bg-gray-900 border-[2px] my-[90px] rounded border-zinc-800 grid grid-cols-1 pl-2 pb-2">
 				<h2 className="flex items-center pl-2 my-10 text-center">
 					<p className="rounded-full px-5 py-2 cursor-pointer hover:bg-gray-500 transition"><LinkNext target={`/character/${id}`}><ArrowLeft size={40} /></LinkNext></p>
 					<p className="mx-auto">Ficha do personagem</p> 
 				</h2>
 				<InputForm typeInput="text" placeholderInput="Nome do personagem" setValue={setName} isUpdateCharacter={true} dataDefaultValue={data.character.name} />
-				<p className="bg-gray-700 px-5 py-2 my-5">Dado atual: { name == "" ? data.character.name : name}</p>
+				<p className="bg-gray-900 px-5 py-2 my-5">Dado atual: { name == "" ? data.character.name : name}</p>
 				<InputForm typeInput="url" placeholderInput="Imagem URL" setValue={setAvatarURL} isUpdateCharacter={true} dataDefaultValue={data.character.avatarURL} />
-				<p className="bg-gray-700 px-5 py-2 my-5 break-words">Dado atual: { avatarURL == "" ? data.character.avatarURL : avatarURL}</p>
+				<p className="bg-gray-900 px-5 py-2 my-5 break-words">Dado atual: { avatarURL == "" ? data.character.avatarURL : avatarURL}</p>
 				<InputForm typeInput="text" placeholderInput="Descrição do personagem" setValue={setCharacterDescription} isUpdateCharacter={true} dataDefaultValue={data.character.characterDescription} />
-				<p className="bg-gray-700 px-5 py-2 my-5">Dado atual: { characterDescription == "" ? data.character.characterDescription : characterDescription}</p>
+				<p className="bg-gray-900 px-5 py-2 my-5">Dado atual: { characterDescription == "" ? data.character.characterDescription : characterDescription}</p>
 				<InputForm typeInput="text" placeholderInput="Jogador" setValue={setPlayer} isUpdateCharacter={true} dataDefaultValue={data.character.player} />
-				<p className="bg-gray-700 px-5 py-2 my-5">Dado atual: { player == "" ? data.character.player : player}</p>
+				<p className="bg-gray-900 px-5 py-2 my-5">Dado atual: { player == "" ? data.character.player : player}</p>
 				<InputForm typeInput="number" placeholderInput="XP" setValue={setXp} isUpdateCharacter={true} dataDefaultValue={data.character.xp} />
-				<p className="bg-gray-700 px-5 py-2 my-5">Dado atual: { xp == undefined ? data.character.xp : xp}</p>
+				<p className="bg-gray-900 px-5 py-2 my-5">Dado atual: { xp == undefined ? data.character.xp : xp}</p>
 				<InputForm typeInput="number" placeholderInput="XP gasto" setValue={setXpSpent} isUpdateCharacter={true} dataDefaultValue={data.character.xpSpent} />
-				<p className="bg-gray-700 px-5 py-2 my-5">Dado atual: { xpSpent == undefined ? data.character.xpSpent : xpSpent}</p>
+				<p className="bg-gray-900 px-5 py-2 my-5">Dado atual: { xpSpent == undefined ? data.character.xpSpent : xpSpent}</p>
 				<InputForm typeInput="number" placeholderInput="Pontos" setValue={setPoints} isUpdateCharacter={true}  dataDefaultValue={data.character.points} />
-				<p className="bg-gray-700 px-5 py- my-5">Dado atual: { points == undefined ? data.character.points : points}</p>
+				<p className="bg-gray-900 px-5 py- my-5">Dado atual: { points == undefined ? data.character.points : points}</p>
 				<InputForm typeInput="number" placeholderInput="Nível" setValue={setLevel} isUpdateCharacter={true}  dataDefaultValue={data.character.level} />
-				<p className="bg-gray-700 px-5 py-2">Dado atual: { level == undefined ? data.character.level : level}</p>
+				<p className="bg-gray-900 px-5 py-2">Dado atual: { level == undefined ? data.character.level : level}</p>
 				<h2 className="block pl-2 my-10 text-center">Conceitos</h2>
 				<InputForm typeInput="text" placeholderInput="Caminho" setValue={setRoute} isUpdateCharacter={true} dataDefaultValue={data.character.route} />
-				<p className="bg-gray-700 px-5 py-2 my-5">Dado atual: { route == "" ? data.character.route : route}</p>
+				<p className="bg-gray-900 px-5 py-2 my-5">Dado atual: { route == "" ? data.character.route : route}</p>
 				<InputForm typeInput="text" placeholderInput="Origem" setValue={setOrigin} isUpdateCharacter={true} dataDefaultValue={data.character.origin} />
-				<p className="bg-gray-700 px-5 py-2">Dado atual: { origin == "" ? data.character.origin : origin}</p>
+				<p className="bg-gray-900 px-5 py-2">Dado atual: { origin == "" ? data.character.origin : origin}</p>
 				<InputForm typeInput="text" placeholderInput="Personalidade" setValue={setPersonality} isUpdateCharacter={true} dataDefaultValue={data.character.personality} />
-				<p className="bg-gray-700 px-5 py-2 my-5">Dado atual: { personality == "" ? data.character.personality : personality}</p>
+				<p className="bg-gray-900 px-5 py-2 my-5">Dado atual: { personality == "" ? data.character.personality : personality}</p>
 				<InputForm typeInput="text" placeholderInput="Motivação" setValue={setMotivation} isUpdateCharacter={true} dataDefaultValue={data.character.motivation} />
-				<p className="bg-gray-700 px-5 py-2 my-5">Dado atual: { motivation == "" ? data.character.motivation : motivation}</p>
+				<p className="bg-gray-900 px-5 py-2 my-5">Dado atual: { motivation == "" ? data.character.motivation : motivation}</p>
 				<InputForm typeInput="text" placeholderInput="Conexão" setValue={setConnection} isUpdateCharacter={true} dataDefaultValue={data.character.connection} />
-				<p className="bg-gray-700 px-5 py-2 my-5">Dado atual: { connection == "" ? data.character.connection : connection}</p>
+				<p className="bg-gray-900 px-5 py-2 my-5">Dado atual: { connection == "" ? data.character.connection : connection}</p>
 				<InputForm typeInput="text" placeholderInput="Problema" setValue={setProblem} isUpdateCharacter={true} dataDefaultValue={data.character.problem} />
-				<p className="bg-gray-700 px-5 py-2 my-5">Dado atual: { problem == "" ? data.character.problem : problem}</p>
+				<p className="bg-gray-900 px-5 py-2 my-5">Dado atual: { problem == "" ? data.character.problem : problem}</p>
 				<h2 className="block pl-2 my-10 text-center">Atributos (+2 / +2 / +1 / +1 / 0 / 0 / -1)</h2>
 				<InputForm typeInput="number" placeholderInput="Força" setValue={setForce} isUpdateCharacter={true} dataDefaultValue={data.character.force} />
-				<p className="bg-gray-700 px-5 py-2 my-5">Dado atual: { force == undefined ? data.character.force : force}</p>
+				<p className="bg-gray-900 px-5 py-2 my-5">Dado atual: { force == undefined ? data.character.force : force}</p>
 				<InputForm typeInput="number" placeholderInput="Agilidade" setValue={setAgility} isUpdateCharacter={true} dataDefaultValue={data.character.agility} />
-				<p className="bg-gray-700 px-5 py-2 my-5">Dado atual: { agility == undefined ? data.character.agility : agility}</p>
+				<p className="bg-gray-900 px-5 py-2 my-5">Dado atual: { agility == undefined ? data.character.agility : agility}</p>
 				<InputForm typeInput="number" placeholderInput="Resistência" setValue={setResistance} isUpdateCharacter={true} dataDefaultValue={data.character.resistance} />
-				<p className="bg-gray-700 px-5 py-2 my-5">Dado atual: { resistance == undefined ? data.character.resistance : resistance}</p>
+				<p className="bg-gray-900 px-5 py-2 my-5">Dado atual: { resistance == undefined ? data.character.resistance : resistance}</p>
 				<InputForm typeInput="number" placeholderInput="Inteligência" setValue={setInteligence} isUpdateCharacter={true} dataDefaultValue={data.character.inteligence} />
-				<p className="bg-gray-700 px-5 py-2 my-5">Dado atual: { inteligence == undefined ? data.character.inteligence : inteligence}</p>
+				<p className="bg-gray-900 px-5 py-2 my-5">Dado atual: { inteligence == undefined ? data.character.inteligence : inteligence}</p>
 				<InputForm  typeInput="number" placeholderInput="Percepção" setValue={setPerception} isUpdateCharacter={true} dataDefaultValue={data.character.perception} />
-				<p className="bg-gray-700 px-5 py-2 my-5">Dado atual: { perception == undefined ? data.character.perception : perception}</p>
+				<p className="bg-gray-900 px-5 py-2 my-5">Dado atual: { perception == undefined ? data.character.perception : perception}</p>
 				<InputForm typeInput="number" placeholderInput="Vontade" setValue={setDisposal} isUpdateCharacter={true} dataDefaultValue={data.character.disposal} />
-				<p className="bg-gray-700 px-5 py-2 my-5">Dado atual: { disposal == undefined ? data.character.disposal : disposal}</p>
+				<p className="bg-gray-900 px-5 py-2 my-5">Dado atual: { disposal == undefined ? data.character.disposal : disposal}</p>
 				<InputForm typeInput="number" placeholderInput="Carisma" setValue={setCharisma} isUpdateCharacter={true} dataDefaultValue={data.character.charisma} />
-				<p className="bg-gray-700 px-5 py-2 my-5">Dado atual: { charisma == undefined ? data.character.charisma : charisma}</p>
+				<p className="bg-gray-900 px-5 py-2 my-5">Dado atual: { charisma == undefined ? data.character.charisma : charisma}</p>
 				<h2 className="block pl-2 my-10 text-center">Desgaste (0,1) 0000 / (2,3,4) 00 / (5,6) 0 / (7,8) 0 / (9+) X</h2>
 				<h2 className="block bt-2">Mental</h2>
 				<InputCheckbox type="psychological" array={psychological} setArray={setPsychological} />
 				<h2 className="block bt-2">Físico</h2>
 				<InputCheckbox type="physical" array={physical} setArray={setPhysical} />
 				<h2 className="block pl-2 my-10 text-center">Habilidades</h2>
-				<textarea className="bg-gray-900 block rounded w-[90%] px-5 h-14 mb-2 focus:outline-none focus:border-b-2 focus:border-purple-600" onChange={event => addDataOnTextArea(event, setSkills, data.character.skills)} value={skills} ></textarea>
+				<textarea className="bg-gray-900 block rounded border-[2px] border-zinc-800 w-[97%] px-5 h-14 mb-2 focus:outline-none focus:border-b-2 focus:border-purple-600" onChange={event => addDataOnTextArea(event, setSkills, data.character.skills)} value={skills} ></textarea>
 				<h2 className="block pl-2 my-10 text-center">Inventário</h2>
-				<textarea className="bg-gray-900 block rounded w-[90%] px-5 h-14 mb-2 focus:outline-none focus:border-b-2 focus:border-purple-600" onChange={event =>  addDataOnTextArea(event, setInventory, data.character.inventory)} value={inventory}></textarea>
+				<textarea className="bg-gray-900 block rounded border-[2px] border-zinc-800 w-[97%] px-5 h-14 mb-2 focus:outline-none focus:border-b-2 focus:border-purple-600" onChange={event =>  addDataOnTextArea(event, setInventory, data.character.inventory)} value={inventory}></textarea>
 				<h2 className="block pl-2 my-10 text-center">Dinheiro</h2>
 				<InputForm typeInput="text" placeholderInput="Coloque todos os valores de dinheiro aqui (HL, HO, HP, HC)" setValue={setMoney} valueOnState={money} isUpdateCharacter={true} dataDefaultValue={data.character.money} />
 				<InputForm typeInput="password" placeholderInput="Digite a senha do personagem para confirmar as alterações" setValue={setPassword} />
@@ -257,13 +257,13 @@ export default function UpdateCharacter({ data, id, VITE_API_URL, VITE_API_ACCES
 				{ isDataSent == false ? (
 					<button 
 						type="submit" 
-						className="w-[80%] mx-auto px-5 py-2 bg-green-500 hover:bg-green-700 disabled:opacity-50"
+						className="w-[200px] mt-4 rounded px-5 py-2 bg-green-500 hover:bg-green-700 disabled:opacity-50"
 						disabled={password != data.character.password}
 					>Atualizar personagem</button>
 					) : (
 						<button 
 							type="submit" 
-							className="w-[80%] mx-auto px-5 py-2 bg-green-500 hover:bg-green-700 disabled:opacity-50"
+							className="w-[200px] mt-4 rounded px-5 py-2 bg-green-500 hover:bg-green-700 disabled:opacity-50"
 							disabled
 						><CircleNotch weight="bold" className="mx-auto w-4 h-4 animate-spin" /></button>)}
 				

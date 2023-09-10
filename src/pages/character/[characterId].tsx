@@ -33,11 +33,11 @@ export default function CharacterCardFull({ data, id }: CharacterCardFullProps) 
 				<meta property="og:image" content={data.character.avatarURL} />
 			</Head>
 			<Header />
-			<nav className="flex justify-between items-center bg-gray-700 p-5">
+			<nav className="flex justify-between items-center bg-gray-900 mt-[90px] p-5">
 				<div className="rounded-full px-5 py-2 cursor-pointer hover:bg-gray-500 transition"><LinkNext target="/"><ArrowLeft size={40} /></LinkNext></div>
 				<div className="rounded px-5 py-2 bg-green-500 cursor-pointer hover:bg-green-700 transition"><Link href={`/character/update/${id}`}>Editar</Link></div>
 			</nav>
-			<header className="flex flex-col p-5 bg-gray-700 md:flex-row">
+			<header className="flex flex-col p-5 bg-gray-900 md:flex-row">
 				<div>
 					<img src={data.character.avatarURL} alt={`Imagem do personagem ${data.character.name}`} className="w-[60px] h-[60px] rounded-full md:w-[150px] md:h-[150px]" />
 				</div>
@@ -47,7 +47,7 @@ export default function CharacterCardFull({ data, id }: CharacterCardFullProps) 
 					<p className="ml-2 mt-2">Jogador: {data.character.player}</p>
 				</div>
 			</header>
-			<aside className="pl-2 bg-gray-700 border-b border-gray-500">
+			<aside className="pl-2 bg-gray-900 border-b border-gray-500">
 				<div className="flex justify-around">
 					<p>Pontos: {data.character.points}</p>
 					<p>XP: {data.character.xp}</p>
@@ -55,7 +55,7 @@ export default function CharacterCardFull({ data, id }: CharacterCardFullProps) 
 					<p>Nível: {data.character.level}</p>
 				</div>
 			</aside>
-			<main className="flex flex-col justify-center pl-2 py-5 bg-gray-700 border-b border-gray-500 md:flex-row" >
+			<main className="flex flex-col justify-center pl-2 py-5 bg-gray-900 border-b border-gray-500 md:flex-row" >
 				<ul className="mb-5 mr-2 p-5 border border-gray-500 rounded-md">
 					<li className="mb-2">Atributos:</li>
 					<li>Força: {data.character.force}</li>
@@ -71,7 +71,7 @@ export default function CharacterCardFull({ data, id }: CharacterCardFullProps) 
 					<div dangerouslySetInnerHTML={{__html: xss(data.character.skills || '')}} />
 				</ul>
 			</main>
-			<div className="flex flex-col justify-center pl-2 py-5 bg-gray-700 border-b border-gray-500 md:flex-row">
+			<div className="bg-gray-900 flex flex-col justify-center pl-2 py-5 bg-gray-900 border-b border-gray-500 md:flex-row">
 				<ul className="mb-5 mr-2 p-5 border border-gray-500 rounded-md">
 					<li>Caminho: {data.character.route}</li>
 					<li>Origem: {data.character.origin}</li>
@@ -86,7 +86,7 @@ export default function CharacterCardFull({ data, id }: CharacterCardFullProps) 
 					<li>Mental: {data.character.psychological}</li>
 				</ul>
 			</div>
-			<div className="flex flex-col justify-center pl-2 py-5 bg-gray-700 border-b border-gray-500 md:flex-row">
+			<div className="flex flex-col justify-center pl-2 py-5 bg-gray-900 border-b border-gray-500 md:flex-row">
 				<ul className="mb-5 mr-2 p-5 border border-gray-500 rounded-md">
 					<li className="mb-2">Inventário:</li>
 					<div dangerouslySetInnerHTML={{__html: xss(data.character.inventory)}} />		

@@ -16,7 +16,7 @@ export default function pageNotFound() {
 				<meta property="og:image" content="https://i.imgur.com/vaKcNK2.png" />
 			</Head>
 			<Header />
-			<main className="flex flex-col mt-10 justify-center items-center bg-gray-700 border border-gray-500 rounded" >
+			<main className="flex flex-col mt-10 justify-center items-center bg-gray-900 border border-zinc-800 rounded" >
 				<h1 className="mb-4 text-2xl md:text-4xl">Página não encontrada (404 not found)</h1>
 				<div className="mb-4 rounded px-5 py-2 bg-green-500 cursor-pointer hover:bg-green-700 transition"><Link href="/">Voltar para a página inicial</Link></div>
 			</main>

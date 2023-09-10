@@ -89,27 +89,27 @@ export default function UpdateHistory({ data, id, VITE_API_URL, VITE_API_ACCESS_
 				<meta property="og:image" content="https://i.imgur.com/hgEDFIS.png" />
 			</Head>
 			<Header />
-			<nav className="flex justify-between mt-10 items-center bg-gray-700 p-5">
-				<p className="rounded-full px-5 py-2 cursor-pointer hover:bg-gray-500 transition"><LinkNext target={`/history/${id}`}><ArrowLeft size={40} /></LinkNext></p>
-			</nav>
-			<main className="pl-2 py-5 bg-gray-700 border-b border-gray-500" >
+			<main className="my-[90px] pl-2 py-5 bg-gray-900 border-[2px] border-zinc-800 rounded" >
+				<nav className="flex justify-between mt-5 items-center p-5">
+					<p className="rounded-full px-5 py-2 cursor-pointer hover:bg-gray-500 transition"><LinkNext target={`/history/${id}`}><ArrowLeft size={40} /></LinkNext></p>
+				</nav>
 				<form onSubmit={handleSubmit}>
 					<InputForm key="1" typeInput="text" placeholderInput="Digite o titulo" setValue={setTitle} isUpdateCharacter={true} dataDefaultValue={data.historySession.title}  />
-					<p className="bg-gray-700 px-5 py-2 my-5">Dado atual: { title == "" ? data.historySession.title : title}</p>
-					<textarea key="2" className="bg-gray-900 block rounded w-[90%] px-5 h-14 mb-2 focus:outline-none focus:border-b-2 focus:border-purple-600" value={text} onChange={event => addDataOnTextArea(event, setText, data.historySession.textHistory)} ></textarea>	
+					<p className="px-5 py-2 my-5">Dado atual: { title == "" ? data.historySession.title : title}</p>
+					<textarea key="2" className="bg-gray-900 block rounded border-[2px] border-zinc-800 w-[97%] px-5 h-14 mb-2 focus:outline-none focus:border-b-2 focus:border-purple-600" value={text} onChange={event => addDataOnTextArea(event, setText, data.historySession.textHistory)} ></textarea>	
 					<InputForm key="3" typeInput="text" placeholderInput="Nome do autor" setValue={setAuthor} isUpdateCharacter={true} dataDefaultValue={data.historySession.author}  />
-					<p className="bg-gray-700 px-5 py-2 my-5">Dado atual: { author == "" ? data.historySession.author : author}</p>
+					<p className="px-5 py-2 my-5">Dado atual: { author == "" ? data.historySession.author : author}</p>
 					<InputForm key="4" typeInput="text" placeholderInput="Digite a senha dos mestres para confirmar as alterações" setValue={setPassword}/>
 					{ isDataSent == false ? ( 
 						<button 
 							type="submit" 
-							className="w-[100%] mx-auto px-5 py-2 bg-green-500 hover:bg-green-700 disabled:opacity-50"
+							className="w-[200px] mt-4 rounded px-5 py-2 bg-green-500 hover:bg-green-700 disabled:opacity-50"
 							disabled={password != VITE_PASSWORD_UPDATE_HISTORY } 
 						>Atualizar sessão</button>
 					) : (
 						<button 
 							type="submit" 
-							className="w-[100%] mx-auto px-5 py-2 bg-green-500 hover:bg-green-700 disabled:opacity-50"
+							className="w-[200px] mt-4 rounded px-5 py-2 bg-green-500 hover:bg-green-700 disabled:opacity-50"
 							disabled
 						><CircleNotch weight="bold" className="mx-auto w-4 h-4 animate-spin" /></button>)}
 				</form>

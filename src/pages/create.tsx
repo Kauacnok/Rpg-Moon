@@ -105,7 +105,7 @@ export default function CreateCharacter({ VITE_API_URL, VITE_API_ACCESS_TOKEN }:
 				<meta property="og:image" content="https://i.imgur.com/vaKcNK2.png" />
 			</Head>
 			<Header />
-			<form onSubmit={handleSubmit} className="bg-gray-700 flex flex-col pl-2 pb-2">
+			<form onSubmit={handleSubmit} className="bg-gray-900 border-[2px] my-[90px] rounded border-zinc-800 grid grid-cols-1 pl-2 pb-2">
 				<h2 className="flex items-center pl-2 my-10 text-center">
 					<Link href="/" className="rounded-full cursor-pointer hover:bg-gray-500 transition"><ArrowLeft size={40}/></Link>
 					<p className="mx-auto">Ficha do personagem</p>
@@ -137,16 +137,16 @@ export default function CreateCharacter({ VITE_API_URL, VITE_API_ACCESS_TOKEN }:
 				<InputForm typeInput="text" placeholderInput="Mental" setValue={setPsychological} />
 				<InputForm typeInput="text" placeholderInput="Físico" setValue={setPhysical} />
 				<h2 className="block pl-2 my-10 text-center">Habilidades</h2>
-				<textarea className="bg-gray-900 block rounded w-[90%] px-5 h-14 mb-2 focus:outline-none focus:border-b-2 focus:border-purple-600" onChange={event => setSkills(event.target.value)}></textarea>
+				<textarea className="bg-gray-900 block rounded border-[2px] border-zinc-800 w-[97%] px-5 h-14 mb-2 focus:outline-none focus:border-b-2 focus:border-purple-600" onChange={event => setSkills(event.target.value)}></textarea>
 				<h2 className="block pl-2 my-10 text-center">Inventário</h2>
-				<textarea className="bg-gray-900 block rounded w-[90%] px-5 h-14 mb-2 focus:outline-none focus:border-b-2 focus:border-purple-600" onChange={event => setInventory(event.target.value)}></textarea>
+				<textarea className="bg-gray-900 block rounded border-[2px] border-zinc-800 w-[97%] px-5 h-14 mb-2 focus:outline-none focus:border-b-2 focus:border-purple-600" onChange={event => setInventory(event.target.value)}></textarea>
 				<h2 className="block pl-2 my-10 text-center">Dinheiro</h2>
 				<InputForm typeInput="text" placeholderInput="Coloque todos os valores de dinheiro aqui (HL, HO, HP, HC)" setValue={setMoney} />
 				<InputForm typeInput="text" placeholderInput="Digite uma senha" setValue={setPassword} />
 
 				<button 
 					type="submit" 
-					className="w-[80%] mx-auto px-5 py-2 bg-green-500 hover:bg-green-700 disabled:opacity-50"
+					className="w-[200px] mt-4 rounded px-5 py-2 bg-green-500 hover:bg-green-700 disabled:opacity-50"
 				>Criar personagem</button>
 			</form>
 			<footer className="mt-20 md:mt-0">

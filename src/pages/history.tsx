@@ -22,7 +22,7 @@ export default function HistorysCards({ data }: GetHistorySessionsProps) {
 				<meta property="og:image" content="https://i.imgur.com/hgEDFIS.png" />
 			</Head>
 			<Header />
-			<main className="flex flex-col justify-center mt-4 pl-2 py-5 bg-gray-700 border-b border-gray-500 md:flex-row" >	
+			<main className="flex flex-col justify-center my-[90px] pl-2 py-5 bg-gray-900 border-[2px] border-zinc-800 rounded md:flex-row" >
 				{data?.historySessions.map((session, index) => {
 					return (
 						<HistoryCard 

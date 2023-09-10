@@ -22,7 +22,7 @@ export function HistoryCard({ id, title, author, updatedAt }: HistoryCardProps) 
 
 	return (
 		<LinkNext target={`/history/${id}`}>
-			<div className="pl-2 pr-5 py-2 bg-gray-700 border border-gray-500 cursor-pointer items-center rounded mb-2 mr-2 hover:bg-gray-900 transition">
+			<div className="pl-2 pr-5 py-2 bg-gray-700 border border-gray-500 cursor-pointer items-center rounded mb-2 mr-2 hover:bg-gray-800 transition">
 				<h1 className="mb-2">{title}</h1>
 				<p className="mb-2">Autor do texto: {author}</p>
 				<p>Atualizado no {formattedDate}</p>

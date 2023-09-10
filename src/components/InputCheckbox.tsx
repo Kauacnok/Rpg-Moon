@@ -9,7 +9,7 @@ interface InputCheckboxProps {
 
 export function InputCheckbox({ type, array, setArray }: InputCheckboxProps) {
 	return (
-		<div className="bg-gray-900 rounded py-4 rounded w-[97%] px-5 mb-2 flex flex-row flex-wrap gap-[4px] justify-start items-center">
+		<div className="bg-gray-900 border-[2px] border-zinc-800 rounded py-4 rounded w-[97%] px-5 mb-2 flex flex-row flex-wrap gap-[4px] justify-start items-center">
 			<span>(0,1)</span>
 			{
 				array[0].map((subArray: any, index: number) => {
