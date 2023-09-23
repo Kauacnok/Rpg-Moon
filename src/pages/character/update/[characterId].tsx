@@ -242,9 +242,9 @@ export default function UpdateCharacter({ data, id, VITE_API_URL, VITE_API_ACCES
 				<p className="bg-gray-900 px-5 py-2 my-5">Dado atual: { charisma == undefined ? data.character.charisma : charisma}</p>
 				<h2 className="block pl-2 my-10 text-center">Desgaste (0,1) 0000 / (2,3,4) 00 / (5,6) 0 / (7,8) 0 / (9+) X</h2>
 				<h2 className="block bt-2">Mental</h2>
-				<InputCheckbox type="psychological" array={psychological} setArray={setPsychological} />
+				<InputCheckbox isInteractive={true} divWithStyle={true} type="psychological" array={psychological} setArray={setPsychological} />
 				<h2 className="block bt-2">Físico</h2>
-				<InputCheckbox type="physical" array={physical} setArray={setPhysical} />
+				<InputCheckbox isInteractive={true} divWithStyle={true} type="physical" array={physical} setArray={setPhysical} />
 				<h2 className="block pl-2 my-10 text-center">Habilidades</h2>
 				<textarea className="bg-gray-900 block rounded border-[2px] border-zinc-800 w-[97%] px-5 h-14 mb-2 focus:outline-none focus:border-b-2 focus:border-purple-600" onChange={event => addDataOnTextArea(event, setSkills, data.character.skills)} value={skills} ></textarea>
 				<h2 className="block pl-2 my-10 text-center">Inventário</h2>

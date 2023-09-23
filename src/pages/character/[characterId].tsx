@@ -1,15 +1,17 @@
+import { useState } from 'react'
 import Head from 'next/head'
 import { gql } from "@apollo/client"
 import xss from "xss"
 import Link from 'next/link'
 import { ArrowLeft } from 'phosphor-react'
-import { CharacterCardFullProps } from '../../interfaces/character-card-full'
 
+import { CharacterCardFullProps } from '../../interfaces/character-card-full'
 import { client } from "../../lib/apollo"
 import { getCharactersById } from '../../graphql/queries/get-character-by-id'
 import { Header } from '../../components/Header'
 import { NavBarMobile } from '../../components/NavBarMobile'
 import { LinkNext } from '../../components/LinkNext'
+import { InputCheckbox } from '../../components/InputCheckbox'
 
 export interface contextProps {
     params: { characterId: string }
@@ -19,7 +21,60 @@ export interface CharacterListId {
 	id: string
 }
 
+function sliceStringToArrays(array: any, str: string) {
+	let count = 0
+	var result = ""
+	let regex = /([0X]+ \/)+/g
+
+	str.replace(regex, (regex_result: string, group1: string, regex_first_search_ocurrency: string, full_string: string ): any => 
+		{
+			
+			result = group1.replace(" /", "")
+			for(var i = 0; i < result.length; i++) {
+	 
+				array[count][i] = result.slice(i, i+1)
+			
+			}
+			count = count + 1
+		}
+	)
+
+	return array
+}
+
+function defragmentArrayToSmallParts(array: any) {
+	const arr = []
+	let concatStr = ""
+
+	for (var i = 0; i < 4; i++) {
+		array[i].map((subArray: any, index: number) => {
+			concatStr += subArray
+		})
+		arr.push(concatStr)
+		concatStr = ""
+	}
+
+	return arr
+}
+
 export default function CharacterCardFull({ data, id }: CharacterCardFullProps) {
+
+	let psychologicalArray: any = [
+	    [],
+	    [],
+	    [],
+	    []
+	]
+
+	let physicalArray: any = [
+	    [],
+	    [],
+	    [],
+	    []
+	]
+
+	const [physical, setPhysical] = useState(sliceStringToArrays(physicalArray, data.character.physical))
+	const [psychological, setPsychological] = useState(sliceStringToArrays(psychologicalArray, data.character.psychological))
 
 	return (
 		<div className="px-8">
@@ -81,9 +136,9 @@ export default function CharacterCardFull({ data, id }: CharacterCardFullProps) 
 					<li>Problema: {data.character.problem}</li>
 				</ul>
 				<ul className="mb-5 mr-2 p-5 border border-gray-500 rounded-md">
-					<li className="mb-2">Desgaste:</li>
-					<li>Físico: {data.character.physical}</li>
-					<li>Mental: {data.character.psychological}</li>
+					<li className="mb-4">Desgaste:</li>
+					<li className="mb-4">Físico: <InputCheckbox isInteractive={false} divWithStyle={false} type="physical" array={physical} setArray={setPhysical} /></li>
+					<li className="mb-4">Mental: <InputCheckbox isInteractive={false} divWithStyle={false} type="psychological" array={psychological} setArray={setPsychological} /></li>
 				</ul>
 			</div>
 			<div className="flex flex-col justify-center pl-2 py-5 bg-gray-900 border-b border-gray-500 md:flex-row">
