@@ -12,6 +12,8 @@ import { Header } from '../../components/Header'
 import { NavBarMobile } from '../../components/NavBarMobile'
 import { LinkNext } from '../../components/LinkNext'
 import { InputCheckbox } from '../../components/InputCheckbox'
+import { sliceStringToArrays } from '../../utils/SliceStringToArray'
+import { defragmentArrayToSmallParts } from '../../utils/DefragmentArrayToString'
 
 export interface contextProps {
     params: { characterId: string }
@@ -19,42 +21,6 @@ export interface contextProps {
 
 export interface CharacterListId {
 	id: string
-}
-
-function sliceStringToArrays(array: any, str: string) {
-	let count = 0
-	var result = ""
-	let regex = /([0X]+ \/)+/g
-
-	str.replace(regex, (regex_result: string, group1: string, regex_first_search_ocurrency: string, full_string: string ): any => 
-		{
-			
-			result = group1.replace(" /", "")
-			for(var i = 0; i < result.length; i++) {
-	 
-				array[count][i] = result.slice(i, i+1)
-			
-			}
-			count = count + 1
-		}
-	)
-
-	return array
-}
-
-function defragmentArrayToSmallParts(array: any) {
-	const arr = []
-	let concatStr = ""
-
-	for (var i = 0; i < 4; i++) {
-		array[i].map((subArray: any, index: number) => {
-			concatStr += subArray
-		})
-		arr.push(concatStr)
-		concatStr = ""
-	}
-
-	return arr
 }
 
 export default function CharacterCardFull({ data, id }: CharacterCardFullProps) {

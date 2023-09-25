@@ -132,7 +132,7 @@ export function CreateNewRoll({ VITE_API_URL, VITE_API_ACCESS_TOKEN, TOKEN_ACCES
      			 />
 			}
 			{showSystemMessage && 
-				<div className="fixed bg-gray-700 w-[100%] rounded top-4 px-8 py-10 flex flex-col justify-center items-center text-center border-[2px] border-gray-500 gap-5 md:w-[75%] md:left-[50%] md:translate-x-[-50%]">
+				<div className="fixed bg-gray-900 w-[80%] rounded top-4 left-[50%] translate-x-[-50%] px-4 py-2 flex flex-col justify-center items-center text-center border-[2px] border-gray-700 gap-5 md:w-[75%]">
 					<div>
 						Mensagem do sistema: Você tirou <span className="text-blue-500 text-2xl">[ {resultString} ] ({aditionalNumber})</span> e o resultado total foi <span className="text-blue-500 text-2xl">{totalNumberResult}</span>	
 					</div>

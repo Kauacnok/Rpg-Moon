@@ -18,46 +18,12 @@ import { publishUpdateCharacter } from '../../../graphql/mutations/publish-updat
 import { getCharactersById } from '../../../graphql/queries/get-character-by-id'
 import { LinkNext } from '../../../components/LinkNext'
 import { InputCheckbox } from '../../../components/InputCheckbox'
+import { sliceStringToArrays } from '../../../utils/SliceStringToArray'
+import { defragmentArrayToSmallParts } from '../../../utils/DefragmentArrayToString'
 
 interface updateCharacterProps extends CharacterCardFullProps {
 	VITE_API_URL: string,
 	VITE_API_ACCESS_TOKEN: string
-}
-
-function sliceStringToArrays(array: any, str: string) {
-	let count = 0
-	var result = ""
-	let regex = /([0X]+ \/)+/g
-
-	str.replace(regex, (regex_result: string, group1: string, regex_first_search_ocurrency: string, full_string: string ): any => 
-		{
-			
-			result = group1.replace(" /", "")
-			for(var i = 0; i < result.length; i++) {
-	 
-				array[count][i] = result.slice(i, i+1)
-			
-			}
-			count = count + 1
-		}
-	)
-
-	return array
-}
-
-function defragmentArrayToSmallParts(array: any) {
-	const arr = []
-	let concatStr = ""
-
-	for (var i = 0; i < 4; i++) {
-		array[i].map((subArray: any, index: number) => {
-			concatStr += subArray
-		})
-		arr.push(concatStr)
-		concatStr = ""
-	}
-
-	return arr
 }
 
 export default function UpdateCharacter({ data, id, VITE_API_URL, VITE_API_ACCESS_TOKEN }: updateCharacterProps) {
@@ -168,7 +134,7 @@ export default function UpdateCharacter({ data, id, VITE_API_URL, VITE_API_ACCES
 	
 
   		setIsDataSent(false)
-  		client.resetStore()
+  		await client.resetStore()
 
   		router.push(`/character/${id}`)
 
