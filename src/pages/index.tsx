@@ -14,8 +14,28 @@ import { Logo } from '../components/Logo'
 import PurpleBlur from '../assets/purple-blur.svg'
 import CharactersImage from '../assets/charactersImage.svg'
 import BgStars from '../assets/bg-stars.svg'
+import { useEffect } from 'react'
+
+declare global {
+    interface Window {
+        adsbygoogle: any;
+    }
+}
 
 export default function MainPage({ data }: CharactersCardsProps) {
+
+	useEffect(() => {
+
+        try {
+            (window.adsbygoogle = window.adsbygoogle || []).push({});
+        }
+
+        catch (e) {
+
+        }
+
+    },[]);
+
 	return (
 		<div className="px-8">
 			<Head>
@@ -26,8 +46,18 @@ export default function MainPage({ data }: CharactersCardsProps) {
 				<meta name="keywords" content="Rpg Moon, Lista de personagens, Rpg Moon lista de personagens" />
 				<meta name="author" content="Kauã C. N." />
 				<meta property="og:image" content="https://i.imgur.com/vaKcNK2.png" />
+				<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8487586918865856"
+					crossOrigin="anonymous"></script>
 			</Head>
 			<Header />
+			<aside className='my-5'>				
+				<ins className="adsbygoogle"
+					style={{"display": "block", backgroundColor: "rgb(200, 200, 200)", height: "100px"}}
+					data-ad-client="ca-pub-8487586918865856"
+					data-ad-slot="2181931855"
+					data-ad-format="auto"
+					data-full-width-responsive="true"></ins>
+			</aside>
 			<main className="flex flex-col mt-10 justify-center rounded mt-[90px]">
 				<div className="flex flex-col justify-center items-center mb-[90px] md:flex-row">
 					<div className="relative">
